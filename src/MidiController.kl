@@ -69,7 +69,7 @@ function MidiController.setControlCallback!(MidiControlCallback callback) {
 /// reads the queue
 function MidiController.poll!() {
   Float64 stamp = 1.0;
-  while(stamp > 0.0)
+  while(true)
   {
     stamp = this.input.getMessage(this.message);
     if(this.message.size() == 0)
