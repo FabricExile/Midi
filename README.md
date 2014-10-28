@@ -4,7 +4,7 @@ A KL extension for support of Midi devices.
 
 Midi allows you to read the device channel information from any Midi enabled device.
 
-Note: Midi is based on the jdksmidi library. (https://github.com/jdkoftinoff/jdksmidi)
+Note: Midi is based on the RtMidi library. (http://www.music.mcgill.ca/~gary/rtmidi/)
 
 extension status
 ================

@@ -1,0 +1,69 @@
+#
+# Copyright 2010-2014 Fabric Software Inc. All rights reserved.
+#
+import platform, json, os, shutil
+Import('parentEnv', 'kl2edk', 'kl', 'extSuffix', 'STAGE_DIR')
+
+extName = 'Midi'
+
+env = parentEnv.Clone()
+env.Append(CPPPATH = [env.Dir('.').abspath])
+env.Append(CPPPATH = [env.Dir('#').Dir('thirdparty').Dir('rtmidi-2.1.0').abspath])
+env.Append(CCFLAGS = ['/EHsc'])
+
+# as described here: http://www.music.mcgill.ca/~gary/rtmidi/index.html#compiling
+osname = platform.system().lower()
+if osname.startswith('win'):
+  env.Append(CPPDEFINES = ['__WINDOWS_MM__'])
+  env.Append(LIBS = ['winmm'])
+elif osname.startswith('lin'):
+  env.Append(CPPDEFINES = ['__MACOSX_CORE__'])
+  env.Append(LIBS = ['CoreMIDI', 'CoreAudio', 'CoreFoundation'])
+else:
+  env.Append(CPPDEFINES = ['__LINUX_ALSA__'])
+  env.Append(LIBS = ['asound', 'pthread'])
+
+sources = [
+  env.File('Midi.fpm.json')
+]
+sources += env.Glob('*.kl')
+
+cppFiles = [
+  env.File('extension.cpp'),
+  env.File('MidiInput_functions.cpp'),
+  env.Dir('#').Dir('thirdparty').Dir('rtmidi-2.1.0').File('RtMidi.cpp')
+]
+
+headers = [
+  env.File('Midi.h')
+]
+
+extData = json.loads(open(sources[0].srcnode().abspath, 'r').read())
+extVersion = extData['version']
+
+extensionFiles = env.Install(STAGE_DIR, [env.File(extName+'.fpm.json')] + env.Glob('*.kl'))
+kl2edkResults = env.RunKL2EDK(headers, sources)
+
+extLibFileName = env.File(extName + '-' + extSuffix)
+libraryFiles = Flatten([env.SharedLibrary(extLibFileName, cppFiles)])
+env.Depends(cppFiles, kl2edkResults)
+
+extensionFiles += env.Install(STAGE_DIR, libraryFiles[0])
+extensionFiles = Flatten(extensionFiles)
+
+if os.environ.has_key('FABRIC_EXTS_INSTALL_DIR'):
+  INSTALL_DIR = os.environ['FABRIC_EXTS_INSTALL_DIR']
+  INSTALL_DIR = os.path.normpath(os.path.join(INSTALL_DIR, extName, extVersion))
+
+  newExtensionFiles = []
+  for sourceFile in extensionFiles:
+    relPath = os.path.relpath(sourceFile.abspath, STAGE_DIR.abspath)
+    targetPath = os.path.join(INSTALL_DIR, relPath)
+    targetFile = env.File(targetPath)
+    newExtensionFiles += env.Install(targetFile.dir, sourceFile)
+  extensionFiles += Flatten(newExtensionFiles)
+
+env.AlwaysBuild(extensionFiles)
+alias = env.Alias(extName, extensionFiles)
+
+Return('alias')
