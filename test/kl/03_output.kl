@@ -1,0 +1,18 @@
+require Midi;
+
+operator entry() {
+  MidiOutput midi();
+  report(midi.getPortCount());
+  report(midi.isPortOpen());
+  midi.openPort();
+  report(midi.isPortOpen());
+  Byte message[];
+  message.resize(3);
+  for(Size i=0;i<128;i++) {
+    message[0] = (MIDI_CONTROL_CHANGE);
+    message[1] = (Byte(i));
+    message[2] = (0);
+    midi.sendMessage(message);
+  }
+  report('completed!'); 
+}

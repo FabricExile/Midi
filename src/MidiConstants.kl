@@ -1,0 +1,23 @@
+/*
+ *  Copyright 2010-2014 Fabric Software Inc. All rights reserved.
+ */
+
+const Byte MIDI_NOTE_OFF = 128;
+const Byte MIDI_NOTE_ON = 144;
+const Byte MIDI_POLYPHONIC_PRESSURE = 160;
+const Byte MIDI_CONTROL_CHANGE = 176;
+const Byte MIDI_PROGRAM_CHANGE = 192;
+const Byte MIDI_CHANNEL_PRESSURE = 208;
+const Byte MIDI_PITCH_BEND = 224;
+const Byte MIDI_SYSTEM_EXCLUSIVE = 240;
+const Byte MIDI_TIME_CODE = 241;
+const Byte MIDI_SONG_POSITION_POINTER = 242;
+const Byte MIDI_SONG_SELECT = 243;
+const Byte MIDI_TUNE_REQUEST = 246;
+const Byte MIDI_TIMING_CLOCK = 248;
+const Byte MIDI_START = 250;
+const Byte MIDI_CONTINUE = 251;
+const Byte MIDI_STOP = 252;
+const Byte MIDI_ACTIVE_SENSING = 254;
+const Byte MIDI_SYSTEM_RESET = 255;
+

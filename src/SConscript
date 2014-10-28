@@ -31,6 +31,7 @@ sources += env.Glob('*.kl')
 cppFiles = [
   env.File('extension.cpp'),
   env.File('MidiInput_functions.cpp'),
+  env.File('MidiOutput_functions.cpp'),
   env.Dir('#').Dir('thirdparty').Dir('rtmidi-2.1.0').File('RtMidi.cpp')
 ]
 

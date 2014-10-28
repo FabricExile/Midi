@@ -1,0 +1,19 @@
+require Midi;
+
+object MyControlCallback : MidiControlCallback {};
+
+function MyControlCallback.invoke!(Byte control, Byte channel, Byte value) {
+  report('control '+control+', channel '+channel+', set to '+value);
+}
+
+operator entry() {
+  MidiController controller();
+  controller.reset();
+  controller.setControlCallback(MyControlCallback());
+  controller.startPlayback();
+  report('started...');
+  while(!controller.isNoteTriggered(93)) {
+    controller.poll();
+  }
+  report('completed!'); 
+}

@@ -1,0 +1,166 @@
+/*
+ *  Copyright 2010-2014 Fabric Software Inc. All rights reserved.
+ */
+
+/// A higher level wrapper for MidiInput and MidiOutput.
+object MidiController {
+  MidiInput input;
+  MidiOutput output;
+  Byte message[];
+  Byte notes[128];
+  Boolean noteTriggered[128];
+  Byte channels[128][16];
+  Boolean isPlaying;
+
+  MidiNoteCallback noteCallback;
+  MidiButtonCallback buttonCallback;
+  MidiControlCallback controlCallback;
+
+  Boolean reportMessages;
+};
+
+/// contructs a controller with the default port
+function MidiController() {
+  this.init(0);
+}
+
+/// constructs a controller with a given port
+function MidiController(UInt32 port) {
+  this.init(port);
+}
+
+/// \internal
+function MidiController.init!(UInt32 port) {
+  this.input = MidiInput();
+  this.output = MidiOutput();
+  this.input.openPort(port);
+  this.output.openPort(port);
+
+  for(Size i=0;i<this.notes.size();i++) {
+    this.notes[i] = 0;
+    this.noteTriggered[i] = false;
+  }
+
+  this.reportMessages = false;
+}
+
+/// resets the device
+function MidiController.reset!() {
+  this.message.resize(1);
+  this.message[0] = MIDI_SYSTEM_RESET;
+  this.output.sendMessage(this.message);
+}
+
+/// sets the NoteCallback on this controller
+function MidiController.setNoteCallback!(MidiNoteCallback callback) {
+  this.noteCallback = callback;
+}
+
+/// sets the ButtonCallback on this controller
+function MidiController.setButtonCallback!(MidiButtonCallback callback) {
+  this.buttonCallback = callback;
+}
+
+/// sets the ControlCallback on this controller
+function MidiController.setControlCallback!(MidiControlCallback callback) {
+  this.controlCallback = callback;
+}
+
+/// reads the queue
+function MidiController.poll!() {
+  Float64 stamp = 1.0;
+  while(stamp > 0.0)
+  {
+    stamp = this.input.getMessage(this.message);
+    if(this.message.size() == 0)
+      break;
+
+    if(this.reportMessages)
+      report(this.message);
+
+    // deal with values changes
+    if(this.message[0] >= MIDI_CONTROL_CHANGE && this.message[0] < MIDI_PROGRAM_CHANGE) {
+      Byte channel = this.message[0] - MIDI_CONTROL_CHANGE;
+      this.channels[this.message[1]][channel] = this.message[2];
+      if(this.controlCallback)
+        this.controlCallback.invoke(this.message[1], channel, this.message[2]);
+    }
+    else if(this.message[0] == MIDI_NOTE_OFF) {
+      this.notes[this.message[1]] = 0;
+      if(this.noteCallback)
+        this.noteCallback.invoke(this.message[1], 0);
+    }
+    else if(this.message[0] == MIDI_NOTE_ON) {
+      if(this.notes[this.message[1]] > 0 && this.message[2] == 0) {
+        if(this.buttonCallback)
+          this.buttonCallback.invoke(this.message[1]);
+        else
+          this.noteTriggered[this.message[1]] = true;
+      }
+      this.notes[this.message[1]] = this.message[2];
+      if(this.noteCallback)
+        this.noteCallback.invoke(this.message[1], this.message[2]);
+    }
+    else if(this.message[0] == MIDI_START) {
+      this.isPlaying = true;
+    }
+    else if(this.message[0] == MIDI_STOP) {
+      this.isPlaying = false;
+    }
+  }
+}
+
+/// returns the value of a given channel
+function Byte MidiController.getNote(Byte index) {
+  return this.notes[index];
+}
+
+/// sets the value of a given channel
+function MidiController.setNote!(Byte index, Byte value) {
+  this.notes[index] = value;
+  this.message.resize(3);
+  this.message[0] = MIDI_NOTE_ON;
+  this.message[1] = index;
+  this.message[2] = value;
+  this.output.sendMessage(this.message);
+}
+
+/// returns true if the note has been triggered, and consumes the flag
+function Boolean MidiController.isNoteTriggered!(Byte index) {
+  if(this.noteTriggered[index]) {
+    this.noteTriggered[index] = false;
+    return true;
+  }
+  return false;
+}
+
+/// returns the value of a given control
+function Byte MidiController.getControl(Byte index, Byte channel) {
+  return this.channels[index][channel];
+}
+
+/// sets the value of a given control
+function MidiController.setControl!(Byte index, Byte channel, Byte value) {
+  this.channels[index][channel] = value;
+  this.message.resize(3);
+  this.message[0] = MIDI_CONTROL_CHANGE + channel;
+  this.message[1] = index;
+  this.message[2] = value;
+  this.output.sendMessage(this.message);
+}
+
+/// starts the playback of the connected device
+function MidiController.startPlayback!() {
+  this.message.resize(1);
+  this.message[0] = MIDI_START;
+  this.output.sendMessage(this.message);
+  this.isPlaying = true;
+}
+
+/// stop the playback of the connected device
+function MidiController.stopPlayback!() {
+  this.message.resize(1);
+  this.message[0] = MIDI_STOP;
+  this.output.sendMessage(this.message);
+  this.isPlaying = false;
+}

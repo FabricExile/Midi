@@ -1,0 +1,15 @@
+/*
+ *  Copyright 2010-2014 Fabric Software Inc. All rights reserved.
+ */
+
+interface MidiNoteCallback {
+  invoke!(Byte note, Byte velocity);
+};
+
+interface MidiButtonCallback {
+  invoke!(Byte button);
+};
+
+interface MidiControlCallback {
+  invoke!(Byte control, Byte channel, Byte value);
+};

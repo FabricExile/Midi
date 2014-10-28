@@ -2,6 +2,10 @@
   "version": "1.0.0",
   "libs": "Midi",
   "code": [
-    "MidiInput.kl"
+    "MidiConstants.kl",
+    "MidiInput.kl",
+    "MidiOutput.kl",
+    "MidiCallbacks.kl",
+    "MidiController.kl"
   ]
 }
