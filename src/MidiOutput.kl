@@ -18,6 +18,13 @@ object MidiOutput {
   Data handle;
 };
 
+/// default constructor
+function MidiOutput(UInt32 portNumber)
+{
+  this = MidiOutput();
+  this.openPort(portNumber);
+}
+
 /// \internal 
 function MidiOutput() = "MidiOutput_construct";
 

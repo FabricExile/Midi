@@ -1,0 +1,282 @@
+{
+  "objectType" : "Graph",
+  "metadata" : {
+    "camera_mat44" : "{\n  \"row0\" : {\n    \"x\" : 0.800000011920929,\n    \"y\" : -0.2228344082832336,\n    \"z\" : 0.5570859909057617,\n    \"t\" : 18\n    },\n  \"row1\" : {\n    \"x\" : 2.235174179077148e-08,\n    \"y\" : 0.9284766912460327,\n    \"z\" : 0.371390700340271,\n    \"t\" : 12\n    },\n  \"row2\" : {\n    \"x\" : -0.6000000238418579,\n    \"y\" : -0.2971125245094299,\n    \"z\" : 0.7427813410758972,\n    \"t\" : 24\n    },\n  \"row3\" : {\n    \"x\" : 0,\n    \"y\" : 0,\n    \"z\" : 0,\n    \"t\" : 1\n    }\n  }",
+    "timeline_start" : "1",
+    "camera_focalDistance" : "32.31098937988281",
+    "timeline_current" : "13",
+    "timeline_end" : "50"
+    },
+  "title" : "",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "result",
+      "execPortType" : "Out",
+      "typeSpec" : "Byte"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "name" : "timeline",
+      "execPortType" : "In",
+      "typeSpec" : "Float32"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "result_2",
+      "execPortType" : "Out",
+      "typeSpec" : "Byte"
+      }
+    ],
+  "extDeps" : {},
+  "nodes" : [
+    {
+      "objectType" : "Inst",
+      "metadata" : {
+        "uiGraphPos" : "{\"x\": 315, \"y\": 146}"
+        },
+      "name" : "MidiController",
+      "ports" : [
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "In",
+          "name" : "port"
+          },
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "Out",
+          "name" : "result"
+          }
+        ],
+      "executable" : "ThirdParty.Midi.MidiController.MidiController"
+      },
+    {
+      "objectType" : "Inst",
+      "metadata" : {
+        "uiGraphPos" : "{\"x\": 671, \"y\": 157}"
+        },
+      "name" : "Poll",
+      "ports" : [
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "IO",
+          "name" : "this"
+          }
+        ],
+      "executable" : "ThirdParty.Midi.MidiController.Poll"
+      },
+    {
+      "objectType" : "Inst",
+      "metadata" : {
+        "uiGraphPos" : "{\"x\": 828, \"y\": 147}"
+        },
+      "name" : "GetControl",
+      "ports" : [
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "In",
+          "name" : "this"
+          },
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "In",
+          "defaultValues" : {
+            "UInt8" : 13
+            },
+          "name" : "index"
+          },
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "In",
+          "defaultValues" : {
+            "UInt8" : 0
+            },
+          "name" : "channel"
+          },
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "Out",
+          "name" : "result"
+          }
+        ],
+      "executable" : "ThirdParty.Midi.MidiController.GetControl"
+      },
+    {
+      "objectType" : "Var",
+      "metadata" : {
+        "uiGraphPos" : "{\"x\": 523, \"y\": 148}"
+        },
+      "name" : "midi",
+      "ports" : [
+        {
+          "objectType" : "VarPort",
+          "nodePortType" : "IO",
+          "name" : "value"
+          }
+        ],
+      "dataType" : "MidiController",
+      "extDep" : "Midi:*"
+      },
+    {
+      "objectType" : "Inst",
+      "metadata" : {
+        "uiGraphPos" : "{\"x\": 835.5, \"y\": 300.5}"
+        },
+      "name" : "GetControl_2",
+      "ports" : [
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "In",
+          "name" : "this"
+          },
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "In",
+          "defaultValues" : {
+            "UInt8" : 13
+            },
+          "name" : "index"
+          },
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "In",
+          "defaultValues" : {
+            "UInt8" : 1
+            },
+          "name" : "channel"
+          },
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "Out",
+          "name" : "result"
+          }
+        ],
+      "executable" : "ThirdParty.Midi.MidiController.GetControl"
+      }
+    ],
+  "connections" : {
+    "MidiController.result" : [
+      "midi.value"
+      ],
+    "Poll.this" : [
+      "GetControl.this",
+      "GetControl_2.this"
+      ],
+    "GetControl.result" : [
+      "result"
+      ],
+    "midi.value" : [
+      "Poll.this"
+      ],
+    "GetControl_2.result" : [
+      "result_2"
+      ]
+    },
+  "requiredPresets" : {
+    "ThirdParty.Midi.MidiController.MidiController" : {
+      "objectType" : "Func",
+      "metadata" : {
+        "uiTooltip" : "constructs a controller with a given port"
+        },
+      "title" : "MidiController",
+      "ports" : [
+        {
+          "objectType" : "Port",
+          "nodePortType" : "Out",
+          "name" : "port",
+          "execPortType" : "In",
+          "typeSpec" : "UInt32"
+          },
+        {
+          "objectType" : "Port",
+          "nodePortType" : "In",
+          "name" : "result",
+          "execPortType" : "Out",
+          "typeSpec" : "MidiController"
+          }
+        ],
+      "extDeps" : {
+        "Midi" : "*"
+        },
+      "code" : "require Midi;\n\ndfgEntry {\n  result = MidiController(port);\n}\n"
+      },
+    "ThirdParty.Midi.MidiController.Poll" : {
+      "objectType" : "Func",
+      "metadata" : {
+        "uiTooltip" : "reads the queue"
+        },
+      "title" : "Poll",
+      "ports" : [
+        {
+          "objectType" : "Port",
+          "nodePortType" : "IO",
+          "name" : "this",
+          "execPortType" : "IO",
+          "typeSpec" : "MidiController"
+          }
+        ],
+      "extDeps" : {
+        "Midi" : "*"
+        },
+      "code" : "require Midi;\n\ndfgEntry {\n  this.poll();\n}\n"
+      },
+    "ThirdParty.Midi.MidiController.GetControl" : {
+      "objectType" : "Func",
+      "metadata" : {
+        "uiTooltip" : "returns the value of a given control"
+        },
+      "title" : "GetControl",
+      "ports" : [
+        {
+          "objectType" : "Port",
+          "nodePortType" : "Out",
+          "name" : "this",
+          "execPortType" : "In",
+          "typeSpec" : "MidiController"
+          },
+        {
+          "objectType" : "Port",
+          "nodePortType" : "Out",
+          "name" : "index",
+          "execPortType" : "In",
+          "typeSpec" : "Byte"
+          },
+        {
+          "objectType" : "Port",
+          "nodePortType" : "Out",
+          "name" : "channel",
+          "execPortType" : "In",
+          "typeSpec" : "Byte"
+          },
+        {
+          "objectType" : "Port",
+          "nodePortType" : "In",
+          "name" : "result",
+          "execPortType" : "Out",
+          "typeSpec" : "Byte"
+          }
+        ],
+      "extDeps" : {
+        "Midi" : "*"
+        },
+      "code" : "require Midi;\n\ndfgEntry {\n  result = this.getControl(index, channel);\n}\n"
+      }
+    },
+  "args" : [
+    {
+      "type" : "UInt8",
+      "value" : 24
+      },
+    {
+      "type" : "Float32",
+      "value" : 13
+      },
+    {
+      "type" : "UInt8",
+      "value" : 40
+      }
+    ]
+  }

@@ -1,0 +1,222 @@
+{
+  "objectType" : "Graph",
+  "metadata" : {
+    "camera_mat44" : "{\n  \"row0\" : {\n    \"x\" : 0.800000011920929,\n    \"y\" : -0.2228344082832336,\n    \"z\" : 0.5570859909057617,\n    \"t\" : 18\n    },\n  \"row1\" : {\n    \"x\" : 2.235174179077148e-08,\n    \"y\" : 0.9284766912460327,\n    \"z\" : 0.371390700340271,\n    \"t\" : 12\n    },\n  \"row2\" : {\n    \"x\" : -0.6000000238418579,\n    \"y\" : -0.2971125245094299,\n    \"z\" : 0.7427813410758972,\n    \"t\" : 24\n    },\n  \"row3\" : {\n    \"x\" : 0,\n    \"y\" : 0,\n    \"z\" : 0,\n    \"t\" : 1\n    }\n  }",
+    "timeline_start" : "1",
+    "camera_focalDistance" : "32.31098937988281",
+    "timeline_current" : "49",
+    "timeline_end" : "50"
+    },
+  "title" : "",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "message",
+      "execPortType" : "Out",
+      "typeSpec" : "Byte[]"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "result",
+      "execPortType" : "Out",
+      "typeSpec" : "Float64"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "name" : "timeline",
+      "execPortType" : "In",
+      "typeSpec" : "Float32"
+      }
+    ],
+  "extDeps" : {},
+  "nodes" : [
+    {
+      "objectType" : "Inst",
+      "metadata" : {
+        "uiGraphPos" : "{\"x\": 784, \"y\": 44}"
+        },
+      "name" : "MidiInput",
+      "ports" : [
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "In",
+          "defaultValues" : {
+            "UInt32" : 0
+            },
+          "name" : "portNumber"
+          },
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "Out",
+          "name" : "result"
+          }
+        ],
+      "executable" : "ThirdParty.Midi.MidiInput.MidiInput"
+      },
+    {
+      "objectType" : "Inst",
+      "metadata" : {
+        "uiGraphPos" : "{\"x\": 1326, \"y\": 58}"
+        },
+      "name" : "GetMessage",
+      "ports" : [
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "IO",
+          "name" : "this"
+          },
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "IO",
+          "name" : "message"
+          },
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "Out",
+          "name" : "result"
+          }
+        ],
+      "executable" : "ThirdParty.Midi.MidiInput.GetMessage"
+      },
+    {
+      "objectType" : "Inst",
+      "metadata" : {
+        "uiGraphPos" : "{\"x\": 1525, \"y\": 47}"
+        },
+      "name" : "Report",
+      "ports" : [
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "In",
+          "name" : "value"
+          }
+        ],
+      "executable" : "Fabric.Core.Func.Report"
+      },
+    {
+      "objectType" : "Var",
+      "metadata" : {
+        "uiGraphPos" : "{\"x\": 1025, \"y\": 64}"
+        },
+      "name" : "midi",
+      "ports" : [
+        {
+          "objectType" : "VarPort",
+          "nodePortType" : "IO",
+          "name" : "value"
+          }
+        ],
+      "dataType" : "MidiInput",
+      "extDep" : "Midi:*"
+      }
+    ],
+  "connections" : {
+    "MidiInput.result" : [
+      "midi.value"
+      ],
+    "GetMessage.message" : [
+      "Report.value"
+      ],
+    "GetMessage.result" : [
+      "result"
+      ],
+    "Report.value" : [
+      "message"
+      ],
+    "midi.value" : [
+      "GetMessage.this"
+      ]
+    },
+  "requiredPresets" : {
+    "ThirdParty.Midi.MidiInput.MidiInput" : {
+      "objectType" : "Func",
+      "metadata" : {
+        "uiTooltip" : "default constructor"
+        },
+      "title" : "MidiInput",
+      "ports" : [
+        {
+          "objectType" : "Port",
+          "nodePortType" : "Out",
+          "name" : "portNumber",
+          "execPortType" : "In",
+          "typeSpec" : "UInt32"
+          },
+        {
+          "objectType" : "Port",
+          "nodePortType" : "In",
+          "name" : "result",
+          "execPortType" : "Out",
+          "typeSpec" : "MidiInput"
+          }
+        ],
+      "extDeps" : {
+        "Midi" : "*"
+        },
+      "code" : "require Midi;\n\ndfgEntry {\n  result = MidiInput(portNumber);\n}\n"
+      },
+    "ThirdParty.Midi.MidiInput.GetMessage" : {
+      "objectType" : "Func",
+      "title" : "GetMessage",
+      "ports" : [
+        {
+          "objectType" : "Port",
+          "nodePortType" : "IO",
+          "name" : "this",
+          "execPortType" : "IO",
+          "typeSpec" : "MidiInput"
+          },
+        {
+          "objectType" : "Port",
+          "nodePortType" : "IO",
+          "name" : "message",
+          "execPortType" : "IO",
+          "typeSpec" : "Byte[]"
+          },
+        {
+          "objectType" : "Port",
+          "nodePortType" : "In",
+          "name" : "result",
+          "execPortType" : "Out",
+          "typeSpec" : "Float64"
+          }
+        ],
+      "extDeps" : {
+        "Midi" : "*"
+        },
+      "code" : "require Midi;\n\ndfgEntry {\n  result = this.getMessage(message);\n}\n"
+      },
+    "Fabric.Core.Func.Report" : {
+      "objectType" : "Func",
+      "title" : "Report",
+      "ports" : [
+        {
+          "objectType" : "Port",
+          "nodePortType" : "Out",
+          "name" : "value",
+          "execPortType" : "In",
+          "typeSpec" : "$TYPE$"
+          }
+        ],
+      "extDeps" : {},
+      "code" : "\ndfgEntry {\n\treport(value);\n}\n"
+      }
+    },
+  "args" : [
+    {
+      "type" : "Byte[]",
+      "value" : null
+      },
+    {
+      "type" : "Float64",
+      "value" : 0.01
+      },
+    {
+      "type" : "Float32",
+      "value" : 49
+      }
+    ]
+  }
