@@ -55,4 +55,4 @@ You can of course add this to your .bashrc file, for example. Alternatively insp
 license
 ==========
 
-The license used for this extensions is the new BSD license. You can find it in the root folder of the repository.
+The license used for this extension can be found it in the root folder of the repository, in LICENSE.TXT.
