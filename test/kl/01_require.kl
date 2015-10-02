@@ -1,5 +1,0 @@
-require Midi;
-
-operator entry() {
-  report('completed!'); 
-}
