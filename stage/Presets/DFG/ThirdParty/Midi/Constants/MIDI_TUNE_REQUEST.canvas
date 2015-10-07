@@ -1,0 +1,19 @@
+// Created by kl2dfg (processConstant)
+{
+  "objectType" : "Func",
+  "title" : "MIDI_TUNE_REQUEST",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "value",
+      "execPortType" : "Out",
+      "typeSpec" : "Byte"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "C21A4C681C34269D6BC605FCEED4CD3B",
+  "code" : "require Midi;\n\ndfgEntry {\n  value = MIDI_TUNE_REQUEST;\n}\n"
+  }

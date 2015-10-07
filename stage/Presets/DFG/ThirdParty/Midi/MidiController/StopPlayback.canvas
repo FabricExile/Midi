@@ -1,0 +1,22 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTooltip" : "stop the playback of the connected device\n\n Supported by MidiController"
+    },
+  "title" : "StopPlayback",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "IO",
+      "name" : "this",
+      "execPortType" : "IO",
+      "typeSpec" : "MidiController"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "F52C7A11BC0916FB1F8B74E9745EF659",
+  "code" : "require Midi;\n\ndfgEntry {\n  this.stopPlayback();\n}\n"
+  }

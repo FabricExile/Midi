@@ -1,0 +1,22 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTooltip" : "starts the playback of the connected device\n\n Supported by MidiController"
+    },
+  "title" : "StartPlayback[]",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "IO",
+      "name" : "this",
+      "execPortType" : "IO",
+      "typeSpec" : "MidiController[]"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "D5B6F1C38778857EC236FC8FFF7DC417",
+  "code" : "require Midi;\n\noperator Midi_MidiController_startPlayback_task<<<index>>>(\n  io MidiController[] this\n) {\n  this[index < this.size() ? index : this.size() - 1].startPlayback();\n}\n\ndfgEntry {\n  if( this.size() == 0) return;\n  Size task_size = this.size();\n  if(task_size < 10000 /* pex margin */) {\n    for(Size index = 0; index < task_size; index++) {\n      Midi_MidiController_startPlayback_task(index, this);\n    }\n  } else {\n    Midi_MidiController_startPlayback_task<<<task_size>>>(this);\n  }\n}\n"
+  }

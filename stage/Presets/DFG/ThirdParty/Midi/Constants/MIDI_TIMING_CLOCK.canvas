@@ -1,0 +1,19 @@
+// Created by kl2dfg (processConstant)
+{
+  "objectType" : "Func",
+  "title" : "MIDI_TIMING_CLOCK",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "value",
+      "execPortType" : "Out",
+      "typeSpec" : "Byte"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "997C9E8CAF85678BC23761F84FB71114",
+  "code" : "require Midi;\n\ndfgEntry {\n  value = MIDI_TIMING_CLOCK;\n}\n"
+  }

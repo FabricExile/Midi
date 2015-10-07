@@ -1,0 +1,19 @@
+// Created by kl2dfg (processConstant)
+{
+  "objectType" : "Func",
+  "title" : "MIDI_SONG_POSITION_POINTER",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "value",
+      "execPortType" : "Out",
+      "typeSpec" : "Byte"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "12FF0F8A5E9A21F7EFA23C36F1171DDD",
+  "code" : "require Midi;\n\ndfgEntry {\n  value = MIDI_SONG_POSITION_POINTER;\n}\n"
+  }

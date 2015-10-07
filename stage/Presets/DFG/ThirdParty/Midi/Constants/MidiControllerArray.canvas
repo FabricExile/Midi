@@ -1,0 +1,36 @@
+// Created by kl2dfg (processStructConstant)
+{
+  "objectType" : "Func",
+  "title" : "MidiController[]",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "name" : "element",
+      "execPortType" : "In",
+      "typeSpec" : "MidiController"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "SInt32" : 1
+        },
+      "name" : "count",
+      "execPortType" : "In",
+      "typeSpec" : "SInt32"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "array",
+      "execPortType" : "Out",
+      "typeSpec" : "MidiController[]"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "8449D08C85FEEE76C07DF08E9BEF4457",
+  "code" : "dfgEntry {\n  array.resize(count);\n  for(Size i=0;i<count;i++)\n    array[i] = element;\n}\n"
+  }

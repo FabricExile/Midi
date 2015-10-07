@@ -1,0 +1,43 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTooltip" : "\n\n Supported by MidiControlCallback"
+    },
+  "title" : "Invoke",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "IO",
+      "name" : "this",
+      "execPortType" : "IO",
+      "typeSpec" : "MidiControlCallback"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "name" : "control",
+      "execPortType" : "In",
+      "typeSpec" : "Byte"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "name" : "channel",
+      "execPortType" : "In",
+      "typeSpec" : "Byte"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "name" : "value",
+      "execPortType" : "In",
+      "typeSpec" : "Byte"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "2D6055663ECC09358FD541F328F06735",
+  "code" : "require Midi;\n\ndfgEntry {\n  this.invoke(control, channel, value);\n}\n"
+  }

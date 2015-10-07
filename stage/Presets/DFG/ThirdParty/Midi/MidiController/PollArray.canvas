@@ -1,0 +1,22 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTooltip" : "reads the queue\n\n Supported by MidiController"
+    },
+  "title" : "Poll[]",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "IO",
+      "name" : "this",
+      "execPortType" : "IO",
+      "typeSpec" : "MidiController[]"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "DA7BE8538C4465695DF1949AA9DA1EF3",
+  "code" : "require Midi;\n\noperator Midi_MidiController_poll_task<<<index>>>(\n  io MidiController[] this\n) {\n  this[index < this.size() ? index : this.size() - 1].poll();\n}\n\ndfgEntry {\n  if( this.size() == 0) return;\n  Size task_size = this.size();\n  if(task_size < 10000 /* pex margin */) {\n    for(Size index = 0; index < task_size; index++) {\n      Midi_MidiController_poll_task(index, this);\n    }\n  } else {\n    Midi_MidiController_poll_task<<<task_size>>>(this);\n  }\n}\n"
+  }

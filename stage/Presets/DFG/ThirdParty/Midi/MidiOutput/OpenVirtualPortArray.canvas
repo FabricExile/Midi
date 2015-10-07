@@ -1,0 +1,34 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTooltip" : "\n\n Supported by MidiOutput"
+    },
+  "title" : "OpenVirtualPort[]",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "IO",
+      "name" : "this",
+      "execPortType" : "IO",
+      "typeSpec" : "MidiOutput[]"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "String[]" : [
+          ""
+          ]
+        },
+      "name" : "portName",
+      "execPortType" : "In",
+      "typeSpec" : "String[]"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "9E3E480F9D6F101C95469FDD879B39A9",
+  "code" : "require Midi;\n\noperator Midi_MidiOutput_openVirtualPort_task<<<index>>>(\n  io MidiOutput[] this\n, in String[] portName\n) {\n  this[index < this.size() ? index : this.size() - 1].openVirtualPort(portName[index < portName.size() ? index : portName.size() - 1]);\n}\n\ndfgEntry {\n  if( this.size() == 0) return;\n  if( portName.size() == 0) return;\n  Size task_size = this.size();\n  if(task_size < portName.size()) task_size = portName.size();\n  if(task_size < 10000 /* pex margin */) {\n    for(Size index = 0; index < task_size; index++) {\n      Midi_MidiOutput_openVirtualPort_task(index, this, portName);\n    }\n  } else {\n    Midi_MidiOutput_openVirtualPort_task<<<task_size>>>(this, portName);\n  }\n}\n"
+  }

@@ -1,0 +1,22 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTooltip" : "\n\n Supported by MidiInput"
+    },
+  "title" : "ClosePort",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "IO",
+      "name" : "this",
+      "execPortType" : "IO",
+      "typeSpec" : "MidiInput"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "2EFD88BB858D9E53A4E0B22806F04EC3",
+  "code" : "require Midi;\n\ndfgEntry {\n  this.closePort();\n}\n"
+  }

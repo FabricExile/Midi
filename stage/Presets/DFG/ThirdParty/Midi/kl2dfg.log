@@ -1,0 +1,73 @@
+[FABRIC:MT] Fabric Engine version 2.0.0
+[FABRIC:MT] Loading DFG presets from e:\pablo\stage\Windows\x86_64\Release\Presets\DFG
+[FABRIC:MT] Loading DFG presets from c:\Users\helge\Fabric\Presets
+[FABRIC:MT] Loading DFG presets from e:\exts\Midi\stage\Presets\DFG
+[FABRIC:MT] Loading DFG presets from e:\exts\RazerHydra\stage\Presets\DFG
+[FABRIC:MT] Loading DFG presets from e:\exts\Xbox\stage\Presets\DFG
+[FABRIC:MT] Loading DFG presets from e:\exts\LeapMotion\stage\Presets\DFG
+[FABRIC:MT] Loading DFG presets from e:\exts\Oculus\stage\Presets\DFG
+[FABRIC:MT] Registered extensions {Alembic:1.0.0,AlembicWrapper:1.2.0,Animation:1.1.0,Bullet:1.0.1,BulletHelpers:1.0.0,Characters:1.1.0,Containers:1.1.0,DFGHelpers,FabricInterfaces:1.0.1,FabricSynchronization:1.1.0,Fbx:1.1.0,FbxHelpers:1.0.2,FileIO:1.2.0,Geometry:1.2.0,Images:1.0.2,InlineDrawing:1.2.0,JSON:1.0.0,Manipulation:1.1.0,Math:1.2.0,FabricOBJ:1.1.0,FabricOGL:1.0.0,OpenImageIO:1.0.2,OSOGL:1.1.0,Parameters:1.0.0,Singletons:1.1.0,FabricStatistics:1.1.0,Util:1.1.0,ImageProcessing,RTR,RTRAdaptors} in directory: e:\pablo\stage\Windows\x86_64\Release\Exts
+[FABRIC:MT] Registered extensions {BadCode:2.0.0,BadInline:2.0.0,BadPrototype:2.0.0,BadVersion:2.0.0,CircularA:2.0.0,CircularB:2.0.0,FwdDeclare:2.0.0,FwdDeclNoDef:2.0.0,SetupCallback:2.0.0,UnitTest:2.0.0,VersionTest:1.0.0,VersionTest:1.1.1,VersionTest:1.2.1} in directory: e:\pablo\stage\Windows\x86_64\Release\Tests\Core\Exts
+[FABRIC:MT] Ignored extension directory 'e:\pablo\stage\Windows\x86_64\Release\Tests\Exts': unable to open directory 'e:\pablo\stage\Windows\x86_64\Release\Tests\Exts': The system cannot find the path specified. (code 3 [0x3])
+[FABRIC:MT] Registered extension {Midi:1.0.0} in directory: e:\exts\Midi\stage\Exts
+[FABRIC:MT] Registered extension {RazerHydra:1.0.0} in directory: e:\exts\RazerHydra\stage\Exts
+[FABRIC:MT] Registered extension {XBox:1.0.0} in directory: e:\exts\Xbox\stage\Exts
+[FABRIC:MT] Registered extension {LeapMotion:1.0.0} in directory: e:\exts\LeapMotion\stage\Exts
+[FABRIC:MT] Registered extension {Oculus:1.0.0} in directory: e:\exts\Oculus\stage\Exts
+[FABRIC:MT] Ignored extension {Midi:1.0.0} in directory: stage\Exts
+[FABRIC:MT] IRCache: Not pruning since last prune was less than 24 hours ago
+[FABRIC:MT] Loaded extension Midi in 318.531ms (cached)
+Registered function 'MidiInput.MidiInput', 'MidiInput.MidiInput'.
+Registered function 'MidiInput.closePort', 'closePort'.
+Registered function 'MidiInput.getMessage', 'getMessage'.
+Registered function 'MidiInput.getPortCount', 'getPortCount'.
+Registered function 'MidiInput.getPortName', 'getPortName'.
+Skipped 'function String MidiInput.getPortName?()', double declaration, found overload with more parameters.
+Registered function 'MidiInput.ignoreTypes', 'ignoreTypes'.
+Skipped 'function MidiInput.ignoreTypes!()', double declaration, found overload with more parameters.
+Registered function 'MidiInput.isPortOpen', 'isPortOpen'.
+Registered function 'MidiInput.openPort', 'openPort'.
+Skipped 'function MidiInput.openPort!( in UInt32 portNumber )', double declaration, found overload with more parameters.
+Skipped 'function MidiInput.openPort!()', double declaration, found overload with more parameters.
+Registered function 'MidiInput.openVirtualPort', 'openVirtualPort'.
+Skipped 'function MidiInput.openVirtualPort!()', double declaration, found overload with more parameters.
+Registered function 'MidiOutput.MidiOutput', 'MidiOutput.MidiOutput'.
+Registered function 'MidiOutput.closePort', 'closePort'.
+Registered function 'MidiOutput.getPortCount', 'getPortCount'.
+Registered function 'MidiOutput.getPortName', 'getPortName'.
+Skipped 'function String MidiOutput.getPortName?()', double declaration, found overload with more parameters.
+Registered function 'MidiOutput.isPortOpen', 'isPortOpen'.
+Registered function 'MidiOutput.openPort', 'openPort'.
+Skipped 'function MidiOutput.openPort!( in UInt32 portNumber )', double declaration, found overload with more parameters.
+Skipped 'function MidiOutput.openPort!()', double declaration, found overload with more parameters.
+Registered function 'MidiOutput.openVirtualPort', 'openVirtualPort'.
+Skipped 'function MidiOutput.openVirtualPort!()', double declaration, found overload with more parameters.
+Registered function 'MidiOutput.sendMessage', 'sendMessage'.
+Registered function 'MidiNoteCallback.invoke', 'invoke'.
+Registered function 'MidiButtonCallback.invoke', 'invoke'.
+Registered function 'MidiControlCallback.invoke', 'invoke'.
+Registered function 'MidiController.MidiController', 'MidiController.MidiController'.
+Skipped 'function MidiController?()', double declaration, found overload with more parameters.
+Registered function 'MidiController.getControl', 'getControl'.
+Registered function 'MidiController.getNote', 'getNote'.
+Registered function 'MidiController.isNoteTriggered', 'isNoteTriggered'.
+Registered function 'MidiController.poll', 'poll'.
+Registered function 'MidiController.reset', 'reset'.
+Registered function 'MidiController.setButtonCallback', 'setButtonCallback'.
+Registered function 'MidiController.setControl', 'setControl'.
+Registered function 'MidiController.setControlCallback', 'setControlCallback'.
+Registered function 'MidiController.setNote', 'setNote'.
+Registered function 'MidiController.setNoteCallback', 'setNoteCallback'.
+Registered function 'MidiController.startPlayback', 'startPlayback'.
+Registered function 'MidiController.stopPlayback', 'stopPlayback'.
+Skipped 'function MidiInput.openPort!( in UInt32 portNumber )', double declaration, found overload with more parameters.
+Skipped 'function MidiInput.openPort!()', double declaration, found overload with more parameters.
+Skipped 'function MidiInput.openVirtualPort!()', double declaration, found overload with more parameters.
+Skipped 'function String MidiInput.getPortName?()', double declaration, found overload with more parameters.
+Skipped 'function MidiInput.ignoreTypes!()', double declaration, found overload with more parameters.
+Skipped 'function MidiOutput.openPort!( in UInt32 portNumber )', double declaration, found overload with more parameters.
+Skipped 'function MidiOutput.openPort!()', double declaration, found overload with more parameters.
+Skipped 'function MidiOutput.openVirtualPort!()', double declaration, found overload with more parameters.
+Skipped 'function String MidiOutput.getPortName?()', double declaration, found overload with more parameters.
+Skipped 'function MidiController?()', double declaration, found overload with more parameters.
+Skipping array preset for 'function MidiOutput.sendMessage!( in Byte message[] )', contains array parameter.

@@ -1,0 +1,29 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTooltip" : "\n\n Supported by MidiButtonCallback"
+    },
+  "title" : "Invoke",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "IO",
+      "name" : "this",
+      "execPortType" : "IO",
+      "typeSpec" : "MidiButtonCallback"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "name" : "button",
+      "execPortType" : "In",
+      "typeSpec" : "Byte"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "D69DD0FE32E07116A03C0FECEEC7EBFE",
+  "code" : "require Midi;\n\ndfgEntry {\n  this.invoke(button);\n}\n"
+  }

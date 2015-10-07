@@ -1,0 +1,19 @@
+// Created by kl2dfg (processConstant)
+{
+  "objectType" : "Func",
+  "title" : "MIDI_STOP",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "value",
+      "execPortType" : "Out",
+      "typeSpec" : "Byte"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "0A16296A8FE301FCF744F7323B2FFDEB",
+  "code" : "require Midi;\n\ndfgEntry {\n  value = MIDI_STOP;\n}\n"
+  }

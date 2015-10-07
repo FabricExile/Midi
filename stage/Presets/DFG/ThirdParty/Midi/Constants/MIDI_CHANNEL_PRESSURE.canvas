@@ -1,0 +1,19 @@
+// Created by kl2dfg (processConstant)
+{
+  "objectType" : "Func",
+  "title" : "MIDI_CHANNEL_PRESSURE",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "value",
+      "execPortType" : "Out",
+      "typeSpec" : "Byte"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "033689B418AD1BCAAFA06BBDFE0FE067",
+  "code" : "require Midi;\n\ndfgEntry {\n  value = MIDI_CHANNEL_PRESSURE;\n}\n"
+  }

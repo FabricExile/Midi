@@ -1,0 +1,19 @@
+// Created by kl2dfg (processConstant)
+{
+  "objectType" : "Func",
+  "title" : "MIDI_SYSTEM_RESET",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "value",
+      "execPortType" : "Out",
+      "typeSpec" : "Byte"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "AC7BD87C46FB05D6132058DD080C9D48",
+  "code" : "require Midi;\n\ndfgEntry {\n  value = MIDI_SYSTEM_RESET;\n}\n"
+  }

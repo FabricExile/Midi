@@ -1,0 +1,22 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTooltip" : "\n\n Supported by MidiInput"
+    },
+  "title" : "ClosePort[]",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "IO",
+      "name" : "this",
+      "execPortType" : "IO",
+      "typeSpec" : "MidiInput[]"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "2EFD88BB858D9E53A4E0B22806F04EC3",
+  "code" : "require Midi;\n\noperator Midi_MidiInput_closePort_task<<<index>>>(\n  io MidiInput[] this\n) {\n  this[index < this.size() ? index : this.size() - 1].closePort();\n}\n\ndfgEntry {\n  if( this.size() == 0) return;\n  Size task_size = this.size();\n  if(task_size < 10000 /* pex margin */) {\n    for(Size index = 0; index < task_size; index++) {\n      Midi_MidiInput_closePort_task(index, this);\n    }\n  } else {\n    Midi_MidiInput_closePort_task<<<task_size>>>(this);\n  }\n}\n"
+  }

@@ -1,0 +1,36 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTooltip" : "\n\n Supported by MidiInput"
+    },
+  "title" : "GetMessage[]",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "IO",
+      "name" : "this",
+      "execPortType" : "IO",
+      "typeSpec" : "MidiInput[]"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "IO",
+      "name" : "message",
+      "execPortType" : "IO",
+      "typeSpec" : "Byte[][]"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "result",
+      "execPortType" : "Out",
+      "typeSpec" : "Float64[]"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "EB5D6519D5F79B69AEAF6793173B043B",
+  "code" : "require Midi;\n\noperator Midi_MidiInput_getMessage_task<<<index>>>(\n  io Float64[] result\n, io MidiInput[] this\n, io Byte[][] message\n) {\n  result[index] = this[index < this.size() ? index : this.size() - 1].getMessage(message[index < message.size() ? index : message.size() - 1]);\n}\n\ndfgEntry {\n  if( this.size() == 0) return;\n  if( message.size() == 0) return;\n  Size task_size = this.size();\n  if(task_size < message.size()) task_size = message.size();\n  result.resize(task_size);\n  message.resize(task_size);\n  if(task_size < 10000 /* pex margin */) {\n    for(Size index = 0; index < task_size; index++) {\n      Midi_MidiInput_getMessage_task(index, result, this, message);\n    }\n  } else {\n    Midi_MidiInput_getMessage_task<<<task_size>>>(result, this, message);\n  }\n}\n"
+  }

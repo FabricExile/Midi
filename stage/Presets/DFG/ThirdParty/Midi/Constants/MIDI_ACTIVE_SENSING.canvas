@@ -1,0 +1,19 @@
+// Created by kl2dfg (processConstant)
+{
+  "objectType" : "Func",
+  "title" : "MIDI_ACTIVE_SENSING",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "value",
+      "execPortType" : "Out",
+      "typeSpec" : "Byte"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "6674C5199B11995724FFAE41F8FE7ECB",
+  "code" : "require Midi;\n\ndfgEntry {\n  value = MIDI_ACTIVE_SENSING;\n}\n"
+  }

@@ -1,0 +1,113 @@
+/*
+ *  Copyright 2010-2014 Fabric Software Inc. All rights reserved.
+ */
+
+/**
+  \brief A realtime MIDI input class.
+
+  This class provides a common, platform-independent API for
+  realtime MIDI input.  It allows access to a single MIDI input
+  port.  Incoming MIDI messages are either saved to a queue for
+  retrieval using the getMessage() function or immediately passed to
+  a user-specified callback function.  Create multiple instances of
+  this class to connect to more than one MIDI device at the same
+  time.  With the OS-X, Linux ALSA, and JACK MIDI APIs, it is also
+  possible to open a virtual input port to which other MIDI software
+  clients can connect.
+*/
+object MidiInput {
+  /// \internal
+  Data handle;
+};
+
+/// default constructor
+function MidiInput(UInt32 portNumber)
+{
+  this = MidiInput();
+  this.openPort(portNumber);
+}
+
+/// \internal 
+function MidiInput() = "MidiInput_construct";
+
+/// \internal 
+function ~MidiInput() = "MidiInput_destruct";
+
+//! Open a MIDI input connection given by enumeration number.
+/*!
+  \param portNumber An optional port number greater than 0 can be specified.
+                    Otherwise, the default or first port found is opened.
+  \param portName An optional name for the application port that is used to connect to portId can be specified.
+*/
+function MidiInput.openPort!(UInt32 portNumber, String portName) = "MidiInput_openPort";
+
+function MidiInput.openPort!(UInt32 portNumber) {
+  this.openPort(portNumber, "Fabric Engine Input");
+}
+
+function MidiInput.openPort!() {
+  this.openPort(0, "Fabric Engine Input");
+}
+
+//! Create a virtual input port, with optional name, to allow software connections (OS X, JACK and ALSA only).
+/*!
+  This function creates a virtual MIDI input port to which other
+  software applications can connect.  This type of functionality
+  is currently only supported by the Macintosh OS-X, any JACK,
+  and Linux ALSA APIs (the function returns an error for the other APIs).
+
+  \param portName An optional name for the application port that is
+                  used to connect to portId can be specified.
+*/
+function MidiInput.openVirtualPort!(String portName) = "MidiInput_openVirtualPort";
+
+function MidiInput.openVirtualPort!() {
+  this.openVirtualPort("Fabric Engine Input");
+}
+
+//! Close an open MIDI connection (if one exists).
+function MidiInput.closePort!() = "MidiInput_closePort";
+
+//! Returns true if a port is open and false if not.
+function Boolean MidiInput.isPortOpen() = "MidiInput_isPortOpen";
+
+//! Return the number of available MIDI input ports.
+/*!
+  \return This function returns the number of MIDI ports of the selected API.
+*/
+function UInt32 MidiInput.getPortCount() = "MidiInput_getPortCount";
+
+//! Return a string identifier for the specified MIDI input port number.
+/*!
+  \return The name of the port with the given Id is returned.
+  \retval An empty string is returned if an invalid port specifier is provided.
+*/
+function String MidiInput.getPortName(UInt32 portNumber) = "MidiInput_getPortName";
+
+function String MidiInput.getPortName() {
+  return this.getPortName(0);
+}
+
+//! Specify whether certain MIDI message types should be queued or ignored during input.
+/*!
+  By default, MIDI timing and active sensing messages are ignored
+  during message input because of their relative high data rates.
+  MIDI sysex messages are ignored by default as well.  Variable
+  values of "true" imply that the respective message type will be
+  ignored.
+*/
+function MidiInput.ignoreTypes!(Boolean midiSysex, Boolean midiTime, Boolean midiSense) = "MidiInput_ignoreTypes";
+
+function MidiInput.ignoreTypes!() {
+  this.ignoreTypes(true, true, true);
+}
+
+//! Fill the user-provided vector with the data bytes for the next available MIDI message in the input queue and return the event delta-time in seconds.
+/*!
+  This function returns immediately whether a new message is
+  available or not.  A valid message is indicated by a non-zero
+  vector size.  An exception is thrown if an error occurs during
+  message retrieval or an input connection was not previously
+  established.
+*/
+function Float64 MidiInput.getMessage!(io Byte message[]) = "MidiInput_getMessage";

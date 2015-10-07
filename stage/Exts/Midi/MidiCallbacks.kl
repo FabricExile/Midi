@@ -1,0 +1,19 @@
+/*
+ *  Copyright 2010-2014 Fabric Software Inc. All rights reserved.
+ */
+
+/// a callback which is fired on any note change
+interface MidiNoteCallback {
+  invoke!(Byte note, Byte velocity);
+};
+
+/// a callback which is fired on notes when let go.
+/// this is useful for buttons.
+interface MidiButtonCallback {
+  invoke!(Byte button);
+};
+
+/// a callback fired for any control change
+interface MidiControlCallback {
+  invoke!(Byte control, Byte channel, Byte value);
+};

@@ -1,0 +1,19 @@
+// Created by kl2dfg (processConstant)
+{
+  "objectType" : "Func",
+  "title" : "MIDI_PITCH_BEND",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "value",
+      "execPortType" : "Out",
+      "typeSpec" : "Byte"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "1D850B9CC77E74213546948E3B0C1C94",
+  "code" : "require Midi;\n\ndfgEntry {\n  value = MIDI_PITCH_BEND;\n}\n"
+  }

@@ -1,0 +1,29 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTooltip" : "sets the ControlCallback on this controller\n\n Supported by MidiController"
+    },
+  "title" : "SetControlCallback[]",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "IO",
+      "name" : "this",
+      "execPortType" : "IO",
+      "typeSpec" : "MidiController[]"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "name" : "callback",
+      "execPortType" : "In",
+      "typeSpec" : "MidiControlCallback[]"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "3E214D12DCDA86D1B921D6F6667E0446",
+  "code" : "require Midi;\n\noperator Midi_MidiController_setControlCallback_task<<<index>>>(\n  io MidiController[] this\n, in MidiControlCallback[] callback\n) {\n  this[index < this.size() ? index : this.size() - 1].setControlCallback(callback[index < callback.size() ? index : callback.size() - 1]);\n}\n\ndfgEntry {\n  if( this.size() == 0) return;\n  if( callback.size() == 0) return;\n  Size task_size = this.size();\n  if(task_size < callback.size()) task_size = callback.size();\n  if(task_size < 10000 /* pex margin */) {\n    for(Size index = 0; index < task_size; index++) {\n      Midi_MidiController_setControlCallback_task(index, this, callback);\n    }\n  } else {\n    Midi_MidiController_setControlCallback_task<<<task_size>>>(this, callback);\n  }\n}\n"
+  }

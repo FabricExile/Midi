@@ -1,0 +1,36 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTooltip" : "\n\n Supported by MidiNoteCallback"
+    },
+  "title" : "Invoke",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "IO",
+      "name" : "this",
+      "execPortType" : "IO",
+      "typeSpec" : "MidiNoteCallback"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "name" : "note",
+      "execPortType" : "In",
+      "typeSpec" : "Byte"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "name" : "velocity",
+      "execPortType" : "In",
+      "typeSpec" : "Byte"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "67E3A9FE27F45A74EE7E59AFC019B2D2",
+  "code" : "require Midi;\n\ndfgEntry {\n  this.invoke(note, velocity);\n}\n"
+  }

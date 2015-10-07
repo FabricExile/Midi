@@ -1,0 +1,19 @@
+// Created by kl2dfg (processConstant)
+{
+  "objectType" : "Func",
+  "title" : "MIDI_POLYPHONIC_PRESSURE",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "value",
+      "execPortType" : "Out",
+      "typeSpec" : "Byte"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "9257D01ED9DB4876CC3B61625C6BDBC7",
+  "code" : "require Midi;\n\ndfgEntry {\n  value = MIDI_POLYPHONIC_PRESSURE;\n}\n"
+  }

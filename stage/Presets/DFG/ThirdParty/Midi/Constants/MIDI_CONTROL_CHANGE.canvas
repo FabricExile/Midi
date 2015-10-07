@@ -1,0 +1,19 @@
+// Created by kl2dfg (processConstant)
+{
+  "objectType" : "Func",
+  "title" : "MIDI_CONTROL_CHANGE",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "value",
+      "execPortType" : "Out",
+      "typeSpec" : "Byte"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "26FB63424CC9C760143591D06536EF19",
+  "code" : "require Midi;\n\ndfgEntry {\n  value = MIDI_CONTROL_CHANGE;\n}\n"
+  }

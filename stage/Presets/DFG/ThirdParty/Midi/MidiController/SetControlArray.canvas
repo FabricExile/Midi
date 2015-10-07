@@ -1,0 +1,58 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTooltip" : "sets the value of a given control\n\n Supported by MidiController"
+    },
+  "title" : "SetControl[]",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "IO",
+      "name" : "this",
+      "execPortType" : "IO",
+      "typeSpec" : "MidiController[]"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "Byte[]" : [
+          0
+          ]
+        },
+      "name" : "index",
+      "execPortType" : "In",
+      "typeSpec" : "Byte[]"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "Byte[]" : [
+          0
+          ]
+        },
+      "name" : "channel",
+      "execPortType" : "In",
+      "typeSpec" : "Byte[]"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "Byte[]" : [
+          0
+          ]
+        },
+      "name" : "value",
+      "execPortType" : "In",
+      "typeSpec" : "Byte[]"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "D8BE523A2CE35B2542CE08FD185F1CB7",
+  "code" : "require Midi;\n\noperator Midi_MidiController_setControl_task<<<index>>>(\n  io MidiController[] this\n, in Byte[] index\n, in Byte[] channel\n, in Byte[] value\n) {\n  this[index < this.size() ? index : this.size() - 1].setControl(index[index < index.size() ? index : index.size() - 1], channel[index < channel.size() ? index : channel.size() - 1], value[index < value.size() ? index : value.size() - 1]);\n}\n\ndfgEntry {\n  if( this.size() == 0) return;\n  if( index.size() == 0) return;\n  if( channel.size() == 0) return;\n  if( value.size() == 0) return;\n  Size task_size = this.size();\n  if(task_size < index.size()) task_size = index.size();\n  if(task_size < channel.size()) task_size = channel.size();\n  if(task_size < value.size()) task_size = value.size();\n  if(task_size < 10000 /* pex margin */) {\n    for(Size index = 0; index < task_size; index++) {\n      Midi_MidiController_setControl_task(index, this, index, channel, value);\n    }\n  } else {\n    Midi_MidiController_setControl_task<<<task_size>>>(this, index, channel, value);\n  }\n}\n"
+  }

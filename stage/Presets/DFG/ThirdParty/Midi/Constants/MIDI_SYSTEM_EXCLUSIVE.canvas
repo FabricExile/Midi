@@ -1,0 +1,19 @@
+// Created by kl2dfg (processConstant)
+{
+  "objectType" : "Func",
+  "title" : "MIDI_SYSTEM_EXCLUSIVE",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "value",
+      "execPortType" : "Out",
+      "typeSpec" : "Byte"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "2718C4E8618100E5867B282736318081",
+  "code" : "require Midi;\n\ndfgEntry {\n  value = MIDI_SYSTEM_EXCLUSIVE;\n}\n"
+  }

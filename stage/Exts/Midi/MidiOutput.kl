@@ -1,0 +1,97 @@
+/*
+ *  Copyright 2010-2014 Fabric Software Inc. All rights reserved.
+ */
+
+/**
+    \brief A realtime MIDI output class.
+
+    This class provides a common, platform-independent API for MIDI
+    output.  It allows one to probe available MIDI output ports, to
+    connect to one such port, and to send MIDI bytes immediately over
+    the connection.  Create multiple instances of this class to
+    connect to more than one MIDI device at the same time.  With the
+    OS-X, Linux ALSA and JACK MIDI APIs, it is also possible to open a
+    virtual port to which other MIDI software clients can connect.
+*/
+object MidiOutput {
+  /// \internal
+  Data handle;
+};
+
+/// default constructor
+function MidiOutput(UInt32 portNumber)
+{
+  this = MidiOutput();
+  this.openPort(portNumber);
+}
+
+/// \internal 
+function MidiOutput() = "MidiOutput_construct";
+
+/// \internal 
+function ~MidiOutput() = "MidiOutput_destruct";
+
+//! Open a MIDI input connection given by enumeration number.
+/*!
+  \param portNumber An optional port number greater than 0 can be specified.
+                    Otherwise, the default or first port found is opened.
+  \param portName An optional name for the application port that is used to connect to portId can be specified.
+*/
+function MidiOutput.openPort!(UInt32 portNumber, String portName) = "MidiOutput_openPort";
+
+function MidiOutput.openPort!(UInt32 portNumber) {
+  this.openPort(portNumber, "Fabric Engine Input");
+}
+
+function MidiOutput.openPort!() {
+  this.openPort(0, "Fabric Engine Input");
+}
+
+//! Create a virtual input port, with optional name, to allow software connections (OS X, JACK and ALSA only).
+/*!
+  This function creates a virtual MIDI input port to which other
+  software applications can connect.  This type of functionality
+  is currently only supported by the Macintosh OS-X, any JACK,
+  and Linux ALSA APIs (the function returns an error for the other APIs).
+
+  \param portName An optional name for the application port that is
+                  used to connect to portId can be specified.
+*/
+function MidiOutput.openVirtualPort!(String portName) = "MidiOutput_openVirtualPort";
+
+function MidiOutput.openVirtualPort!() {
+  this.openVirtualPort("Fabric Engine Input");
+}
+
+//! Close an open MIDI connection (if one exists).
+function MidiOutput.closePort!() = "MidiOutput_closePort";
+
+//! Returns true if a port is open and false if not.
+function Boolean MidiOutput.isPortOpen() = "MidiOutput_isPortOpen";
+
+//! Return the number of available MIDI input ports.
+/*!
+  \return This function returns the number of MIDI ports of the selected API.
+*/
+function UInt32 MidiOutput.getPortCount() = "MidiOutput_getPortCount";
+
+//! Return a string identifier for the specified MIDI input port number.
+/*!
+  \return The name of the port with the given Id is returned.
+  \retval An empty string is returned if an invalid port specifier is provided.
+*/
+function String MidiOutput.getPortName(UInt32 portNumber) = "MidiOutput_getPortName";
+
+function String MidiOutput.getPortName() {
+  return this.getPortName(0);
+}
+
+//! Fill the user-provided vector with the data bytes for the next available MIDI message in the input queue and return the event delta-time in seconds.
+/*!
+  This function returns immediately whether a new message is
+  available or not.  A valid message is indicated by a non-zero
+  vector size.  An exception is thrown if an error occurs during
+  message retrieval or an input connection was not previously
+  established.
+*/
+function MidiOutput.sendMessage!(Byte message[]) = "MidiOutput_sendMessage";

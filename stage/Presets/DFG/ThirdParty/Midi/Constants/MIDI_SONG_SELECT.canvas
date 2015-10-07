@@ -1,0 +1,19 @@
+// Created by kl2dfg (processConstant)
+{
+  "objectType" : "Func",
+  "title" : "MIDI_SONG_SELECT",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "value",
+      "execPortType" : "Out",
+      "typeSpec" : "Byte"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "8E959802C97C1E78F32ADE95A3192DE7",
+  "code" : "require Midi;\n\ndfgEntry {\n  value = MIDI_SONG_SELECT;\n}\n"
+  }

@@ -1,0 +1,34 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTooltip" : "default constructor\n\n Supported by MidiInput"
+    },
+  "title" : "MidiInput[]",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "UInt32[]" : [
+          0
+          ]
+        },
+      "name" : "portNumber",
+      "execPortType" : "In",
+      "typeSpec" : "UInt32[]"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "result",
+      "execPortType" : "Out",
+      "typeSpec" : "MidiInput[]"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "4248A4492329C5C6E18ABD3A3F02CDBD",
+  "code" : "require Midi;\n\noperator Midi_MidiInput_MidiInput_task<<<index>>>(\n  io MidiInput[] result\n, in UInt32[] portNumber\n) {\n  result[index] = MidiInput(portNumber[index < portNumber.size() ? index : portNumber.size() - 1]);\n}\n\ndfgEntry {\n  if( portNumber.size() == 0) return;\n  Size task_size = 0;\n  if(task_size < portNumber.size()) task_size = portNumber.size();\n  result.resize(task_size);\n  if(task_size < 10000 /* pex margin */) {\n    for(Size index = 0; index < task_size; index++) {\n      Midi_MidiInput_MidiInput_task(index, result, portNumber);\n    }\n  } else {\n    Midi_MidiInput_MidiInput_task<<<task_size>>>(result, portNumber);\n  }\n}\n"
+  }

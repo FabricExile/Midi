@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "libs": "Midi",
+  "code": [
+    "MidiConstants.kl",
+    "MidiInput.kl",
+    "MidiOutput.kl",
+    "MidiCallbacks.kl",
+    "MidiController.kl"
+  ]
+}

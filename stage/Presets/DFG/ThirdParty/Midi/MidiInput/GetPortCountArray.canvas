@@ -1,0 +1,29 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTooltip" : "\n\n Supported by MidiInput"
+    },
+  "title" : "GetPortCount[]",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "name" : "this",
+      "execPortType" : "In",
+      "typeSpec" : "MidiInput[]"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "result",
+      "execPortType" : "Out",
+      "typeSpec" : "UInt32[]"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "17D9A95663673CA43353508C3D274659",
+  "code" : "require Midi;\n\noperator Midi_MidiInput_getPortCount_task<<<index>>>(\n  io UInt32[] result\n, in MidiInput[] this\n) {\n  result[index] = this[index < this.size() ? index : this.size() - 1].getPortCount();\n}\n\ndfgEntry {\n  if( this.size() == 0) return;\n  Size task_size = this.size();\n  result.resize(task_size);\n  if(task_size < 10000 /* pex margin */) {\n    for(Size index = 0; index < task_size; index++) {\n      Midi_MidiInput_getPortCount_task(index, result, this);\n    }\n  } else {\n    Midi_MidiInput_getPortCount_task<<<task_size>>>(result, this);\n  }\n}\n"
+  }

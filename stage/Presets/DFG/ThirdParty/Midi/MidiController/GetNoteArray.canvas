@@ -1,0 +1,41 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTooltip" : "returns the value of a given channel\n\n Supported by MidiController"
+    },
+  "title" : "GetNote[]",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "name" : "this",
+      "execPortType" : "In",
+      "typeSpec" : "MidiController[]"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "Byte[]" : [
+          0
+          ]
+        },
+      "name" : "index",
+      "execPortType" : "In",
+      "typeSpec" : "Byte[]"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "result",
+      "execPortType" : "Out",
+      "typeSpec" : "Byte[]"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "E89F0445A15EDA3AD769F4F27982AA10",
+  "code" : "require Midi;\n\noperator Midi_MidiController_getNote_task<<<index>>>(\n  io Byte[] result\n, in MidiController[] this\n, in Byte[] index\n) {\n  result[index] = this[index < this.size() ? index : this.size() - 1].getNote(index[index < index.size() ? index : index.size() - 1]);\n}\n\ndfgEntry {\n  if( this.size() == 0) return;\n  if( index.size() == 0) return;\n  Size task_size = this.size();\n  if(task_size < index.size()) task_size = index.size();\n  result.resize(task_size);\n  if(task_size < 10000 /* pex margin */) {\n    for(Size index = 0; index < task_size; index++) {\n      Midi_MidiController_getNote_task(index, result, this, index);\n    }\n  } else {\n    Midi_MidiController_getNote_task<<<task_size>>>(result, this, index);\n  }\n}\n"
+  }

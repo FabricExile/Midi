@@ -1,0 +1,46 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTooltip" : "\n\n Supported by MidiInput"
+    },
+  "title" : "OpenPort[]",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "IO",
+      "name" : "this",
+      "execPortType" : "IO",
+      "typeSpec" : "MidiInput[]"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "UInt32[]" : [
+          0
+          ]
+        },
+      "name" : "portNumber",
+      "execPortType" : "In",
+      "typeSpec" : "UInt32[]"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "String[]" : [
+          ""
+          ]
+        },
+      "name" : "portName",
+      "execPortType" : "In",
+      "typeSpec" : "String[]"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "5BBD86DC113EF7476F310DD81A640E15",
+  "code" : "require Midi;\n\noperator Midi_MidiInput_openPort_task<<<index>>>(\n  io MidiInput[] this\n, in UInt32[] portNumber\n, in String[] portName\n) {\n  this[index < this.size() ? index : this.size() - 1].openPort(portNumber[index < portNumber.size() ? index : portNumber.size() - 1], portName[index < portName.size() ? index : portName.size() - 1]);\n}\n\ndfgEntry {\n  if( this.size() == 0) return;\n  if( portNumber.size() == 0) return;\n  if( portName.size() == 0) return;\n  Size task_size = this.size();\n  if(task_size < portNumber.size()) task_size = portNumber.size();\n  if(task_size < portName.size()) task_size = portName.size();\n  if(task_size < 10000 /* pex margin */) {\n    for(Size index = 0; index < task_size; index++) {\n      Midi_MidiInput_openPort_task(index, this, portNumber, portName);\n    }\n  } else {\n    Midi_MidiInput_openPort_task<<<task_size>>>(this, portNumber, portName);\n  }\n}\n"
+  }
