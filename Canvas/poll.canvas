@@ -1,0 +1,284 @@
+{
+  "objectType" : "Graph",
+  "metadata" : {
+    "camera_mat44" : "{\n  \"row0\" : {\n    \"x\" : 0.7999998331069946,\n    \"y\" : -0.2228345572948456,\n    \"z\" : 0.5570861101150513,\n    \"t\" : 30\n    },\n  \"row1\" : {\n    \"x\" : 0,\n    \"y\" : 0.9284765720367432,\n    \"z\" : 0.3713908195495606,\n    \"t\" : 20\n    },\n  \"row2\" : {\n    \"x\" : -0.6000002026557922,\n    \"y\" : -0.2971125841140747,\n    \"z\" : 0.7427811026573181,\n    \"t\" : 40\n    },\n  \"row3\" : {\n    \"x\" : 0,\n    \"y\" : 0,\n    \"z\" : 0,\n    \"t\" : 1\n    }\n  }",
+    "timeline_start" : "1",
+    "timeline_loopMode" : "1",
+    "uiGraphZoom" : "{\n  \"value\" : 0.9399999976158142\n  }",
+    "timeline_simMode" : "0",
+    "camera_focalDistance" : "53.85164642333984",
+    "timeline_current" : "15",
+    "timeline_end" : "50",
+    "uiGraphPan" : "{\n  \"x\" : 89.48000335693359,\n  \"y\" : -65.23999786376953\n  }"
+    },
+  "title" : "",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "name" : "timeline",
+      "execPortType" : "In",
+      "typeSpec" : "Float32"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "value",
+      "execPortType" : "Out",
+      "typeSpec" : "Byte[16]"
+      }
+    ],
+  "extDeps" : {},
+  "nodes" : [
+    {
+      "objectType" : "Inst",
+      "metadata" : {
+        "uiGraphPos" : "{\"x\":99.97866821289063,\"y\":146.404296875}"
+        },
+      "name" : "MidiController",
+      "ports" : [
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "In",
+          "name" : "port"
+          },
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "Out",
+          "name" : "result"
+          }
+        ],
+      "executable" : "ThirdParty.Midi.MidiController.MidiController",
+      "presetGUID" : "CA8D74C12196EAD24BD1E3A578C0EF18"
+      },
+    {
+      "objectType" : "Inst",
+      "metadata" : {
+        "uiGraphPos" : "{\"x\":435.4893798828125,\"y\":155.2766571044922}"
+        },
+      "name" : "Poll",
+      "ports" : [
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "IO",
+          "name" : "this"
+          }
+        ],
+      "executable" : "ThirdParty.Midi.MidiController.Poll",
+      "presetGUID" : "DA7BE8538C4465695DF1949AA9DA1EF3"
+      },
+    {
+      "objectType" : "Var",
+      "metadata" : {
+        "uiGraphPos" : "{\"x\":296.3616943359375,\"y\":154.2766571044922}"
+        },
+      "name" : "midi",
+      "ports" : [
+        {
+          "objectType" : "VarPort",
+          "nodePortType" : "IO",
+          "name" : "value"
+          }
+        ],
+      "dataType" : "MidiController"
+      },
+    {
+      "objectType" : "Inst",
+      "metadata" : {
+        "uiGraphPos" : "{\"x\":578.2127075195313,\"y\":196.0000762939453}"
+        },
+      "name" : "GetLayer",
+      "ports" : [
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "In",
+          "name" : "this"
+          },
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "In",
+          "defaultValues" : {
+            "UInt8" : 13
+            },
+          "name" : "index"
+          },
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "Out",
+          "name" : "result"
+          }
+        ],
+      "executable" : "ThirdParty.Midi.MidiController.GetLayer",
+      "presetGUID" : "15774FDB1203FC8360C06254A0A751A0"
+      },
+    {
+      "objectType" : "Inst",
+      "metadata" : {
+        "uiGraphPos" : "{\"x\":880.3405151367188,\"y\":240.6808319091797}"
+        },
+      "name" : "Report",
+      "ports" : [
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "In",
+          "name" : "value"
+          }
+        ],
+      "executable" : "Fabric.Core.Func.Report",
+      "presetGUID" : "E9448726588111C443C34B2F3D9B0172"
+      }
+    ],
+  "connections" : {
+    "MidiController.result" : [
+      "midi.value"
+      ],
+    "Poll.this" : [
+      "GetLayer.this"
+      ],
+    "midi.value" : [
+      "Poll.this"
+      ],
+    "GetLayer.result" : [
+      "Report.value"
+      ],
+    "Report.value" : [
+      "value"
+      ]
+    },
+  "requiredPresets" : {
+    "ThirdParty.Midi.MidiController.MidiController" : {
+      "objectType" : "Func",
+      "metadata" : {
+        "uiTooltip" : "constructs a controller with a given port\n\n Supported by MidiController"
+        },
+      "title" : "MidiController",
+      "ports" : [
+        {
+          "objectType" : "Port",
+          "nodePortType" : "Out",
+          "name" : "port",
+          "execPortType" : "In",
+          "typeSpec" : "UInt32"
+          },
+        {
+          "objectType" : "Port",
+          "nodePortType" : "In",
+          "name" : "result",
+          "execPortType" : "Out",
+          "typeSpec" : "MidiController"
+          }
+        ],
+      "extDeps" : {
+        "Midi" : "*"
+        },
+      "presetGUID" : "CA8D74C12196EAD24BD1E3A578C0EF18",
+      "code" : "require Midi;
+
+dfgEntry {
+  result = MidiController(port);
+}
+"
+      },
+    "ThirdParty.Midi.MidiController.Poll" : {
+      "objectType" : "Func",
+      "metadata" : {
+        "uiTooltip" : "reads the queue\n\n Supported by MidiController"
+        },
+      "title" : "Poll",
+      "ports" : [
+        {
+          "objectType" : "Port",
+          "nodePortType" : "IO",
+          "name" : "this",
+          "execPortType" : "IO",
+          "typeSpec" : "MidiController"
+          }
+        ],
+      "extDeps" : {
+        "Midi" : "*"
+        },
+      "presetGUID" : "DA7BE8538C4465695DF1949AA9DA1EF3",
+      "code" : "require Midi;
+
+dfgEntry {
+  this.poll();
+}
+"
+      },
+    "ThirdParty.Midi.MidiController.GetLayer" : {
+      "objectType" : "Func",
+      "metadata" : {
+        "uiTooltip" : "returns all controls for a given layer\n\n Supported by MidiController"
+        },
+      "title" : "GetLayer",
+      "ports" : [
+        {
+          "objectType" : "Port",
+          "nodePortType" : "Out",
+          "name" : "this",
+          "execPortType" : "In",
+          "typeSpec" : "MidiController"
+          },
+        {
+          "objectType" : "Port",
+          "nodePortType" : "Out",
+          "name" : "index",
+          "execPortType" : "In",
+          "typeSpec" : "Byte"
+          },
+        {
+          "objectType" : "Port",
+          "nodePortType" : "In",
+          "name" : "result",
+          "execPortType" : "Out",
+          "typeSpec" : "Byte[16]"
+          }
+        ],
+      "extDeps" : {
+        "Midi" : "*"
+        },
+      "presetGUID" : "15774FDB1203FC8360C06254A0A751A0",
+      "code" : "require Midi;
+
+dfgEntry {
+  result = this.getLayer(index);
+}
+"
+      },
+    "Fabric.Core.Func.Report" : {
+      "objectType" : "Func",
+      "metadata" : {
+        "uiNodeColor" : "{\n  \"r\" : 214,\n  \"g\" : 191,\n  \"b\" : 103\n  }",
+        "uiAlwaysShowDaisyChainPorts" : "true",
+        "uiHeaderColor" : "{\n  \"r\" : 188,\n  \"g\" : 129,\n  \"b\" : 83\n  }"
+        },
+      "title" : "Report",
+      "ports" : [
+        {
+          "objectType" : "Port",
+          "nodePortType" : "Out",
+          "name" : "value",
+          "execPortType" : "In",
+          "typeSpec" : "$TYPE$"
+          }
+        ],
+      "extDeps" : {},
+      "presetGUID" : "E9448726588111C443C34B2F3D9B0172",
+      "code" : "
+dfgEntry {
+	report(value);
+}
+"
+      }
+    },
+  "args" : [
+    {
+      "type" : "Float32",
+      "value" : null
+      },
+    {
+      "type" : "Byte[16]",
+      "value" : null
+      }
+    ]
+  }

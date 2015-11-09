@@ -18,5 +18,10 @@
     "Midi" : "*"
     },
   "presetGUID" : "DA7BE8538C4465695DF1949AA9DA1EF3",
-  "code" : "require Midi;\n\ndfgEntry {\n  this.poll();\n}\n"
+  "code" : "require Midi;
+
+dfgEntry {
+  this.poll();
+}
+"
   }

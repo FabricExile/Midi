@@ -32,5 +32,10 @@
     "Midi" : "*"
     },
   "presetGUID" : "5F979BB46E8F5774362133CECF8C92B8",
-  "code" : "require Midi;\n\ndfgEntry {\n  this.setNote(index, value);\n}\n"
+  "code" : "require Midi;
+
+dfgEntry {
+  this.setNote(index, value);
+}
+"
   }

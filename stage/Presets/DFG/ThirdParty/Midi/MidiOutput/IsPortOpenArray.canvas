@@ -25,5 +25,26 @@
     "Midi" : "*"
     },
   "presetGUID" : "554DF1C0275A522FEB14D3C332F3DD6A",
-  "code" : "require Midi;\n\noperator Midi_MidiOutput_isPortOpen_task<<<index>>>(\n  io Boolean[] result\n, in MidiOutput[] this\n) {\n  result[index] = this[index < this.size() ? index : this.size() - 1].isPortOpen();\n}\n\ndfgEntry {\n  if( this.size() == 0) return;\n  Size task_size = this.size();\n  result.resize(task_size);\n  if(task_size < 10000 /* pex margin */) {\n    for(Size index = 0; index < task_size; index++) {\n      Midi_MidiOutput_isPortOpen_task(index, result, this);\n    }\n  } else {\n    Midi_MidiOutput_isPortOpen_task<<<task_size>>>(result, this);\n  }\n}\n"
+  "code" : "require Midi;
+
+operator Midi_MidiOutput_isPortOpen_task<<<index>>>(
+  io Boolean[] result
+, in MidiOutput[] this
+) {
+  result[index] = this[index < this.size() ? index : this.size() - 1].isPortOpen();
+}
+
+dfgEntry {
+  if( this.size() == 0) return;
+  Size task_size = this.size();
+  result.resize(task_size);
+  if(task_size < 10000 /* pex margin */) {
+    for(Size index = 0; index < task_size; index++) {
+      Midi_MidiOutput_isPortOpen_task(index, result, this);
+    }
+  } else {
+    Midi_MidiOutput_isPortOpen_task<<<task_size>>>(result, this);
+  }
+}
+"
   }

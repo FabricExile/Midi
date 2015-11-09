@@ -30,5 +30,27 @@
     "Midi" : "*"
     },
   "presetGUID" : "9E3E480F9D6F101C95469FDD879B39A9",
-  "code" : "require Midi;\n\noperator Midi_MidiOutput_openVirtualPort_task<<<index>>>(\n  io MidiOutput[] this\n, in String[] portName\n) {\n  this[index < this.size() ? index : this.size() - 1].openVirtualPort(portName[index < portName.size() ? index : portName.size() - 1]);\n}\n\ndfgEntry {\n  if( this.size() == 0) return;\n  if( portName.size() == 0) return;\n  Size task_size = this.size();\n  if(task_size < portName.size()) task_size = portName.size();\n  if(task_size < 10000 /* pex margin */) {\n    for(Size index = 0; index < task_size; index++) {\n      Midi_MidiOutput_openVirtualPort_task(index, this, portName);\n    }\n  } else {\n    Midi_MidiOutput_openVirtualPort_task<<<task_size>>>(this, portName);\n  }\n}\n"
+  "code" : "require Midi;
+
+operator Midi_MidiOutput_openVirtualPort_task<<<index>>>(
+  io MidiOutput[] this
+, in String[] portName
+) {
+  this[index < this.size() ? index : this.size() - 1].openVirtualPort(portName[index < portName.size() ? index : portName.size() - 1]);
+}
+
+dfgEntry {
+  if( this.size() == 0) return;
+  if( portName.size() == 0) return;
+  Size task_size = this.size();
+  if(task_size < portName.size()) task_size = portName.size();
+  if(task_size < 10000 /* pex margin */) {
+    for(Size index = 0; index < task_size; index++) {
+      Midi_MidiOutput_openVirtualPort_task(index, this, portName);
+    }
+  } else {
+    Midi_MidiOutput_openVirtualPort_task<<<task_size>>>(this, portName);
+  }
+}
+"
   }

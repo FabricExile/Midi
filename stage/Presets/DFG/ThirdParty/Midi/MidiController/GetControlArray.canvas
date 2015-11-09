@@ -49,5 +49,32 @@
     "Midi" : "*"
     },
   "presetGUID" : "3ABEA6BD251708C1CA3470DD8470FFFC",
-  "code" : "require Midi;\n\noperator Midi_MidiController_getControl_task<<<index>>>(\n  io Byte[] result\n, in MidiController[] this\n, in Byte[] index\n, in Byte[] channel\n) {\n  result[index] = this[index < this.size() ? index : this.size() - 1].getControl(index[index < index.size() ? index : index.size() - 1], channel[index < channel.size() ? index : channel.size() - 1]);\n}\n\ndfgEntry {\n  if( this.size() == 0) return;\n  if( index.size() == 0) return;\n  if( channel.size() == 0) return;\n  Size task_size = this.size();\n  if(task_size < index.size()) task_size = index.size();\n  if(task_size < channel.size()) task_size = channel.size();\n  result.resize(task_size);\n  if(task_size < 10000 /* pex margin */) {\n    for(Size index = 0; index < task_size; index++) {\n      Midi_MidiController_getControl_task(index, result, this, index, channel);\n    }\n  } else {\n    Midi_MidiController_getControl_task<<<task_size>>>(result, this, index, channel);\n  }\n}\n"
+  "code" : "require Midi;
+
+operator Midi_MidiController_getControl_task<<<index>>>(
+  io Byte[] result
+, in MidiController[] this
+, in Byte[] index
+, in Byte[] channel
+) {
+  result[index] = this[index < this.size() ? index : this.size() - 1].getControl(index[index < index.size() ? index : index.size() - 1], channel[index < channel.size() ? index : channel.size() - 1]);
+}
+
+dfgEntry {
+  if( this.size() == 0) return;
+  if( index.size() == 0) return;
+  if( channel.size() == 0) return;
+  Size task_size = this.size();
+  if(task_size < index.size()) task_size = index.size();
+  if(task_size < channel.size()) task_size = channel.size();
+  result.resize(task_size);
+  if(task_size < 10000 /* pex margin */) {
+    for(Size index = 0; index < task_size; index++) {
+      Midi_MidiController_getControl_task(index, result, this, index, channel);
+    }
+  } else {
+    Midi_MidiController_getControl_task<<<task_size>>>(result, this, index, channel);
+  }
+}
+"
   }

@@ -25,5 +25,10 @@
     "Midi" : "*"
     },
   "presetGUID" : "12B9791AF4E8F1FEDB408BFFABFDC876",
-  "code" : "require Midi;\n\ndfgEntry {\n  this.setNoteCallback(callback);\n}\n"
+  "code" : "require Midi;
+
+dfgEntry {
+  this.setNoteCallback(callback);
+}
+"
   }

@@ -18,5 +18,10 @@
     "Midi" : "*"
     },
   "presetGUID" : "A1CFAC2E72F7BED7C05CEF7572BA1DD9",
-  "code" : "require Midi;\n\ndfgEntry {\n  this.closePort();\n}\n"
+  "code" : "require Midi;
+
+dfgEntry {
+  this.closePort();
+}
+"
   }

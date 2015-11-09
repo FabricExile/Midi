@@ -149,6 +149,11 @@ function MidiController.setControl!(Byte index, Byte channel, Byte value) {
   this.output.sendMessage(this.message);
 }
 
+/// returns all controls for a given layer
+function Byte[16] MidiController.getLayer(Byte index) {
+  return this.channels[index];
+}
+
 /// starts the playback of the connected device
 function MidiController.startPlayback!() {
   this.message.resize(1);

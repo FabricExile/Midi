@@ -18,5 +18,10 @@
     "Midi" : "*"
     },
   "presetGUID" : "F52C7A11BC0916FB1F8B74E9745EF659",
-  "code" : "require Midi;\n\ndfgEntry {\n  this.stopPlayback();\n}\n"
+  "code" : "require Midi;
+
+dfgEntry {
+  this.stopPlayback();
+}
+"
   }

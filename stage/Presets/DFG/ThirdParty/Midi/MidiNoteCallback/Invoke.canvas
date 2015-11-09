@@ -32,5 +32,10 @@
     "Midi" : "*"
     },
   "presetGUID" : "67E3A9FE27F45A74EE7E59AFC019B2D2",
-  "code" : "require Midi;\n\ndfgEntry {\n  this.invoke(note, velocity);\n}\n"
+  "code" : "require Midi;
+
+dfgEntry {
+  this.invoke(note, velocity);
+}
+"
   }

@@ -32,5 +32,10 @@
     "Midi" : "*"
     },
   "presetGUID" : "08E308704FACED4341D81C50EA08CF2B",
-  "code" : "require Midi;\n\ndfgEntry {\n  this.openPort(portNumber, portName);\n}\n"
+  "code" : "require Midi;
+
+dfgEntry {
+  this.openPort(portNumber, portName);
+}
+"
   }

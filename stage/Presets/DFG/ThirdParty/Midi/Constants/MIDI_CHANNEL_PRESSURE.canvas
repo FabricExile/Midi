@@ -15,5 +15,10 @@
     "Midi" : "*"
     },
   "presetGUID" : "033689B418AD1BCAAFA06BBDFE0FE067",
-  "code" : "require Midi;\n\ndfgEntry {\n  value = MIDI_CHANNEL_PRESSURE;\n}\n"
+  "code" : "require Midi;
+
+dfgEntry {
+  value = MIDI_CHANNEL_PRESSURE;
+}
+"
   }

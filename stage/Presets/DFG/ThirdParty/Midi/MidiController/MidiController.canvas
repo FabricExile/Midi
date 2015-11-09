@@ -25,5 +25,10 @@
     "Midi" : "*"
     },
   "presetGUID" : "CA8D74C12196EAD24BD1E3A578C0EF18",
-  "code" : "require Midi;\n\ndfgEntry {\n  result = MidiController(port);\n}\n"
+  "code" : "require Midi;
+
+dfgEntry {
+  result = MidiController(port);
+}
+"
   }

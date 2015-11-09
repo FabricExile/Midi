@@ -32,5 +32,10 @@
     "Midi" : "*"
     },
   "presetGUID" : "EB5D6519D5F79B69AEAF6793173B043B",
-  "code" : "require Midi;\n\ndfgEntry {\n  result = this.getMessage(message);\n}\n"
+  "code" : "require Midi;
+
+dfgEntry {
+  result = this.getMessage(message);
+}
+"
   }

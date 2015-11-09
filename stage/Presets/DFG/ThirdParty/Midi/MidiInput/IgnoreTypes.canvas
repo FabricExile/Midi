@@ -39,5 +39,10 @@
     "Midi" : "*"
     },
   "presetGUID" : "6AC95351BF9ABADAF960E0142D5EC725",
-  "code" : "require Midi;\n\ndfgEntry {\n  this.ignoreTypes(midiSysex, midiTime, midiSense);\n}\n"
+  "code" : "require Midi;
+
+dfgEntry {
+  this.ignoreTypes(midiSysex, midiTime, midiSense);
+}
+"
   }

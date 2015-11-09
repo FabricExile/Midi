@@ -30,5 +30,27 @@
     "Midi" : "*"
     },
   "presetGUID" : "4248A4492329C5C6E18ABD3A3F02CDBD",
-  "code" : "require Midi;\n\noperator Midi_MidiInput_MidiInput_task<<<index>>>(\n  io MidiInput[] result\n, in UInt32[] portNumber\n) {\n  result[index] = MidiInput(portNumber[index < portNumber.size() ? index : portNumber.size() - 1]);\n}\n\ndfgEntry {\n  if( portNumber.size() == 0) return;\n  Size task_size = 0;\n  if(task_size < portNumber.size()) task_size = portNumber.size();\n  result.resize(task_size);\n  if(task_size < 10000 /* pex margin */) {\n    for(Size index = 0; index < task_size; index++) {\n      Midi_MidiInput_MidiInput_task(index, result, portNumber);\n    }\n  } else {\n    Midi_MidiInput_MidiInput_task<<<task_size>>>(result, portNumber);\n  }\n}\n"
+  "code" : "require Midi;
+
+operator Midi_MidiInput_MidiInput_task<<<index>>>(
+  io MidiInput[] result
+, in UInt32[] portNumber
+) {
+  result[index] = MidiInput(portNumber[index < portNumber.size() ? index : portNumber.size() - 1]);
+}
+
+dfgEntry {
+  if( portNumber.size() == 0) return;
+  Size task_size = 0;
+  if(task_size < portNumber.size()) task_size = portNumber.size();
+  result.resize(task_size);
+  if(task_size < 10000 /* pex margin */) {
+    for(Size index = 0; index < task_size; index++) {
+      Midi_MidiInput_MidiInput_task(index, result, portNumber);
+    }
+  } else {
+    Midi_MidiInput_MidiInput_task<<<task_size>>>(result, portNumber);
+  }
+}
+"
   }

@@ -2,33 +2,40 @@
 {
   "objectType" : "Func",
   "metadata" : {
-    "uiTooltip" : "\n\n Supported by MidiInput"
+    "uiTooltip" : "returns all controls for a given layer\n\n Supported by MidiController"
     },
-  "title" : "IsPortOpen",
+  "title" : "GetLayer",
   "ports" : [
     {
       "objectType" : "Port",
       "nodePortType" : "Out",
       "name" : "this",
       "execPortType" : "In",
-      "typeSpec" : "MidiInput"
+      "typeSpec" : "MidiController"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "name" : "index",
+      "execPortType" : "In",
+      "typeSpec" : "Byte"
       },
     {
       "objectType" : "Port",
       "nodePortType" : "In",
       "name" : "result",
       "execPortType" : "Out",
-      "typeSpec" : "Boolean"
+      "typeSpec" : "Byte[16]"
       }
     ],
   "extDeps" : {
     "Midi" : "*"
     },
-  "presetGUID" : "55B59FC677BC6632490595D1880EADFB",
+  "presetGUID" : "15774FDB1203FC8360C06254A0A751A0",
   "code" : "require Midi;
 
 dfgEntry {
-  result = this.isPortOpen();
+  result = this.getLayer(index);
 }
 "
   }

@@ -25,5 +25,27 @@
     "Midi" : "*"
     },
   "presetGUID" : "12B9791AF4E8F1FEDB408BFFABFDC876",
-  "code" : "require Midi;\n\noperator Midi_MidiController_setNoteCallback_task<<<index>>>(\n  io MidiController[] this\n, in MidiNoteCallback[] callback\n) {\n  this[index < this.size() ? index : this.size() - 1].setNoteCallback(callback[index < callback.size() ? index : callback.size() - 1]);\n}\n\ndfgEntry {\n  if( this.size() == 0) return;\n  if( callback.size() == 0) return;\n  Size task_size = this.size();\n  if(task_size < callback.size()) task_size = callback.size();\n  if(task_size < 10000 /* pex margin */) {\n    for(Size index = 0; index < task_size; index++) {\n      Midi_MidiController_setNoteCallback_task(index, this, callback);\n    }\n  } else {\n    Midi_MidiController_setNoteCallback_task<<<task_size>>>(this, callback);\n  }\n}\n"
+  "code" : "require Midi;
+
+operator Midi_MidiController_setNoteCallback_task<<<index>>>(
+  io MidiController[] this
+, in MidiNoteCallback[] callback
+) {
+  this[index < this.size() ? index : this.size() - 1].setNoteCallback(callback[index < callback.size() ? index : callback.size() - 1]);
+}
+
+dfgEntry {
+  if( this.size() == 0) return;
+  if( callback.size() == 0) return;
+  Size task_size = this.size();
+  if(task_size < callback.size()) task_size = callback.size();
+  if(task_size < 10000 /* pex margin */) {
+    for(Size index = 0; index < task_size; index++) {
+      Midi_MidiController_setNoteCallback_task(index, this, callback);
+    }
+  } else {
+    Midi_MidiController_setNoteCallback_task<<<task_size>>>(this, callback);
+  }
+}
+"
   }

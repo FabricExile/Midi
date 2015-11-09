@@ -15,5 +15,10 @@
     "Midi" : "*"
     },
   "presetGUID" : "267BCDB839AF0270431F539F715B36EA",
-  "code" : "require Midi;\n\ndfgEntry {\n  value = MIDI_NOTE_OFF;\n}\n"
+  "code" : "require Midi;
+
+dfgEntry {
+  value = MIDI_NOTE_OFF;
+}
+"
   }

@@ -15,5 +15,10 @@
     "Midi" : "*"
     },
   "presetGUID" : "AC7BD87C46FB05D6132058DD080C9D48",
-  "code" : "require Midi;\n\ndfgEntry {\n  value = MIDI_SYSTEM_RESET;\n}\n"
+  "code" : "require Midi;
+
+dfgEntry {
+  value = MIDI_SYSTEM_RESET;
+}
+"
   }

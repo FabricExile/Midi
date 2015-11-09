@@ -32,5 +32,30 @@
     "Midi" : "*"
     },
   "presetGUID" : "EB5D6519D5F79B69AEAF6793173B043B",
-  "code" : "require Midi;\n\noperator Midi_MidiInput_getMessage_task<<<index>>>(\n  io Float64[] result\n, io MidiInput[] this\n, io Byte[][] message\n) {\n  result[index] = this[index < this.size() ? index : this.size() - 1].getMessage(message[index < message.size() ? index : message.size() - 1]);\n}\n\ndfgEntry {\n  if( this.size() == 0) return;\n  if( message.size() == 0) return;\n  Size task_size = this.size();\n  if(task_size < message.size()) task_size = message.size();\n  result.resize(task_size);\n  message.resize(task_size);\n  if(task_size < 10000 /* pex margin */) {\n    for(Size index = 0; index < task_size; index++) {\n      Midi_MidiInput_getMessage_task(index, result, this, message);\n    }\n  } else {\n    Midi_MidiInput_getMessage_task<<<task_size>>>(result, this, message);\n  }\n}\n"
+  "code" : "require Midi;
+
+operator Midi_MidiInput_getMessage_task<<<index>>>(
+  io Float64[] result
+, io MidiInput[] this
+, io Byte[][] message
+) {
+  result[index] = this[index < this.size() ? index : this.size() - 1].getMessage(message[index < message.size() ? index : message.size() - 1]);
+}
+
+dfgEntry {
+  if( this.size() == 0) return;
+  if( message.size() == 0) return;
+  Size task_size = this.size();
+  if(task_size < message.size()) task_size = message.size();
+  result.resize(task_size);
+  message.resize(task_size);
+  if(task_size < 10000 /* pex margin */) {
+    for(Size index = 0; index < task_size; index++) {
+      Midi_MidiInput_getMessage_task(index, result, this, message);
+    }
+  } else {
+    Midi_MidiInput_getMessage_task<<<task_size>>>(result, this, message);
+  }
+}
+"
   }

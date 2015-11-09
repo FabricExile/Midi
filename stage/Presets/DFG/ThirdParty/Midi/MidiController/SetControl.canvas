@@ -39,5 +39,10 @@
     "Midi" : "*"
     },
   "presetGUID" : "D8BE523A2CE35B2542CE08FD185F1CB7",
-  "code" : "require Midi;\n\ndfgEntry {\n  this.setControl(index, channel, value);\n}\n"
+  "code" : "require Midi;
+
+dfgEntry {
+  this.setControl(index, channel, value);
+}
+"
   }

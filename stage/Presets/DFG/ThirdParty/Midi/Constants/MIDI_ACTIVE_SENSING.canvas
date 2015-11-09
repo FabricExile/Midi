@@ -15,5 +15,10 @@
     "Midi" : "*"
     },
   "presetGUID" : "6674C5199B11995724FFAE41F8FE7ECB",
-  "code" : "require Midi;\n\ndfgEntry {\n  value = MIDI_ACTIVE_SENSING;\n}\n"
+  "code" : "require Midi;
+
+dfgEntry {
+  value = MIDI_ACTIVE_SENSING;
+}
+"
   }

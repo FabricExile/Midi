@@ -15,5 +15,10 @@
     "Midi" : "*"
     },
   "presetGUID" : "9257D01ED9DB4876CC3B61625C6BDBC7",
-  "code" : "require Midi;\n\ndfgEntry {\n  value = MIDI_POLYPHONIC_PRESSURE;\n}\n"
+  "code" : "require Midi;
+
+dfgEntry {
+  value = MIDI_POLYPHONIC_PRESSURE;
+}
+"
   }

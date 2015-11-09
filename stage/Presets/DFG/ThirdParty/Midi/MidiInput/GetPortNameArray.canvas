@@ -37,5 +37,29 @@
     "Midi" : "*"
     },
   "presetGUID" : "033713C19DA91268E4E0D68218352599",
-  "code" : "require Midi;\n\noperator Midi_MidiInput_getPortName_task<<<index>>>(\n  io String[] result\n, in MidiInput[] this\n, in UInt32[] portNumber\n) {\n  result[index] = this[index < this.size() ? index : this.size() - 1].getPortName(portNumber[index < portNumber.size() ? index : portNumber.size() - 1]);\n}\n\ndfgEntry {\n  if( this.size() == 0) return;\n  if( portNumber.size() == 0) return;\n  Size task_size = this.size();\n  if(task_size < portNumber.size()) task_size = portNumber.size();\n  result.resize(task_size);\n  if(task_size < 10000 /* pex margin */) {\n    for(Size index = 0; index < task_size; index++) {\n      Midi_MidiInput_getPortName_task(index, result, this, portNumber);\n    }\n  } else {\n    Midi_MidiInput_getPortName_task<<<task_size>>>(result, this, portNumber);\n  }\n}\n"
+  "code" : "require Midi;
+
+operator Midi_MidiInput_getPortName_task<<<index>>>(
+  io String[] result
+, in MidiInput[] this
+, in UInt32[] portNumber
+) {
+  result[index] = this[index < this.size() ? index : this.size() - 1].getPortName(portNumber[index < portNumber.size() ? index : portNumber.size() - 1]);
+}
+
+dfgEntry {
+  if( this.size() == 0) return;
+  if( portNumber.size() == 0) return;
+  Size task_size = this.size();
+  if(task_size < portNumber.size()) task_size = portNumber.size();
+  result.resize(task_size);
+  if(task_size < 10000 /* pex margin */) {
+    for(Size index = 0; index < task_size; index++) {
+      Midi_MidiInput_getPortName_task(index, result, this, portNumber);
+    }
+  } else {
+    Midi_MidiInput_getPortName_task<<<task_size>>>(result, this, portNumber);
+  }
+}
+"
   }

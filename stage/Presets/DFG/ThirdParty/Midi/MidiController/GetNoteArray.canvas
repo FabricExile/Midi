@@ -37,5 +37,29 @@
     "Midi" : "*"
     },
   "presetGUID" : "E89F0445A15EDA3AD769F4F27982AA10",
-  "code" : "require Midi;\n\noperator Midi_MidiController_getNote_task<<<index>>>(\n  io Byte[] result\n, in MidiController[] this\n, in Byte[] index\n) {\n  result[index] = this[index < this.size() ? index : this.size() - 1].getNote(index[index < index.size() ? index : index.size() - 1]);\n}\n\ndfgEntry {\n  if( this.size() == 0) return;\n  if( index.size() == 0) return;\n  Size task_size = this.size();\n  if(task_size < index.size()) task_size = index.size();\n  result.resize(task_size);\n  if(task_size < 10000 /* pex margin */) {\n    for(Size index = 0; index < task_size; index++) {\n      Midi_MidiController_getNote_task(index, result, this, index);\n    }\n  } else {\n    Midi_MidiController_getNote_task<<<task_size>>>(result, this, index);\n  }\n}\n"
+  "code" : "require Midi;
+
+operator Midi_MidiController_getNote_task<<<index>>>(
+  io Byte[] result
+, in MidiController[] this
+, in Byte[] index
+) {
+  result[index] = this[index < this.size() ? index : this.size() - 1].getNote(index[index < index.size() ? index : index.size() - 1]);
+}
+
+dfgEntry {
+  if( this.size() == 0) return;
+  if( index.size() == 0) return;
+  Size task_size = this.size();
+  if(task_size < index.size()) task_size = index.size();
+  result.resize(task_size);
+  if(task_size < 10000 /* pex margin */) {
+    for(Size index = 0; index < task_size; index++) {
+      Midi_MidiController_getNote_task(index, result, this, index);
+    }
+  } else {
+    Midi_MidiController_getNote_task<<<task_size>>>(result, this, index);
+  }
+}
+"
   }

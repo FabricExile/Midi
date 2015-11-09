@@ -25,5 +25,10 @@
     "Midi" : "*"
     },
   "presetGUID" : "D69DD0FE32E07116A03C0FECEEC7EBFE",
-  "code" : "require Midi;\n\ndfgEntry {\n  this.invoke(button);\n}\n"
+  "code" : "require Midi;
+
+dfgEntry {
+  this.invoke(button);
+}
+"
   }

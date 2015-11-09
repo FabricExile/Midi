@@ -54,5 +54,33 @@
     "Midi" : "*"
     },
   "presetGUID" : "6AC95351BF9ABADAF960E0142D5EC725",
-  "code" : "require Midi;\n\noperator Midi_MidiInput_ignoreTypes_task<<<index>>>(\n  io MidiInput[] this\n, in Boolean[] midiSysex\n, in Boolean[] midiTime\n, in Boolean[] midiSense\n) {\n  this[index < this.size() ? index : this.size() - 1].ignoreTypes(midiSysex[index < midiSysex.size() ? index : midiSysex.size() - 1], midiTime[index < midiTime.size() ? index : midiTime.size() - 1], midiSense[index < midiSense.size() ? index : midiSense.size() - 1]);\n}\n\ndfgEntry {\n  if( this.size() == 0) return;\n  if( midiSysex.size() == 0) return;\n  if( midiTime.size() == 0) return;\n  if( midiSense.size() == 0) return;\n  Size task_size = this.size();\n  if(task_size < midiSysex.size()) task_size = midiSysex.size();\n  if(task_size < midiTime.size()) task_size = midiTime.size();\n  if(task_size < midiSense.size()) task_size = midiSense.size();\n  if(task_size < 10000 /* pex margin */) {\n    for(Size index = 0; index < task_size; index++) {\n      Midi_MidiInput_ignoreTypes_task(index, this, midiSysex, midiTime, midiSense);\n    }\n  } else {\n    Midi_MidiInput_ignoreTypes_task<<<task_size>>>(this, midiSysex, midiTime, midiSense);\n  }\n}\n"
+  "code" : "require Midi;
+
+operator Midi_MidiInput_ignoreTypes_task<<<index>>>(
+  io MidiInput[] this
+, in Boolean[] midiSysex
+, in Boolean[] midiTime
+, in Boolean[] midiSense
+) {
+  this[index < this.size() ? index : this.size() - 1].ignoreTypes(midiSysex[index < midiSysex.size() ? index : midiSysex.size() - 1], midiTime[index < midiTime.size() ? index : midiTime.size() - 1], midiSense[index < midiSense.size() ? index : midiSense.size() - 1]);
+}
+
+dfgEntry {
+  if( this.size() == 0) return;
+  if( midiSysex.size() == 0) return;
+  if( midiTime.size() == 0) return;
+  if( midiSense.size() == 0) return;
+  Size task_size = this.size();
+  if(task_size < midiSysex.size()) task_size = midiSysex.size();
+  if(task_size < midiTime.size()) task_size = midiTime.size();
+  if(task_size < midiSense.size()) task_size = midiSense.size();
+  if(task_size < 10000 /* pex margin */) {
+    for(Size index = 0; index < task_size; index++) {
+      Midi_MidiInput_ignoreTypes_task(index, this, midiSysex, midiTime, midiSense);
+    }
+  } else {
+    Midi_MidiInput_ignoreTypes_task<<<task_size>>>(this, midiSysex, midiTime, midiSense);
+  }
+}
+"
   }

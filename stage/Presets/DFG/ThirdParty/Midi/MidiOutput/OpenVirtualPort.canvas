@@ -25,5 +25,10 @@
     "Midi" : "*"
     },
   "presetGUID" : "9E3E480F9D6F101C95469FDD879B39A9",
-  "code" : "require Midi;\n\ndfgEntry {\n  this.openVirtualPort(portName);\n}\n"
+  "code" : "require Midi;
+
+dfgEntry {
+  this.openVirtualPort(portName);
+}
+"
   }
