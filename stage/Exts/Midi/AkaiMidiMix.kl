@@ -129,7 +129,7 @@ function AkaiMidiMix.invoke!(Byte control, Byte channel, Byte value) {
     this.controls[index] = v;
   } else if(control >= 46 && control <= 61) {
     Index index = control - 46;
-    this.controls[index] = v;
+    this.controls[index+16] = v;
   }
 }
 
@@ -149,6 +149,10 @@ function Scalar AkaiMidiMix.getRotaryControl(Size col, Size row) {
   if(col > 8 || row > 2)
     return 0.0;
   return this.controls[col * 4 + row];
+}
+
+function Scalar[] AkaiMidiMix.getAllControls() {
+  return this.controls.clone();
 }
 
 function AkaiMidiMix.getControlAsScalars(Index index, out Scalar rotary1, out Scalar rotary2, out Scalar rotary3, out Scalar slider, out Boolean muted, out Boolean recording) {

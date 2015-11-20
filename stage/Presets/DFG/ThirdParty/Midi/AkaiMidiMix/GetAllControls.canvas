@@ -1,0 +1,34 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTooltip" : "\n\n Supported by AkaiMidiMix"
+    },
+  "title" : "GetAllControls",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "name" : "this",
+      "execPortType" : "In",
+      "typeSpec" : "AkaiMidiMix"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "result",
+      "execPortType" : "Out",
+      "typeSpec" : "Scalar[]"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "B193CC42ACFC044C4796E04A26664AC5",
+  "code" : "require Midi;
+
+dfgEntry {
+  result = this.getAllControls();
+}
+"
+  }

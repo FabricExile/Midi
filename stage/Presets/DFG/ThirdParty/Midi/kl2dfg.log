@@ -19,11 +19,11 @@
 [FABRIC:MT] Registered extension {RhinoFBXConverter:1.0.0} in directory: e:\exts\RhinoFBXConverter\src
 [FABRIC:MT] Ignored extension {Midi:1.0.0} in directory: stage\Exts
 [FABRIC:MT] IRCache: Not pruning since last prune was less than 24 hours ago
-[FABRIC:MT] Loaded extension Math in 132.656ms (cached)
-[FABRIC:MT] Loaded extension FabricSynchronization in 15.176ms (cached)
-[FABRIC:MT] Loaded extension Singletons in 5.048ms (cached)
-[FABRIC:MT] Loaded extension Util in 33.702ms (cached)
-[FABRIC:MT] Loaded extension Midi in 529.669ms (first time)
+[FABRIC:MT] Loaded extension Math in 129.609ms (cached)
+[FABRIC:MT] Loaded extension FabricSynchronization in 15.914ms (cached)
+[FABRIC:MT] Loaded extension Singletons in 5.227ms (cached)
+[FABRIC:MT] Loaded extension Util in 34.997ms (cached)
+[FABRIC:MT] Loaded extension Midi in 539.872ms (first time)
 Registered function 'MidiInput.MidiInput', 'MidiInput.MidiInput'.
 Registered function 'MidiInput.closePort', 'closePort'.
 Registered function 'MidiInput.getMessage', 'getMessage'.
@@ -71,6 +71,7 @@ Registered function 'MidiController.setNoteCallback', 'setNoteCallback'.
 Registered function 'MidiController.startPlayback', 'startPlayback'.
 Registered function 'MidiController.stopPlayback', 'stopPlayback'.
 Registered function 'AkaiMidiMix.AkaiMidiMix', 'AkaiMidiMix.AkaiMidiMix'.
+Registered function 'AkaiMidiMix.getAllControls', 'getAllControls'.
 Registered function 'AkaiMidiMix.getControlAsColor', 'getControlAsColor'.
 Registered function 'AkaiMidiMix.getControlAsScalars', 'getControlAsScalars'.
 Registered function 'AkaiMidiMix.getControlAsVec3', 'getControlAsVec3'.
@@ -97,3 +98,4 @@ Skipped 'function MidiController?()', double declaration, found overload with mo
 Skipped 'function MidiController?( in UInt32 port )', double declaration, found overload with more parameters.
 Skipping array preset for 'function MidiOutput.sendMessage!( in Byte message[] )', contains array parameter.
 Skipping array preset for 'function Byte[16] MidiController.getLayer?( in Byte index )', has array return value.
+Skipping array preset for 'function Scalar[] AkaiMidiMix.getAllControls?()', has array return value.

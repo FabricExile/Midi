@@ -1,0 +1,50 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTooltip" : "\n\n Supported by AkaiMidiMix"
+    },
+  "title" : "GetAllControls[]",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "name" : "this",
+      "execPortType" : "In",
+      "typeSpec" : "AkaiMidiMix[]"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "result",
+      "execPortType" : "Out",
+      "typeSpec" : "Scalar[]"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "FC94853C0A6592A39F28022855AC004D",
+  "code" : "require Midi;
+
+operator Midi_AkaiMidiMix_getAllControls_task<<<index>>>(
+  io Scalar[] result
+, in AkaiMidiMix[] this
+) {
+  result[index] = this[index < this.size() ? index : this.size() - 1].getAllControls();
+}
+
+dfgEntry {
+  if( this.size() == 0) return;
+  Size task_size = this.size();
+  result.resize(task_size);
+  if(task_size < 10000 /* pex margin */) {
+    for(Size index = 0; index < task_size; index++) {
+      Midi_AkaiMidiMix_getAllControls_task(index, result, this);
+    }
+  } else {
+    Midi_AkaiMidiMix_getAllControls_task<<<task_size>>>(result, this);
+  }
+}
+"
+  }
