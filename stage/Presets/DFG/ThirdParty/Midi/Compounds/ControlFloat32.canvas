@@ -1,0 +1,556 @@
+{
+  "objectType" : "Graph",
+  "title" : "ControlFloat32",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "name" : "this",
+      "execPortType" : "In"
+      },
+    {
+      "objectType" : "Port",
+      "metadata" : {},
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "UInt8" : 13
+        },
+      "name" : "index",
+      "execPortType" : "In",
+      "typeSpec" : "Byte"
+      },
+    {
+      "objectType" : "Port",
+      "metadata" : {},
+      "nodePortType" : "Out",
+      "name" : "channel",
+      "execPortType" : "In",
+      "typeSpec" : "Byte"
+      },
+    {
+      "objectType" : "Port",
+      "metadata" : {},
+      "nodePortType" : "Out",
+      "name" : "outMin",
+      "execPortType" : "In",
+      "typeSpec" : "Scalar"
+      },
+    {
+      "objectType" : "Port",
+      "metadata" : {},
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "Float32" : 2
+        },
+      "name" : "outMax",
+      "execPortType" : "In",
+      "typeSpec" : "Scalar"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "result",
+      "execPortType" : "Out",
+      "typeSpec" : "Scalar"
+      }
+    ],
+  "extDeps" : {},
+  "presetGUID" : "D91487F45DC269AB09BC66152A898DD5",
+  "nodes" : [
+    {
+      "objectType" : "Inst",
+      "metadata" : {
+        "uiGraphPos" : "{\"x\":509.830322265625,\"y\":153.5659942626953}"
+        },
+      "name" : "GetControl",
+      "ports" : [
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "In",
+          "name" : "this"
+          },
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "In",
+          "name" : "index"
+          },
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "In",
+          "name" : "channel"
+          },
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "Out",
+          "name" : "result"
+          }
+        ],
+      "executable" : "ThirdParty.Midi.MidiController.GetControl",
+      "presetGUID" : "3ABEA6BD251708C1CA3470DD8470FFFC"
+      },
+    {
+      "objectType" : "Inst",
+      "metadata" : {
+        "uiGraphPos" : "{\"x\":666.43408203125,\"y\":184.6981353759766}"
+        },
+      "name" : "Convert",
+      "ports" : [
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "In",
+          "name" : "val"
+          },
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "Out",
+          "name" : "result"
+          }
+        ],
+      "executable" : "Fabric.Core.Math.Convert",
+      "presetGUID" : "EDD7FFDA6D856BB47F953A1ACA8E77B6"
+      },
+    {
+      "objectType" : "Inst",
+      "metadata" : {
+        "uiGraphPos" : "{\"x\":824.9248046875,\"y\":137.5283966064453}"
+        },
+      "name" : "Rescale",
+      "ports" : [
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "In",
+          "name" : "value"
+          },
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "In",
+          "name" : "inMin"
+          },
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "In",
+          "defaultValues" : {
+            "Float32" : 127
+            },
+          "name" : "inMax"
+          },
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "In",
+          "name" : "outMin"
+          },
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "In",
+          "name" : "outMax"
+          },
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "Out",
+          "name" : "result"
+          }
+        ],
+      "executable" : "Fabric.Core.Math.Rescale",
+      "presetGUID" : "4769F739D0AB963E327F9F6DB41FB521"
+      },
+    {
+      "objectType" : "Inst",
+      "metadata" : {
+        "uiGraphPos" : "{\"x\":650.396484375,\"y\":101.6792602539063}"
+        },
+      "name" : "Scalar",
+      "ports" : [
+        {
+          "objectType" : "InstPort",
+          "nodePortType" : "In",
+          "name" : "value"
+          }
+        ],
+      "executable" : "Fabric.Core.Constants.Scalar",
+      "presetGUID" : "E0E96C6E234F70063BC98887B83327DC"
+      }
+    ],
+  "connections" : {
+    "this" : [
+      "GetControl.this"
+      ],
+    "index" : [
+      "GetControl.index"
+      ],
+    "channel" : [
+      "GetControl.channel"
+      ],
+    "outMin" : [
+      "Rescale.outMin"
+      ],
+    "outMax" : [
+      "Rescale.outMax"
+      ],
+    "GetControl.result" : [
+      "Convert.val"
+      ],
+    "Convert.result" : [
+      "Rescale.value"
+      ],
+    "Rescale.result" : [
+      "result"
+      ],
+    "Scalar.value" : [
+      "Rescale.inMin"
+      ]
+    },
+  "requiredPresets" : {
+    "User.ControlFloat32" : {
+      "objectType" : "Graph",
+      "title" : "ControlFloat32",
+      "ports" : [
+        {
+          "objectType" : "Port",
+          "nodePortType" : "Out",
+          "name" : "this",
+          "execPortType" : "In"
+          },
+        {
+          "objectType" : "Port",
+          "metadata" : {},
+          "nodePortType" : "Out",
+          "defaultValues" : {
+            "UInt8" : 13
+            },
+          "name" : "index",
+          "execPortType" : "In",
+          "typeSpec" : "Byte"
+          },
+        {
+          "objectType" : "Port",
+          "metadata" : {},
+          "nodePortType" : "Out",
+          "name" : "channel",
+          "execPortType" : "In",
+          "typeSpec" : "Byte"
+          },
+        {
+          "objectType" : "Port",
+          "metadata" : {},
+          "nodePortType" : "Out",
+          "name" : "outMin",
+          "execPortType" : "In",
+          "typeSpec" : "Scalar"
+          },
+        {
+          "objectType" : "Port",
+          "metadata" : {},
+          "nodePortType" : "Out",
+          "defaultValues" : {
+            "Float32" : 2
+            },
+          "name" : "outMax",
+          "execPortType" : "In",
+          "typeSpec" : "Scalar"
+          },
+        {
+          "objectType" : "Port",
+          "nodePortType" : "In",
+          "name" : "result",
+          "execPortType" : "Out",
+          "typeSpec" : "Scalar"
+          }
+        ],
+      "extDeps" : {},
+      "presetGUID" : "D91487F45DC269AB09BC66152A898DD5",
+      "nodes" : [
+        {
+          "objectType" : "Inst",
+          "metadata" : {
+            "uiGraphPos" : "{\"x\":509.830322265625,\"y\":153.5659942626953}"
+            },
+          "name" : "GetControl",
+          "ports" : [
+            {
+              "objectType" : "InstPort",
+              "nodePortType" : "In",
+              "name" : "this"
+              },
+            {
+              "objectType" : "InstPort",
+              "nodePortType" : "In",
+              "name" : "index"
+              },
+            {
+              "objectType" : "InstPort",
+              "nodePortType" : "In",
+              "name" : "channel"
+              },
+            {
+              "objectType" : "InstPort",
+              "nodePortType" : "Out",
+              "name" : "result"
+              }
+            ],
+          "executable" : "ThirdParty.Midi.MidiController.GetControl",
+          "presetGUID" : "3ABEA6BD251708C1CA3470DD8470FFFC"
+          },
+        {
+          "objectType" : "Inst",
+          "metadata" : {
+            "uiGraphPos" : "{\"x\":666.43408203125,\"y\":184.6981353759766}"
+            },
+          "name" : "Convert",
+          "ports" : [
+            {
+              "objectType" : "InstPort",
+              "nodePortType" : "In",
+              "name" : "val"
+              },
+            {
+              "objectType" : "InstPort",
+              "nodePortType" : "Out",
+              "name" : "result"
+              }
+            ],
+          "executable" : "Fabric.Core.Math.Convert",
+          "presetGUID" : "EDD7FFDA6D856BB47F953A1ACA8E77B6"
+          },
+        {
+          "objectType" : "Inst",
+          "metadata" : {
+            "uiGraphPos" : "{\"x\":824.9248046875,\"y\":137.5283966064453}"
+            },
+          "name" : "Rescale",
+          "ports" : [
+            {
+              "objectType" : "InstPort",
+              "nodePortType" : "In",
+              "name" : "value"
+              },
+            {
+              "objectType" : "InstPort",
+              "nodePortType" : "In",
+              "name" : "inMin"
+              },
+            {
+              "objectType" : "InstPort",
+              "nodePortType" : "In",
+              "defaultValues" : {
+                "Float32" : 127
+                },
+              "name" : "inMax"
+              },
+            {
+              "objectType" : "InstPort",
+              "nodePortType" : "In",
+              "name" : "outMin"
+              },
+            {
+              "objectType" : "InstPort",
+              "nodePortType" : "In",
+              "name" : "outMax"
+              },
+            {
+              "objectType" : "InstPort",
+              "nodePortType" : "Out",
+              "name" : "result"
+              }
+            ],
+          "executable" : "Fabric.Core.Math.Rescale",
+          "presetGUID" : "4769F739D0AB963E327F9F6DB41FB521"
+          },
+        {
+          "objectType" : "Inst",
+          "metadata" : {
+            "uiGraphPos" : "{\"x\":650.396484375,\"y\":101.6792602539063}"
+            },
+          "name" : "Scalar",
+          "ports" : [
+            {
+              "objectType" : "InstPort",
+              "nodePortType" : "In",
+              "name" : "value"
+              }
+            ],
+          "executable" : "Fabric.Core.Constants.Scalar",
+          "presetGUID" : "E0E96C6E234F70063BC98887B83327DC"
+          }
+        ],
+      "connections" : {
+        "this" : [
+          "GetControl.this"
+          ],
+        "index" : [
+          "GetControl.index"
+          ],
+        "channel" : [
+          "GetControl.channel"
+          ],
+        "outMin" : [
+          "Rescale.outMin"
+          ],
+        "outMax" : [
+          "Rescale.outMax"
+          ],
+        "GetControl.result" : [
+          "Convert.val"
+          ],
+        "Convert.result" : [
+          "Rescale.value"
+          ],
+        "Rescale.result" : [
+          "result"
+          ],
+        "Scalar.value" : [
+          "Rescale.inMin"
+          ]
+        }
+      },
+    "ThirdParty.Midi.MidiController.GetControl" : {
+      "objectType" : "Func",
+      "metadata" : {
+        "uiTooltip" : "returns the value of a given control\n\n Supported by MidiController"
+        },
+      "title" : "GetControl",
+      "ports" : [
+        {
+          "objectType" : "Port",
+          "nodePortType" : "Out",
+          "name" : "this",
+          "execPortType" : "In",
+          "typeSpec" : "MidiController"
+          },
+        {
+          "objectType" : "Port",
+          "nodePortType" : "Out",
+          "name" : "index",
+          "execPortType" : "In",
+          "typeSpec" : "Byte"
+          },
+        {
+          "objectType" : "Port",
+          "nodePortType" : "Out",
+          "name" : "channel",
+          "execPortType" : "In",
+          "typeSpec" : "Byte"
+          },
+        {
+          "objectType" : "Port",
+          "nodePortType" : "In",
+          "name" : "result",
+          "execPortType" : "Out",
+          "typeSpec" : "Byte"
+          }
+        ],
+      "extDeps" : {
+        "Midi" : "*"
+        },
+      "presetGUID" : "3ABEA6BD251708C1CA3470DD8470FFFC",
+      "code" : "require Midi;
+
+dfgEntry {
+  result = this.getControl(index, channel);
+}
+"
+      },
+    "Fabric.Core.Math.Convert" : {
+      "objectType" : "Func",
+      "title" : "Convert",
+      "ports" : [
+        {
+          "objectType" : "Port",
+          "nodePortType" : "Out",
+          "name" : "val",
+          "execPortType" : "In",
+          "typeSpec" : "$TYPEIN$"
+          },
+        {
+          "objectType" : "Port",
+          "nodePortType" : "In",
+          "name" : "result",
+          "execPortType" : "Out",
+          "typeSpec" : "$TYPEOUT$"
+          }
+        ],
+      "extDeps" : {},
+      "presetGUID" : "EDD7FFDA6D856BB47F953A1ACA8E77B6",
+      "code" : "
+dfgEntry {
+	result = val;
+}
+"
+      },
+    "Fabric.Core.Math.Rescale" : {
+      "objectType" : "Func",
+      "title" : "Rescale",
+      "ports" : [
+        {
+          "objectType" : "Port",
+          "nodePortType" : "Out",
+          "name" : "value",
+          "execPortType" : "In",
+          "typeSpec" : "$TYPE$"
+          },
+        {
+          "objectType" : "Port",
+          "nodePortType" : "Out",
+          "name" : "inMin",
+          "execPortType" : "In",
+          "typeSpec" : "$TYPE$"
+          },
+        {
+          "objectType" : "Port",
+          "nodePortType" : "Out",
+          "name" : "inMax",
+          "execPortType" : "In",
+          "typeSpec" : "$TYPE$"
+          },
+        {
+          "objectType" : "Port",
+          "nodePortType" : "Out",
+          "name" : "outMin",
+          "execPortType" : "In",
+          "typeSpec" : "$TYPE$"
+          },
+        {
+          "objectType" : "Port",
+          "nodePortType" : "Out",
+          "name" : "outMax",
+          "execPortType" : "In",
+          "typeSpec" : "$TYPE$"
+          },
+        {
+          "objectType" : "Port",
+          "nodePortType" : "In",
+          "name" : "result",
+          "execPortType" : "Out",
+          "typeSpec" : "$TYPE$"
+          }
+        ],
+      "extDeps" : {},
+      "presetGUID" : "4769F739D0AB963E327F9F6DB41FB521",
+      "code" : "
+dfgEntry {
+	result = outMin + (outMax - outMin) * (value - inMin) / (inMax - inMin);
+}
+"
+      },
+    "Fabric.Core.Constants.Scalar" : {
+      "objectType" : "Func",
+      "metadata" : {
+        "uiAlwaysShowDaisyChainPorts" : "true"
+        },
+      "title" : "Scalar",
+      "ports" : [
+        {
+          "objectType" : "Port",
+          "nodePortType" : "Out",
+          "name" : "value",
+          "execPortType" : "In",
+          "typeSpec" : "Scalar"
+          }
+        ],
+      "extDeps" : {},
+      "presetGUID" : "E0E96C6E234F70063BC98887B83327DC",
+      "code" : "dfgEntry {
+}
+"
+      }
+    }
+  }

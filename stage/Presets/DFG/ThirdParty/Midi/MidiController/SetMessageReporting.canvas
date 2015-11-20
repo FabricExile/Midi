@@ -1,0 +1,37 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTooltip" : "enables or disables reporting\n\n Supported by MidiController"
+    },
+  "title" : "SetMessageReporting",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "IO",
+      "name" : "this",
+      "execPortType" : "IO",
+      "typeSpec" : "MidiController"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "Boolean" : true
+        },
+      "name" : "state",
+      "execPortType" : "In",
+      "typeSpec" : "Boolean"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "BA0606C38E7448DF16B705011BEE3DEC",
+  "code" : "require Midi;
+
+dfgEntry {
+  this.setMessageReporting(state);
+}
+"
+  }

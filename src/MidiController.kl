@@ -21,20 +21,25 @@ object MidiController {
 
 /// contructs a controller with the default port
 function MidiController() {
-  this.init(0);
+  this.init(0, 0);
 }
 
 /// constructs a controller with a given port
 function MidiController(UInt32 port) {
-  this.init(port);
+  this.init(port, port);
+}
+
+/// constructs a controller with a given port
+function MidiController(UInt32 input, UInt32 output) {
+  this.init(input, output);
 }
 
 /// \internal
-function MidiController.init!(UInt32 port) {
+function MidiController.init!(UInt32 inputPort, UInt32 outputPort) {
   this.input = MidiInput();
   this.output = MidiOutput();
-  this.input.openPort(port);
-  this.output.openPort(port);
+  this.input.openPort(inputPort);
+  this.output.openPort(outputPort);
 
   for(Size i=0;i<this.notes.size();i++) {
     this.notes[i] = 0;
@@ -42,6 +47,12 @@ function MidiController.init!(UInt32 port) {
   }
 
   this.reportMessages = false;
+}
+
+/// enables or disables reporting
+/// \dfgPresetDefault state true
+function MidiController.setMessageReporting!(Boolean state) {
+  this.reportMessages = state;
 }
 
 /// resets the device

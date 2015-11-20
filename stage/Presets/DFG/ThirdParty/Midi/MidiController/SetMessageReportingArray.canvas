@@ -1,0 +1,56 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTooltip" : "enables or disables reporting\n\n Supported by MidiController"
+    },
+  "title" : "SetMessageReporting[]",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "IO",
+      "name" : "this",
+      "execPortType" : "IO",
+      "typeSpec" : "MidiController[]"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "Boolean[]" : [
+          true
+          ]
+        },
+      "name" : "state",
+      "execPortType" : "In",
+      "typeSpec" : "Boolean[]"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "BA0606C38E7448DF16B705011BEE3DEC",
+  "code" : "require Midi;
+
+operator Midi_MidiController_setMessageReporting_task<<<index>>>(
+  io MidiController[] this
+, in Boolean[] state
+) {
+  this[index < this.size() ? index : this.size() - 1].setMessageReporting(state[index < state.size() ? index : state.size() - 1]);
+}
+
+dfgEntry {
+  if( this.size() == 0) return;
+  if( state.size() == 0) return;
+  Size task_size = this.size();
+  if(task_size < state.size()) task_size = state.size();
+  if(task_size < 10000 /* pex margin */) {
+    for(Size index = 0; index < task_size; index++) {
+      Midi_MidiController_setMessageReporting_task(index, this, state);
+    }
+  } else {
+    Midi_MidiController_setMessageReporting_task<<<task_size>>>(this, state);
+  }
+}
+"
+  }

@@ -14,7 +14,19 @@
           0
           ]
         },
-      "name" : "port",
+      "name" : "input",
+      "execPortType" : "In",
+      "typeSpec" : "UInt32[]"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "UInt32[]" : [
+          0
+          ]
+        },
+      "name" : "output",
       "execPortType" : "In",
       "typeSpec" : "UInt32[]"
       },
@@ -29,27 +41,30 @@
   "extDeps" : {
     "Midi" : "*"
     },
-  "presetGUID" : "CA8D74C12196EAD24BD1E3A578C0EF18",
+  "presetGUID" : "CB14D19A749B0DAEA2FD76E08062E9F2",
   "code" : "require Midi;
 
 operator Midi_MidiController_MidiController_task<<<index>>>(
   io MidiController[] result
-, in UInt32[] port
+, in UInt32[] input
+, in UInt32[] output
 ) {
-  result[index] = MidiController(port[index < port.size() ? index : port.size() - 1]);
+  result[index] = MidiController(input[index < input.size() ? index : input.size() - 1], output[index < output.size() ? index : output.size() - 1]);
 }
 
 dfgEntry {
-  if( port.size() == 0) return;
+  if( input.size() == 0) return;
+  if( output.size() == 0) return;
   Size task_size = 0;
-  if(task_size < port.size()) task_size = port.size();
+  if(task_size < input.size()) task_size = input.size();
+  if(task_size < output.size()) task_size = output.size();
   result.resize(task_size);
   if(task_size < 10000 /* pex margin */) {
     for(Size index = 0; index < task_size; index++) {
-      Midi_MidiController_MidiController_task(index, result, port);
+      Midi_MidiController_MidiController_task(index, result, input, output);
     }
   } else {
-    Midi_MidiController_MidiController_task<<<task_size>>>(result, port);
+    Midi_MidiController_MidiController_task<<<task_size>>>(result, input, output);
   }
 }
 "

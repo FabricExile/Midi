@@ -9,7 +9,14 @@
     {
       "objectType" : "Port",
       "nodePortType" : "Out",
-      "name" : "port",
+      "name" : "input",
+      "execPortType" : "In",
+      "typeSpec" : "UInt32"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "name" : "output",
       "execPortType" : "In",
       "typeSpec" : "UInt32"
       },
@@ -24,11 +31,11 @@
   "extDeps" : {
     "Midi" : "*"
     },
-  "presetGUID" : "CA8D74C12196EAD24BD1E3A578C0EF18",
+  "presetGUID" : "CB14D19A749B0DAEA2FD76E08062E9F2",
   "code" : "require Midi;
 
 dfgEntry {
-  result = MidiController(port);
+  result = MidiController(input, output);
 }
 "
   }
