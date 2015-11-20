@@ -19,17 +19,11 @@
 [FABRIC:MT] Registered extension {RhinoFBXConverter:1.0.0} in directory: e:\exts\RhinoFBXConverter\src
 [FABRIC:MT] Ignored extension {Midi:1.0.0} in directory: stage\Exts
 [FABRIC:MT] IRCache: Not pruning since last prune was less than 24 hours ago
-[FABRIC:MT] Loaded extension Math in 128.902ms (cached)
-[FABRIC:MT] Loaded extension FabricSynchronization in 15.432ms (cached)
-[FABRIC:MT] Loaded extension Singletons in 5.265ms (cached)
-[FABRIC:MT] Loaded extension Util in 34.152ms (cached)
-[FABRIC:MT] [Midi] AkaiMidiMix.kl:72:5: warning: conversion from UInt32 to UInt8 may lose significant digits
-[FABRIC:MT] [Midi] AkaiMidiMix.kl:73:5: warning: conversion from UInt32 to UInt8 may lose significant digits
-[FABRIC:MT] [Midi] AkaiMidiMix.kl:104:5: warning: conversion from SInt32 to UInt8 may lose significant digits
-[FABRIC:MT] [Midi] AkaiMidiMix.kl:110:5: warning: conversion from SInt32 to UInt8 may lose significant digits
-[FABRIC:MT] [Midi] AkaiMidiMix.kl:64:5: warning: conversion from UInt32 to UInt8 may lose significant digits
-[FABRIC:MT] [Midi] AkaiMidiMix.kl:65:5: warning: conversion from UInt32 to UInt8 may lose significant digits
-[FABRIC:MT] Loaded extension Midi in 537.143ms (first time)
+[FABRIC:MT] Loaded extension Math in 132.656ms (cached)
+[FABRIC:MT] Loaded extension FabricSynchronization in 15.176ms (cached)
+[FABRIC:MT] Loaded extension Singletons in 5.048ms (cached)
+[FABRIC:MT] Loaded extension Util in 33.702ms (cached)
+[FABRIC:MT] Loaded extension Midi in 529.669ms (first time)
 Registered function 'MidiInput.MidiInput', 'MidiInput.MidiInput'.
 Registered function 'MidiInput.closePort', 'closePort'.
 Registered function 'MidiInput.getMessage', 'getMessage'.
@@ -78,6 +72,7 @@ Registered function 'MidiController.startPlayback', 'startPlayback'.
 Registered function 'MidiController.stopPlayback', 'stopPlayback'.
 Registered function 'AkaiMidiMix.AkaiMidiMix', 'AkaiMidiMix.AkaiMidiMix'.
 Registered function 'AkaiMidiMix.getControlAsColor', 'getControlAsColor'.
+Registered function 'AkaiMidiMix.getControlAsScalars', 'getControlAsScalars'.
 Registered function 'AkaiMidiMix.getControlAsVec3', 'getControlAsVec3'.
 Registered function 'AkaiMidiMix.getCurrentBank', 'getCurrentBank'.
 Registered function 'AkaiMidiMix.getMaster', 'getMaster'.

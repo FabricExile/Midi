@@ -41,12 +41,26 @@
       "name" : "slider",
       "execPortType" : "Out",
       "typeSpec" : "Scalar[]"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "muted",
+      "execPortType" : "Out",
+      "typeSpec" : "Boolean[]"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "recording",
+      "execPortType" : "Out",
+      "typeSpec" : "Boolean[]"
       }
     ],
   "extDeps" : {
     "Midi" : "*"
     },
-  "presetGUID" : "20F595C15728A4104ED6490F249DD087",
+  "presetGUID" : "C6F80A21BC900798D4D574AA98846BE3",
   "code" : "require Midi;
 
 operator Midi_AkaiMidiMix_getControlAsColor_task<<<index>>>(
@@ -54,8 +68,10 @@ operator Midi_AkaiMidiMix_getControlAsColor_task<<<index>>>(
 , in Index[] index
 , out Color[] rotary
 , out Scalar[] slider
+, out Boolean[] muted
+, out Boolean[] recording
 ) {
-  this[index < this.size() ? index : this.size() - 1].getControlAsColor(index[index < index.size() ? index : index.size() - 1], rotary[index < rotary.size() ? index : rotary.size() - 1], slider[index < slider.size() ? index : slider.size() - 1]);
+  this[index < this.size() ? index : this.size() - 1].getControlAsColor(index[index < index.size() ? index : index.size() - 1], rotary[index < rotary.size() ? index : rotary.size() - 1], slider[index < slider.size() ? index : slider.size() - 1], muted[index < muted.size() ? index : muted.size() - 1], recording[index < recording.size() ? index : recording.size() - 1]);
 }
 
 dfgEntry {
@@ -63,16 +79,20 @@ dfgEntry {
   if( index.size() == 0) return;
   if( rotary.size() == 0) return;
   if( slider.size() == 0) return;
+  if( muted.size() == 0) return;
+  if( recording.size() == 0) return;
   Size task_size = this.size();
   if(task_size < index.size()) task_size = index.size();
   rotary.resize(task_size);
   slider.resize(task_size);
+  muted.resize(task_size);
+  recording.resize(task_size);
   if(task_size < 10000 /* pex margin */) {
     for(Size index = 0; index < task_size; index++) {
-      Midi_AkaiMidiMix_getControlAsColor_task(index, this, index, rotary, slider);
+      Midi_AkaiMidiMix_getControlAsColor_task(index, this, index, rotary, slider, muted, recording);
     }
   } else {
-    Midi_AkaiMidiMix_getControlAsColor_task<<<task_size>>>(this, index, rotary, slider);
+    Midi_AkaiMidiMix_getControlAsColor_task<<<task_size>>>(this, index, rotary, slider, muted, recording);
   }
 }
 "

@@ -4,7 +4,7 @@
   "metadata" : {
     "uiTooltip" : "\n\n Supported by AkaiMidiMix"
     },
-  "title" : "GetControlAsVec3[]",
+  "title" : "GetControlAsScalars[]",
   "ports" : [
     {
       "objectType" : "Port",
@@ -27,13 +27,24 @@
       },
     {
       "objectType" : "Port",
-      "metadata" : {
-        "uiColor" : "{\n  \"r\" : 255,\n  \"g\" : 242,\n  \"b\" : 0\n  }"
-        },
       "nodePortType" : "In",
-      "name" : "rotary",
+      "name" : "rotary1",
       "execPortType" : "Out",
-      "typeSpec" : "Vec3[]"
+      "typeSpec" : "Scalar[]"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "rotary2",
+      "execPortType" : "Out",
+      "typeSpec" : "Scalar[]"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "rotary3",
+      "execPortType" : "Out",
+      "typeSpec" : "Scalar[]"
       },
     {
       "objectType" : "Port",
@@ -60,39 +71,45 @@
   "extDeps" : {
     "Midi" : "*"
     },
-  "presetGUID" : "73FC0AAD76C0912C7311DBB9F3CE5076",
+  "presetGUID" : "B8E29B3B5A920EB75D5571909B4F9587",
   "code" : "require Midi;
 
-operator Midi_AkaiMidiMix_getControlAsVec3_task<<<index>>>(
+operator Midi_AkaiMidiMix_getControlAsScalars_task<<<index>>>(
   in AkaiMidiMix[] this
 , in Index[] index
-, out Vec3[] rotary
+, out Scalar[] rotary1
+, out Scalar[] rotary2
+, out Scalar[] rotary3
 , out Scalar[] slider
 , out Boolean[] muted
 , out Boolean[] recording
 ) {
-  this[index < this.size() ? index : this.size() - 1].getControlAsVec3(index[index < index.size() ? index : index.size() - 1], rotary[index < rotary.size() ? index : rotary.size() - 1], slider[index < slider.size() ? index : slider.size() - 1], muted[index < muted.size() ? index : muted.size() - 1], recording[index < recording.size() ? index : recording.size() - 1]);
+  this[index < this.size() ? index : this.size() - 1].getControlAsScalars(index[index < index.size() ? index : index.size() - 1], rotary1[index < rotary1.size() ? index : rotary1.size() - 1], rotary2[index < rotary2.size() ? index : rotary2.size() - 1], rotary3[index < rotary3.size() ? index : rotary3.size() - 1], slider[index < slider.size() ? index : slider.size() - 1], muted[index < muted.size() ? index : muted.size() - 1], recording[index < recording.size() ? index : recording.size() - 1]);
 }
 
 dfgEntry {
   if( this.size() == 0) return;
   if( index.size() == 0) return;
-  if( rotary.size() == 0) return;
+  if( rotary1.size() == 0) return;
+  if( rotary2.size() == 0) return;
+  if( rotary3.size() == 0) return;
   if( slider.size() == 0) return;
   if( muted.size() == 0) return;
   if( recording.size() == 0) return;
   Size task_size = this.size();
   if(task_size < index.size()) task_size = index.size();
-  rotary.resize(task_size);
+  rotary1.resize(task_size);
+  rotary2.resize(task_size);
+  rotary3.resize(task_size);
   slider.resize(task_size);
   muted.resize(task_size);
   recording.resize(task_size);
   if(task_size < 10000 /* pex margin */) {
     for(Size index = 0; index < task_size; index++) {
-      Midi_AkaiMidiMix_getControlAsVec3_task(index, this, index, rotary, slider, muted, recording);
+      Midi_AkaiMidiMix_getControlAsScalars_task(index, this, index, rotary1, rotary2, rotary3, slider, muted, recording);
     }
   } else {
-    Midi_AkaiMidiMix_getControlAsVec3_task<<<task_size>>>(this, index, rotary, slider, muted, recording);
+    Midi_AkaiMidiMix_getControlAsScalars_task<<<task_size>>>(this, index, rotary1, rotary2, rotary3, slider, muted, recording);
   }
 }
 "

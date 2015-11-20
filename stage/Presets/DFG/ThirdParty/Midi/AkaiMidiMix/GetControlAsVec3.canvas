@@ -36,16 +36,30 @@
       "name" : "slider",
       "execPortType" : "Out",
       "typeSpec" : "Scalar"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "muted",
+      "execPortType" : "Out",
+      "typeSpec" : "Boolean"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "recording",
+      "execPortType" : "Out",
+      "typeSpec" : "Boolean"
       }
     ],
   "extDeps" : {
     "Midi" : "*"
     },
-  "presetGUID" : "A3829523A328FAA30449B713F3595A52",
+  "presetGUID" : "73FC0AAD76C0912C7311DBB9F3CE5076",
   "code" : "require Midi;
 
 dfgEntry {
-  this.getControlAsVec3(index, rotary, slider);
+  this.getControlAsVec3(index, rotary, slider, muted, recording);
 }
 "
   }

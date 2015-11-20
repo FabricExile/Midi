@@ -4,7 +4,7 @@
   "metadata" : {
     "uiTooltip" : "\n\n Supported by AkaiMidiMix"
     },
-  "title" : "GetControlAsColor",
+  "title" : "GetControlAsScalars",
   "ports" : [
     {
       "objectType" : "Port",
@@ -22,13 +22,24 @@
       },
     {
       "objectType" : "Port",
-      "metadata" : {
-        "uiColor" : "{\n  \"r\" : 255,\n  \"g\" : 0,\n  \"b\" : 0\n  }"
-        },
       "nodePortType" : "In",
-      "name" : "rotary",
+      "name" : "rotary1",
       "execPortType" : "Out",
-      "typeSpec" : "Color"
+      "typeSpec" : "Scalar"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "rotary2",
+      "execPortType" : "Out",
+      "typeSpec" : "Scalar"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "rotary3",
+      "execPortType" : "Out",
+      "typeSpec" : "Scalar"
       },
     {
       "objectType" : "Port",
@@ -55,11 +66,11 @@
   "extDeps" : {
     "Midi" : "*"
     },
-  "presetGUID" : "C6F80A21BC900798D4D574AA98846BE3",
+  "presetGUID" : "B8E29B3B5A920EB75D5571909B4F9587",
   "code" : "require Midi;
 
 dfgEntry {
-  this.getControlAsColor(index, rotary, slider, muted, recording);
+  this.getControlAsScalars(index, rotary1, rotary2, rotary3, slider, muted, recording);
 }
 "
   }
