@@ -1,0 +1,14 @@
+require Midi;
+
+operator entry() {
+  AkaiMidiMix ctrl();
+
+  ctrl.poll();
+
+  // controller.setMessageReporting(true);
+
+  while(true)
+  {
+    ctrl.poll();
+  }
+}

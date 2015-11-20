@@ -1,0 +1,65 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTooltip" : "\n\n Supported by AkaiMidiMix"
+    },
+  "title" : "GetSlider[]",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "name" : "this",
+      "execPortType" : "In",
+      "typeSpec" : "AkaiMidiMix[]"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "Size[]" : [
+          0
+          ]
+        },
+      "name" : "col",
+      "execPortType" : "In",
+      "typeSpec" : "Size[]"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "result",
+      "execPortType" : "Out",
+      "typeSpec" : "Scalar[]"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "8178DC994EAB551444FA2C318AAB16EC",
+  "code" : "require Midi;
+
+operator Midi_AkaiMidiMix_getSlider_task<<<index>>>(
+  io Scalar[] result
+, in AkaiMidiMix[] this
+, in Size[] col
+) {
+  result[index] = this[index < this.size() ? index : this.size() - 1].getSlider(col[index < col.size() ? index : col.size() - 1]);
+}
+
+dfgEntry {
+  if( this.size() == 0) return;
+  if( col.size() == 0) return;
+  Size task_size = this.size();
+  if(task_size < col.size()) task_size = col.size();
+  result.resize(task_size);
+  if(task_size < 10000 /* pex margin */) {
+    for(Size index = 0; index < task_size; index++) {
+      Midi_AkaiMidiMix_getSlider_task(index, result, this, col);
+    }
+  } else {
+    Midi_AkaiMidiMix_getSlider_task<<<task_size>>>(result, this, col);
+  }
+}
+"
+  }

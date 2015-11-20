@@ -1,0 +1,191 @@
+/*
+ *  Copyright 2010-2014 Fabric Software Inc. All rights reserved.
+ */
+require Util;
+
+/// A higher level wrapper for MidiInput and MidiOutput.
+object AkaiMidiMix : MidiNoteCallback, MidiControlCallback {
+  MidiController ctrl;
+  Scalar controls[];
+  Boolean muteStates[];
+  Boolean recStates[];
+  Boolean soloState;
+  SInt32 bank;
+};
+
+/// contructs a controller with the default port
+function AkaiMidiMix() {
+  this.init();
+}
+
+/// \internal
+function AkaiMidiMix.init!() {
+  this.controls.resize(33);
+  this.muteStates.resize(8);
+  this.recStates.resize(8);
+  this.soloState = false;
+
+  MidiInput tempInput();
+  MidiOutput tempOutput();
+
+  SInt32 inputPort = -1;
+  SInt32 outputPort = -1;
+
+  for(Size i=0;i<tempInput.getPortCount();i++) {
+    report('Input "'+tempInput.getPortName(i)+'".');
+    if(tempInput.getPortName(i).lower().startsWith('midi mix')) {
+      inputPort = i;
+      break;
+    }
+  }
+  for(Size i=0;i<tempOutput.getPortCount();i++) {
+    report('Output "'+tempOutput.getPortName(i)+'".');
+    if(tempOutput.getPortName(i).lower().startsWith('midi mix')) {
+      outputPort = i;
+      break;
+    }
+  }
+
+  if(inputPort == -1) {
+    setError('Cannot find an Akai Midi Mix input device.');
+    return;
+  }
+  if(outputPort == -1) {
+    setError('Cannot find an Akai Midi Mix output device.');
+    return;
+  }
+
+  this.ctrl = MidiController(inputPort, outputPort);
+  this.ctrl.setNoteCallback(this);
+  this.ctrl.setControlCallback(this);
+
+  // reset all colored buttons
+  for(Size i=0;i<8;i++) {
+    this.ctrl.setNote(1 + i * 3, 0); // mute
+    this.ctrl.setNote(3 + i * 3, 0); // rec
+  }
+}
+
+function ~AkaiMidiMix() {
+  // reset all colored buttons
+  for(Size i=0;i<8;i++) {
+    this.ctrl.setNote(1 + i * 3, 0); // mute
+    this.ctrl.setNote(3 + i * 3, 0); // rec
+  }
+}
+
+function Boolean AkaiMidiMix.valid() {
+  return this.ctrl != null;
+}
+
+function AkaiMidiMix.poll!() {
+  if(!this.valid())
+    return;
+  this.ctrl.poll();
+}
+
+/// \dfgPresetOmit
+function AkaiMidiMix.invoke!(Byte note, Byte velocity) {
+  if(velocity != 127)
+    return;
+
+  if(note == 25)
+    this.bank = (this.bank + 7) % 8;
+
+  else if(note == 26)
+    this.bank = (this.bank + 1) % 8;
+
+  else if(note == 27)
+    this.soloState = !this.soloState;
+
+  else if(note >= 1 && note <= 22 && note % 3 == 1) {
+    Index index = (note - 1) / 3;
+    this.muteStates[index] = !this.muteStates[index];
+    this.ctrl.setNote(note, this.muteStates[index] ? 127 : 0);
+  }
+
+  else if(note >= 3 && note <= 24 && note % 3 == 0) {
+    Index index = (note - 3) / 3;
+    this.recStates[index] = !this.recStates[index];
+    this.ctrl.setNote(note, this.recStates[index] ? 127 : 0);
+  }
+
+  else {
+    report('note '+note+', velocity '+velocity);
+  }
+
+}
+
+/// \dfgPresetOmit
+function AkaiMidiMix.invoke!(Byte control, Byte channel, Byte value) {
+  if(channel != 0)
+    return;
+
+  Scalar v = Scalar(value) / 127.0;
+  if(control == 62) { // master slider
+    this.controls[32] = v;
+  } else if(control >= 16 && control <= 31) {
+    Index index = control - 16;
+    this.controls[index] = v;
+  } else if(control >= 46 && control <= 61) {
+    Index index = control - 46;
+    this.controls[index] = v;
+  }
+}
+
+function Scalar AkaiMidiMix.getSlider(Size col) {
+  if(col > 8)
+    return 0.0;
+  if(col == 8)
+    return this.controls[32];
+  return this.controls[col * 4 + 3];
+}
+
+function Scalar AkaiMidiMix.getMaster() {
+  return this.getSlider(8);
+}
+
+function Scalar AkaiMidiMix.getRotaryControl(Size col, Size row) {
+  if(col > 8 || row > 2)
+    return 0.0;
+  return this.controls[col * 4 + row];
+}
+
+function AkaiMidiMix.getControlAsVec3(Index index, out Vec3 rotary, out Scalar slider) {
+  if(index > 8)
+    return;
+  rotary.x = this.controls[index*4+0];
+  rotary.y = this.controls[index*4+1];
+  rotary.z = this.controls[index*4+2];
+  slider = this.controls[index*4+3];
+}
+
+function AkaiMidiMix.getControlAsColor(Index index, out Color rotary, out Scalar slider) {
+  if(index > 8)
+    return;
+  rotary.r = this.controls[index*4+0];
+  rotary.g = this.controls[index*4+1];
+  rotary.b = this.controls[index*4+2];
+  rotary.a = 1.0;
+  slider = this.controls[index*4+3];
+}
+
+function SInt32 AkaiMidiMix.getCurrentBank() {
+  return this.bank;
+}
+
+function Boolean AkaiMidiMix.isSolo() {
+  return this.soloState;
+}
+
+function Boolean AkaiMidiMix.isMuted(Index index) {
+  if(index > 8)
+    return false;
+  return this.muteStates[index];
+}
+
+function Boolean AkaiMidiMix.isRecording(Index index) {
+  if(index > 8)
+    return false;
+  return this.recStates[index];
+}

@@ -6,6 +6,7 @@
     "MidiInput.kl",
     "MidiOutput.kl",
     "MidiCallbacks.kl",
-    "MidiController.kl"
+    "MidiController.kl",
+    "AkaiMidiMix.kl"
   ]
 }

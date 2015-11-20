@@ -1,0 +1,79 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTooltip" : "\n\n Supported by AkaiMidiMix"
+    },
+  "title" : "GetControlAsVec3[]",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "name" : "this",
+      "execPortType" : "In",
+      "typeSpec" : "AkaiMidiMix[]"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "Index[]" : [
+          0
+          ]
+        },
+      "name" : "index",
+      "execPortType" : "In",
+      "typeSpec" : "Index[]"
+      },
+    {
+      "objectType" : "Port",
+      "metadata" : {
+        "uiColor" : "{\n  \"r\" : 255,\n  \"g\" : 242,\n  \"b\" : 0\n  }"
+        },
+      "nodePortType" : "In",
+      "name" : "rotary",
+      "execPortType" : "Out",
+      "typeSpec" : "Vec3[]"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "slider",
+      "execPortType" : "Out",
+      "typeSpec" : "Scalar[]"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "A3829523A328FAA30449B713F3595A52",
+  "code" : "require Midi;
+
+operator Midi_AkaiMidiMix_getControlAsVec3_task<<<index>>>(
+  in AkaiMidiMix[] this
+, in Index[] index
+, out Vec3[] rotary
+, out Scalar[] slider
+) {
+  this[index < this.size() ? index : this.size() - 1].getControlAsVec3(index[index < index.size() ? index : index.size() - 1], rotary[index < rotary.size() ? index : rotary.size() - 1], slider[index < slider.size() ? index : slider.size() - 1]);
+}
+
+dfgEntry {
+  if( this.size() == 0) return;
+  if( index.size() == 0) return;
+  if( rotary.size() == 0) return;
+  if( slider.size() == 0) return;
+  Size task_size = this.size();
+  if(task_size < index.size()) task_size = index.size();
+  rotary.resize(task_size);
+  slider.resize(task_size);
+  if(task_size < 10000 /* pex margin */) {
+    for(Size index = 0; index < task_size; index++) {
+      Midi_AkaiMidiMix_getControlAsVec3_task(index, this, index, rotary, slider);
+    }
+  } else {
+    Midi_AkaiMidiMix_getControlAsVec3_task<<<task_size>>>(this, index, rotary, slider);
+  }
+}
+"
+  }

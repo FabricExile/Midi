@@ -1,0 +1,65 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTooltip" : "\n\n Supported by AkaiMidiMix"
+    },
+  "title" : "IsRecording[]",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "name" : "this",
+      "execPortType" : "In",
+      "typeSpec" : "AkaiMidiMix[]"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "Index[]" : [
+          0
+          ]
+        },
+      "name" : "index",
+      "execPortType" : "In",
+      "typeSpec" : "Index[]"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "result",
+      "execPortType" : "Out",
+      "typeSpec" : "Boolean[]"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "B4C04775B85FE17CAE88287AEE09956D",
+  "code" : "require Midi;
+
+operator Midi_AkaiMidiMix_isRecording_task<<<index>>>(
+  io Boolean[] result
+, in AkaiMidiMix[] this
+, in Index[] index
+) {
+  result[index] = this[index < this.size() ? index : this.size() - 1].isRecording(index[index < index.size() ? index : index.size() - 1]);
+}
+
+dfgEntry {
+  if( this.size() == 0) return;
+  if( index.size() == 0) return;
+  Size task_size = this.size();
+  if(task_size < index.size()) task_size = index.size();
+  result.resize(task_size);
+  if(task_size < 10000 /* pex margin */) {
+    for(Size index = 0; index < task_size; index++) {
+      Midi_AkaiMidiMix_isRecording_task(index, result, this, index);
+    }
+  } else {
+    Midi_AkaiMidiMix_isRecording_task<<<task_size>>>(result, this, index);
+  }
+}
+"
+  }

@@ -1,0 +1,41 @@
+// Created by kl2dfg (processStructConstant)
+{
+  "objectType" : "Func",
+  "title" : "AkaiMidiMix[]",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "name" : "element",
+      "execPortType" : "In",
+      "typeSpec" : "AkaiMidiMix"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "SInt32" : 1
+        },
+      "name" : "count",
+      "execPortType" : "In",
+      "typeSpec" : "SInt32"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "array",
+      "execPortType" : "Out",
+      "typeSpec" : "AkaiMidiMix[]"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "8449D08C85FEEE76C07DF08E9BEF4457",
+  "code" : "dfgEntry {
+  array.resize(count);
+  for(Size i=0;i<count;i++)
+    array[i] = element;
+}
+"
+  }

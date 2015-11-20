@@ -1,0 +1,41 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTooltip" : "contructs a controller with the default port\n\n Supported by AkaiMidiMix"
+    },
+  "title" : "AkaiMidiMix[]",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "result",
+      "execPortType" : "Out",
+      "typeSpec" : "AkaiMidiMix[]"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "1B32B88601B3B3A99BA265D517C53582",
+  "code" : "require Midi;
+
+operator Midi_AkaiMidiMix_AkaiMidiMix_task<<<index>>>(
+  io AkaiMidiMix[] result
+) {
+  result[index] = AkaiMidiMix();
+}
+
+dfgEntry {
+  Size task_size = 0;
+  result.resize(task_size);
+  if(task_size < 10000 /* pex margin */) {
+    for(Size index = 0; index < task_size; index++) {
+      Midi_AkaiMidiMix_AkaiMidiMix_task(index, result);
+    }
+  } else {
+    Midi_AkaiMidiMix_AkaiMidiMix_task<<<task_size>>>(result);
+  }
+}
+"
+  }

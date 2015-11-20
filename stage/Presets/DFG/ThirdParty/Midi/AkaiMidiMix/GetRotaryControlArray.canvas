@@ -1,0 +1,80 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTooltip" : "\n\n Supported by AkaiMidiMix"
+    },
+  "title" : "GetRotaryControl[]",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "name" : "this",
+      "execPortType" : "In",
+      "typeSpec" : "AkaiMidiMix[]"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "Size[]" : [
+          0
+          ]
+        },
+      "name" : "col",
+      "execPortType" : "In",
+      "typeSpec" : "Size[]"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "Size[]" : [
+          0
+          ]
+        },
+      "name" : "row",
+      "execPortType" : "In",
+      "typeSpec" : "Size[]"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "result",
+      "execPortType" : "Out",
+      "typeSpec" : "Scalar[]"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "4DAF25CA4D71E13F4B17DF37146DDB21",
+  "code" : "require Midi;
+
+operator Midi_AkaiMidiMix_getRotaryControl_task<<<index>>>(
+  io Scalar[] result
+, in AkaiMidiMix[] this
+, in Size[] col
+, in Size[] row
+) {
+  result[index] = this[index < this.size() ? index : this.size() - 1].getRotaryControl(col[index < col.size() ? index : col.size() - 1], row[index < row.size() ? index : row.size() - 1]);
+}
+
+dfgEntry {
+  if( this.size() == 0) return;
+  if( col.size() == 0) return;
+  if( row.size() == 0) return;
+  Size task_size = this.size();
+  if(task_size < col.size()) task_size = col.size();
+  if(task_size < row.size()) task_size = row.size();
+  result.resize(task_size);
+  if(task_size < 10000 /* pex margin */) {
+    for(Size index = 0; index < task_size; index++) {
+      Midi_AkaiMidiMix_getRotaryControl_task(index, result, this, col, row);
+    }
+  } else {
+    Midi_AkaiMidiMix_getRotaryControl_task<<<task_size>>>(result, this, col, row);
+  }
+}
+"
+  }

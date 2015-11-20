@@ -1,0 +1,86 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTooltip" : "\n\n Supported by AkaiMidiMix"
+    },
+  "title" : "Invoke[]",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "IO",
+      "name" : "this",
+      "execPortType" : "IO",
+      "typeSpec" : "AkaiMidiMix[]"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "Byte[]" : [
+          0
+          ]
+        },
+      "name" : "control",
+      "execPortType" : "In",
+      "typeSpec" : "Byte[]"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "Byte[]" : [
+          0
+          ]
+        },
+      "name" : "channel",
+      "execPortType" : "In",
+      "typeSpec" : "Byte[]"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "Byte[]" : [
+          0
+          ]
+        },
+      "name" : "value",
+      "execPortType" : "In",
+      "typeSpec" : "Byte[]"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "782DC9FD576FB9F948C1EB55741E7CA7",
+  "code" : "require Midi;
+
+operator Midi_AkaiMidiMix_invoke_task<<<index>>>(
+  io AkaiMidiMix[] this
+, in Byte[] control
+, in Byte[] channel
+, in Byte[] value
+) {
+  this[index < this.size() ? index : this.size() - 1].invoke(control[index < control.size() ? index : control.size() - 1], channel[index < channel.size() ? index : channel.size() - 1], value[index < value.size() ? index : value.size() - 1]);
+}
+
+dfgEntry {
+  if( this.size() == 0) return;
+  if( control.size() == 0) return;
+  if( channel.size() == 0) return;
+  if( value.size() == 0) return;
+  Size task_size = this.size();
+  if(task_size < control.size()) task_size = control.size();
+  if(task_size < channel.size()) task_size = channel.size();
+  if(task_size < value.size()) task_size = value.size();
+  if(task_size < 10000 /* pex margin */) {
+    for(Size index = 0; index < task_size; index++) {
+      Midi_AkaiMidiMix_invoke_task(index, this, control, channel, value);
+    }
+  } else {
+    Midi_AkaiMidiMix_invoke_task<<<task_size>>>(this, control, channel, value);
+  }
+}
+"
+  }

@@ -1,0 +1,50 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTooltip" : "\n\n Supported by AkaiMidiMix"
+    },
+  "title" : "Valid[]",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "name" : "this",
+      "execPortType" : "In",
+      "typeSpec" : "AkaiMidiMix[]"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "In",
+      "name" : "result",
+      "execPortType" : "Out",
+      "typeSpec" : "Boolean[]"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "FC2F5C38226EDF99A0F0BD7193466B10",
+  "code" : "require Midi;
+
+operator Midi_AkaiMidiMix_valid_task<<<index>>>(
+  io Boolean[] result
+, in AkaiMidiMix[] this
+) {
+  result[index] = this[index < this.size() ? index : this.size() - 1].valid();
+}
+
+dfgEntry {
+  if( this.size() == 0) return;
+  Size task_size = this.size();
+  result.resize(task_size);
+  if(task_size < 10000 /* pex margin */) {
+    for(Size index = 0; index < task_size; index++) {
+      Midi_AkaiMidiMix_valid_task(index, result, this);
+    }
+  } else {
+    Midi_AkaiMidiMix_valid_task<<<task_size>>>(result, this);
+  }
+}
+"
+  }
