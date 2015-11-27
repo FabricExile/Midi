@@ -1,0 +1,56 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTooltip" : "Supported types:\n  this: MidiButtonCallback\n  button: Byte\n"
+    },
+  "title" : "Invoke[]",
+  "ports" : [
+    {
+      "objectType" : "Port",
+      "nodePortType" : "IO",
+      "name" : "this",
+      "execPortType" : "IO",
+      "typeSpec" : "MidiButtonCallback[]"
+      },
+    {
+      "objectType" : "Port",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "Byte[]" : [
+          0
+          ]
+        },
+      "name" : "button",
+      "execPortType" : "In",
+      "typeSpec" : "Byte[]"
+      }
+    ],
+  "extDeps" : {
+    "Midi" : "*"
+    },
+  "presetGUID" : "D69DD0FE32E07116A03C0FECEEC7EBFE",
+  "code" : "require Midi;
+
+operator Midi_MidiButtonCallback_invoke_task<<<index>>>(
+  io MidiButtonCallback[] this
+, in Byte[] button
+) {
+  this[index < this.size() ? index : this.size() - 1].invoke(button[index < button.size() ? index : button.size() - 1]);
+}
+
+dfgEntry {
+  if( this.size() == 0) return;
+  if( button.size() == 0) return;
+  Size task_size = this.size();
+  if(task_size < button.size()) task_size = button.size();
+  if(task_size < 10000 /* pex margin */) {
+    for(Size index = 0; index < task_size; index++) {
+      Midi_MidiButtonCallback_invoke_task(index, this, button);
+    }
+  } else {
+    Midi_MidiButtonCallback_invoke_task<<<task_size>>>(this, button);
+  }
+}
+"
+  }

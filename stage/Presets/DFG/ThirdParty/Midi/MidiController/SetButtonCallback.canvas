@@ -2,7 +2,7 @@
 {
   "objectType" : "Func",
   "metadata" : {
-    "uiTooltip" : "sets the ButtonCallback on this controller\n\n Supported by MidiController"
+    "uiTooltip" : "sets the ButtonCallback on this controller\n\nSupported types:\n  this: MidiController\n  callback: MidiButtonCallback\n"
     },
   "title" : "SetButtonCallback",
   "ports" : [

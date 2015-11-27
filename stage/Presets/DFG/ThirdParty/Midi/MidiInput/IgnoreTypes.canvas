@@ -2,7 +2,7 @@
 {
   "objectType" : "Func",
   "metadata" : {
-    "uiTooltip" : "\n\n Supported by MidiInput"
+    "uiTooltip" : "Supported types:\n  this: MidiInput\n  midiSysex: Boolean\n  midiTime: Boolean\n  midiSense: Boolean\n"
     },
   "title" : "IgnoreTypes",
   "ports" : [

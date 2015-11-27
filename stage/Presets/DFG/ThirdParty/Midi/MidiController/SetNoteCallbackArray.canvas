@@ -2,7 +2,7 @@
 {
   "objectType" : "Func",
   "metadata" : {
-    "uiTooltip" : "sets the NoteCallback on this controller\n\n Supported by MidiController"
+    "uiTooltip" : "sets the NoteCallback on this controller\n\nSupported types:\n  this: MidiController\n  callback: MidiNoteCallback\n"
     },
   "title" : "SetNoteCallback[]",
   "ports" : [
@@ -16,6 +16,11 @@
     {
       "objectType" : "Port",
       "nodePortType" : "Out",
+      "defaultValues" : {
+        "MidiNoteCallback[]" : [
+          null
+          ]
+        },
       "name" : "callback",
       "execPortType" : "In",
       "typeSpec" : "MidiNoteCallback[]"

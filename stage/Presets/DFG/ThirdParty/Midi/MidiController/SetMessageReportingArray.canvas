@@ -2,7 +2,7 @@
 {
   "objectType" : "Func",
   "metadata" : {
-    "uiTooltip" : "enables or disables reporting\n\n Supported by MidiController"
+    "uiTooltip" : "enables or disables reporting\n\nSupported types:\n  this: MidiController\n  state: Boolean\n"
     },
   "title" : "SetMessageReporting[]",
   "ports" : [

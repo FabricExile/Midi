@@ -2,7 +2,7 @@
 {
   "objectType" : "Func",
   "metadata" : {
-    "uiTooltip" : "stop the playback of the connected device\n\n Supported by MidiController"
+    "uiTooltip" : "stop the playback of the connected device\n\nSupported types:\n  this: MidiController\n"
     },
   "title" : "StopPlayback[]",
   "ports" : [

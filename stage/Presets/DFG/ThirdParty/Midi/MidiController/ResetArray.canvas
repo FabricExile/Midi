@@ -2,7 +2,7 @@
 {
   "objectType" : "Func",
   "metadata" : {
-    "uiTooltip" : "resets the device\n\n Supported by MidiController"
+    "uiTooltip" : "resets the device\n\nSupported types:\n  this: MidiController\n"
     },
   "title" : "Reset[]",
   "ports" : [

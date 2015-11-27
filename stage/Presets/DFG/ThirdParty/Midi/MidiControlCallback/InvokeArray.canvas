@@ -2,7 +2,7 @@
 {
   "objectType" : "Func",
   "metadata" : {
-    "uiTooltip" : "\n\n Supported by AkaiMidiMix"
+    "uiTooltip" : "Supported types:\n  this: MidiControlCallback\n  control: Byte\n  channel: Byte\n  value: Byte\n"
     },
   "title" : "Invoke[]",
   "ports" : [
@@ -11,7 +11,7 @@
       "nodePortType" : "IO",
       "name" : "this",
       "execPortType" : "IO",
-      "typeSpec" : "AkaiMidiMix[]"
+      "typeSpec" : "MidiControlCallback[]"
       },
     {
       "objectType" : "Port",
@@ -53,11 +53,11 @@
   "extDeps" : {
     "Midi" : "*"
     },
-  "presetGUID" : "782DC9FD576FB9F948C1EB55741E7CA7",
+  "presetGUID" : "2D6055663ECC09358FD541F328F06735",
   "code" : "require Midi;
 
-operator Midi_AkaiMidiMix_invoke_task<<<index>>>(
-  io AkaiMidiMix[] this
+operator Midi_MidiControlCallback_invoke_task<<<index>>>(
+  io MidiControlCallback[] this
 , in Byte[] control
 , in Byte[] channel
 , in Byte[] value
@@ -76,10 +76,10 @@ dfgEntry {
   if(task_size < value.size()) task_size = value.size();
   if(task_size < 10000 /* pex margin */) {
     for(Size index = 0; index < task_size; index++) {
-      Midi_AkaiMidiMix_invoke_task(index, this, control, channel, value);
+      Midi_MidiControlCallback_invoke_task(index, this, control, channel, value);
     }
   } else {
-    Midi_AkaiMidiMix_invoke_task<<<task_size>>>(this, control, channel, value);
+    Midi_MidiControlCallback_invoke_task<<<task_size>>>(this, control, channel, value);
   }
 }
 "

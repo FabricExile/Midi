@@ -2,7 +2,7 @@
 {
   "objectType" : "Func",
   "metadata" : {
-    "uiTooltip" : "starts the playback of the connected device\n\n Supported by MidiController"
+    "uiTooltip" : "starts the playback of the connected device\n\nSupported types:\n  this: MidiController\n"
     },
   "title" : "StartPlayback",
   "ports" : [

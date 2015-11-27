@@ -2,7 +2,7 @@
 {
   "objectType" : "Func",
   "metadata" : {
-    "uiTooltip" : "contructs a controller with the default port\n\n Supported by AkaiMidiMix"
+    "uiTooltip" : "contructs a controller with the default port\n\nSupported types:\n  result: AkaiMidiMix\n"
     },
   "title" : "AkaiMidiMix[]",
   "ports" : [

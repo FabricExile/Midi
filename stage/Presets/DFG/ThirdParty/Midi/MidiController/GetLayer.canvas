@@ -2,7 +2,7 @@
 {
   "objectType" : "Func",
   "metadata" : {
-    "uiTooltip" : "returns all controls for a given layer\n\n Supported by MidiController"
+    "uiTooltip" : "returns all controls for a given layer\n\nSupported types:\n  this: MidiController\n  index: Byte\n  result: Byte[16]\n"
     },
   "title" : "GetLayer",
   "ports" : [

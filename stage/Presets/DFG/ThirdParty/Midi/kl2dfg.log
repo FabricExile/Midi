@@ -1,101 +1,432 @@
-[FABRIC:MT] Fabric Engine version 2.1.0-alpha3
+[FABRIC:MT] Fabric Engine version 2.0.1
 [FABRIC:MT] Loading DFG presets from e:\zeuxis\stage\Windows\x86_64\Release\Presets\DFG
+[FABRIC:MT] Loading DFG presets from e:\zeuxis\Test\Canvas\Presets
 [FABRIC:MT] Loading DFG presets from c:\Users\helge\Fabric\Presets
 [FABRIC:MT] Loading DFG presets from e:\exts\Midi\stage\Presets\DFG
 [FABRIC:MT] Loading DFG presets from e:\exts\RazerHydra\stage\Presets\DFG
 [FABRIC:MT] Loading DFG presets from e:\exts\Xbox\stage\Presets\DFG
+[FABRIC:MT] Loading DFG presets from e:\exts\LeapMotion\stage\Presets\DFG
 [FABRIC:MT] Loading DFG presets from e:\exts\Oculus\stage\Presets\DFG
 [FABRIC:MT] Loading DFG presets from e:\exts\OculusRTR\stage\Presets\DFG
-[FABRIC:MT] Loading DFG presets from e:\exts\Xsens\stage\Presets\DFG
+[FABRIC:MT] Loading DFG presets from e:\exts\XsensMvn\stage\Presets\DFG
+[FABRIC:MT] Loading DFG presets from e:\exts\XsensMt\stage\Presets\DFG
+[FABRIC:MT] Loading DFG presets from e:\exts\RhinoFBXConverter\stage\Presets\DFG
 [FABRIC:MT] Registered extensions {Adaptors:1.0.0,Alembic:1.0.0,AlembicToSceneGraph:1.0.0,AlembicWrapper:1.3.0,Animation:1.1.0,Bullet:1.0.1,BulletHelpers:1.0.0,Characters:1.1.0,Containers:1.1.0,DFGHelpers,FabricInterfaces:1.0.1,FabricSynchronization:1.1.0,Fbx:1.1.0,FbxToSceneGraph:1.0.0,FbxWrapper,FileIO:1.2.0,Geometry:1.2.0,Images:1.0.2,Images2:1.0.0,InlineDrawing:1.2.0,JSON:1.0.0,Manipulation:1.1.0,Math:1.2.0,FabricOBJ:1.1.0,OGLWrappers:1.0.0,FabricOGL:1.0.0,OpenImageIO:1.0.2,OSOGL:1.1.0,Parameters:1.0.0,RTR2:1.0.0,SceneAssembly:1.0.0,SceneGraph:1.0.0,SceneGraphForCanvas:1.0.0,SceneGraphToRTR:1.0.0,SceneGraphWrappers:1.0.0,SceneHub:2.0.0,Singletons:1.1.0,FabricStatistics:1.1.0,Strokes:1.0.0,Util:1.1.0,ImageProcessing,RTR,RTRAdaptors} in directory: e:\zeuxis\stage\Windows\x86_64\Release\Exts
-[FABRIC:MT] Registered extensions {BadCode:2.1.0,BadInline:2.1.0,BadPrototype:2.1.0,BadVersion:2.1.0,CircularA:2.1.0,CircularB:2.1.0,FwdDeclare:2.1.0,FwdDeclNoDef:2.1.0,SetupCallback:2.1.0,UnitTest:2.1.0,VersionTest:1.0.0,VersionTest:1.1.1,VersionTest:1.2.1} in directory: e:\zeuxis\stage\Windows\x86_64\Release\Tests\Core\Exts
-[FABRIC:MT] Ignored extension directory 'e:\zeuxis\stage\Windows\x86_64\Release\Tests\Exts': unable to open directory 'e:\zeuxis\stage\Windows\x86_64\Release\Tests\Exts': The system cannot find the path specified. (code 3 [0x3])
+[FABRIC:MT] Registered extensions {BadCode:2.0.1,BadInline:2.0.1,BadPrototype:2.0.1,BadVersion:2.0.1,CircularA:2.0.1,CircularB:2.0.1,FwdDeclare:2.0.1,FwdDeclNoDef:2.0.1,SetupCallback:2.0.1,UnitTest:2.0.1,VersionTest:1.0.0,VersionTest:1.1.1,VersionTest:1.2.1} in directory: e:\zeuxis\stage\Windows\x86_64\Release\Tests\Core\Exts
 [FABRIC:MT] Registered extension {Midi:1.0.0} in directory: e:\exts\Midi\stage\Exts
 [FABRIC:MT] Registered extension {RazerHydra:1.0.0} in directory: e:\exts\RazerHydra\stage\Exts
 [FABRIC:MT] Registered extension {XBox:1.0.0} in directory: e:\exts\Xbox\stage\Exts
+[FABRIC:MT] Registered extension {LeapMotion:1.0.0} in directory: e:\exts\LeapMotion\stage\Exts
 [FABRIC:MT] Registered extension {Oculus:1.0.0} in directory: e:\exts\Oculus\stage\Exts
 [FABRIC:MT] Registered extension {OculusRTR:1.0.0} in directory: e:\exts\OculusRTR\stage\Exts
-[FABRIC:MT] Registered extension {Xsens:1.0.0} in directory: e:\exts\Xsens\stage\Exts
-[FABRIC:MT] Registered extension {RhinoFBXConverter:1.0.0} in directory: e:\exts\RhinoFBXConverter\src
+[FABRIC:MT] Registered extension {XsensMvn:1.0.0} in directory: e:\exts\XsensMvn\stage\Exts
+[FABRIC:MT] Registered extension {XsensMt:1.0.0} in directory: e:\exts\XsensMt\stage\Exts
+[FABRIC:MT] Registered extension {RhinoFBXConverter:1.0.0} in directory: e:\exts\RhinoFBXConverter\stage\Exts
 [FABRIC:MT] Ignored extension {Midi:1.0.0} in directory: stage\Exts
 [FABRIC:MT] IRCache: Not pruning since last prune was less than 24 hours ago
-[FABRIC:MT] Loaded extension Math in 129.609ms (cached)
-[FABRIC:MT] Loaded extension FabricSynchronization in 15.914ms (cached)
-[FABRIC:MT] Loaded extension Singletons in 5.227ms (cached)
-[FABRIC:MT] Loaded extension Util in 34.997ms (cached)
-[FABRIC:MT] Loaded extension Midi in 539.872ms (first time)
-Registered function 'MidiInput.MidiInput', 'MidiInput.MidiInput'.
-Registered function 'MidiInput.closePort', 'closePort'.
-Registered function 'MidiInput.getMessage', 'getMessage'.
-Registered function 'MidiInput.getPortCount', 'getPortCount'.
-Registered function 'MidiInput.getPortName', 'getPortName'.
-Skipped 'function String MidiInput.getPortName?()', double declaration, found overload with more parameters.
-Registered function 'MidiInput.ignoreTypes', 'ignoreTypes'.
-Skipped 'function MidiInput.ignoreTypes!()', double declaration, found overload with more parameters.
-Registered function 'MidiInput.isPortOpen', 'isPortOpen'.
-Registered function 'MidiInput.openPort', 'openPort'.
-Skipped 'function MidiInput.openPort!( in UInt32 portNumber )', double declaration, found overload with more parameters.
-Skipped 'function MidiInput.openPort!()', double declaration, found overload with more parameters.
-Registered function 'MidiInput.openVirtualPort', 'openVirtualPort'.
-Skipped 'function MidiInput.openVirtualPort!()', double declaration, found overload with more parameters.
-Registered function 'MidiOutput.MidiOutput', 'MidiOutput.MidiOutput'.
-Registered function 'MidiOutput.closePort', 'closePort'.
-Registered function 'MidiOutput.getPortCount', 'getPortCount'.
-Registered function 'MidiOutput.getPortName', 'getPortName'.
-Skipped 'function String MidiOutput.getPortName?()', double declaration, found overload with more parameters.
-Registered function 'MidiOutput.isPortOpen', 'isPortOpen'.
-Registered function 'MidiOutput.openPort', 'openPort'.
-Skipped 'function MidiOutput.openPort!( in UInt32 portNumber )', double declaration, found overload with more parameters.
-Skipped 'function MidiOutput.openPort!()', double declaration, found overload with more parameters.
-Registered function 'MidiOutput.openVirtualPort', 'openVirtualPort'.
-Skipped 'function MidiOutput.openVirtualPort!()', double declaration, found overload with more parameters.
-Registered function 'MidiOutput.sendMessage', 'sendMessage'.
-Registered function 'MidiNoteCallback.invoke', 'invoke'.
-Registered function 'MidiButtonCallback.invoke', 'invoke'.
-Registered function 'MidiControlCallback.invoke', 'invoke'.
-Registered function 'MidiController.MidiController', 'MidiController.MidiController'.
-Skipped 'function MidiController?( in UInt32 port )', double declaration, found overload with more parameters.
-Skipped 'function MidiController?()', double declaration, found overload with more parameters.
-Registered function 'MidiController.getControl', 'getControl'.
-Registered function 'MidiController.getLayer', 'getLayer'.
-Registered function 'MidiController.getNote', 'getNote'.
-Registered function 'MidiController.isNoteTriggered', 'isNoteTriggered'.
-Registered function 'MidiController.poll', 'poll'.
-Registered function 'MidiController.reset', 'reset'.
-Registered function 'MidiController.setButtonCallback', 'setButtonCallback'.
-Registered function 'MidiController.setControl', 'setControl'.
-Registered function 'MidiController.setControlCallback', 'setControlCallback'.
-Registered function 'MidiController.setMessageReporting', 'setMessageReporting'.
-Registered function 'MidiController.setNote', 'setNote'.
-Registered function 'MidiController.setNoteCallback', 'setNoteCallback'.
-Registered function 'MidiController.startPlayback', 'startPlayback'.
-Registered function 'MidiController.stopPlayback', 'stopPlayback'.
-Registered function 'AkaiMidiMix.AkaiMidiMix', 'AkaiMidiMix.AkaiMidiMix'.
-Registered function 'AkaiMidiMix.getAllControls', 'getAllControls'.
-Registered function 'AkaiMidiMix.getControlAsColor', 'getControlAsColor'.
-Registered function 'AkaiMidiMix.getControlAsScalars', 'getControlAsScalars'.
-Registered function 'AkaiMidiMix.getControlAsVec3', 'getControlAsVec3'.
-Registered function 'AkaiMidiMix.getCurrentBank', 'getCurrentBank'.
-Registered function 'AkaiMidiMix.getMaster', 'getMaster'.
-Registered function 'AkaiMidiMix.getRotaryControl', 'getRotaryControl'.
-Registered function 'AkaiMidiMix.getSlider', 'getSlider'.
-Registered function 'AkaiMidiMix.isMuted', 'isMuted'.
-Registered function 'AkaiMidiMix.isRecording', 'isRecording'.
-Registered function 'AkaiMidiMix.isSolo', 'isSolo'.
-Registered function 'AkaiMidiMix.poll', 'poll'.
-Registered function 'AkaiMidiMix.valid', 'valid'.
-Registered function 'AkaiMidiMix.~AkaiMidiMix', '~AkaiMidiMix'.
-Skipped 'function MidiInput.openPort!( in UInt32 portNumber )', double declaration, found overload with more parameters.
-Skipped 'function MidiInput.openPort!()', double declaration, found overload with more parameters.
-Skipped 'function MidiInput.openVirtualPort!()', double declaration, found overload with more parameters.
-Skipped 'function String MidiInput.getPortName?()', double declaration, found overload with more parameters.
-Skipped 'function MidiInput.ignoreTypes!()', double declaration, found overload with more parameters.
-Skipped 'function MidiOutput.openPort!( in UInt32 portNumber )', double declaration, found overload with more parameters.
-Skipped 'function MidiOutput.openPort!()', double declaration, found overload with more parameters.
-Skipped 'function MidiOutput.openVirtualPort!()', double declaration, found overload with more parameters.
-Skipped 'function String MidiOutput.getPortName?()', double declaration, found overload with more parameters.
-Skipped 'function MidiController?()', double declaration, found overload with more parameters.
-Skipped 'function MidiController?( in UInt32 port )', double declaration, found overload with more parameters.
-Skipping array preset for 'function MidiOutput.sendMessage!( in Byte message[] )', contains array parameter.
-Skipping array preset for 'function Byte[16] MidiController.getLayer?( in Byte index )', has array return value.
-Skipping array preset for 'function Scalar[] AkaiMidiMix.getAllControls?()', has array return value.
+[FABRIC:MT] Loaded extension Math in 131.851ms (cached)
+[FABRIC:MT] Loaded extension FabricSynchronization in 19.690ms (cached)
+[FABRIC:MT] Loaded extension Singletons in 74.609ms (cached)
+[FABRIC:MT] Loaded extension Util in 29.867ms (cached)
+[FABRIC:MT] Loaded extension Midi in 525.549ms (first time)
+registerFunction: thisType='MidiInput' func='function MidiInput?( in UInt32 portNumber )'
+  Added to bin[normal][MidiInput]
+registerFunction: thisType='MidiInput' func='function MidiInput.closePort!()'
+  Added to bin[normal][MidiInput.closePort]
+registerFunction: thisType='MidiInput' func='function Float64 MidiInput.getMessage!( io Byte message[] )'
+  Added to bin[normal][Float64 MidiInput.getMessage]
+registerFunction: thisType='MidiInput' func='function UInt32 MidiInput.getPortCount?()'
+  Added to bin[normal][UInt32 MidiInput.getPortCount]
+registerFunction: thisType='MidiInput' func='function String MidiInput.getPortName?( in UInt32 portNumber )'
+  Added to bin[normal][String MidiInput.getPortName]
+registerFunction: thisType='MidiInput' func='function String MidiInput.getPortName?()'
+  Added to bin[normal][String MidiInput.getPortName]
+registerFunction: thisType='MidiInput' func='function MidiInput.ignoreTypes!( in Boolean midiSysex, in Boolean midiTime, in Boolean midiSense )'
+  Added to bin[normal][MidiInput.ignoreTypes]
+registerFunction: thisType='MidiInput' func='function MidiInput.ignoreTypes!()'
+  Added to bin[normal][MidiInput.ignoreTypes]
+registerFunction: thisType='MidiInput' func='function Boolean MidiInput.isPortOpen?()'
+  Added to bin[normal][Boolean MidiInput.isPortOpen]
+registerFunction: thisType='MidiInput' func='function MidiInput.openPort!( in UInt32 portNumber )'
+  Added to bin[normal][MidiInput.openPort]
+registerFunction: thisType='MidiInput' func='function MidiInput.openPort!( in UInt32 portNumber, in String portName )'
+  Added to bin[normal][MidiInput.openPort]
+registerFunction: thisType='MidiInput' func='function MidiInput.openPort!()'
+  Added to bin[normal][MidiInput.openPort]
+registerFunction: thisType='MidiInput' func='function MidiInput.openVirtualPort!( in String portName )'
+  Added to bin[normal][MidiInput.openVirtualPort]
+registerFunction: thisType='MidiInput' func='function MidiInput.openVirtualPort!()'
+  Added to bin[normal][MidiInput.openVirtualPort]
+registerFunction: thisType='MidiOutput' func='function MidiOutput?( in UInt32 portNumber )'
+  Added to bin[normal][MidiOutput]
+registerFunction: thisType='MidiOutput' func='function MidiOutput.closePort!()'
+  Added to bin[normal][MidiOutput.closePort]
+registerFunction: thisType='MidiOutput' func='function UInt32 MidiOutput.getPortCount?()'
+  Added to bin[normal][UInt32 MidiOutput.getPortCount]
+registerFunction: thisType='MidiOutput' func='function String MidiOutput.getPortName?( in UInt32 portNumber )'
+  Added to bin[normal][String MidiOutput.getPortName]
+registerFunction: thisType='MidiOutput' func='function String MidiOutput.getPortName?()'
+  Added to bin[normal][String MidiOutput.getPortName]
+registerFunction: thisType='MidiOutput' func='function Boolean MidiOutput.isPortOpen?()'
+  Added to bin[normal][Boolean MidiOutput.isPortOpen]
+registerFunction: thisType='MidiOutput' func='function MidiOutput.openPort!( in UInt32 portNumber )'
+  Added to bin[normal][MidiOutput.openPort]
+registerFunction: thisType='MidiOutput' func='function MidiOutput.openPort!( in UInt32 portNumber, in String portName )'
+  Added to bin[normal][MidiOutput.openPort]
+registerFunction: thisType='MidiOutput' func='function MidiOutput.openPort!()'
+  Added to bin[normal][MidiOutput.openPort]
+registerFunction: thisType='MidiOutput' func='function MidiOutput.openVirtualPort!( in String portName )'
+  Added to bin[normal][MidiOutput.openVirtualPort]
+registerFunction: thisType='MidiOutput' func='function MidiOutput.openVirtualPort!()'
+  Added to bin[normal][MidiOutput.openVirtualPort]
+registerFunction: thisType='MidiOutput' func='function MidiOutput.sendMessage!( in Byte message[] )'
+  Added to bin[normal][MidiOutput.sendMessage]
+registerFunction: thisType='MidiNoteCallback' func='function MidiNoteCallback.invoke!( in Byte note, in Byte velocity )'
+  Added to bin[normal][MidiNoteCallback.invoke]
+registerFunction: thisType='MidiButtonCallback' func='function MidiButtonCallback.invoke!( in Byte button )'
+  Added to bin[normal][MidiButtonCallback.invoke]
+registerFunction: thisType='MidiControlCallback' func='function MidiControlCallback.invoke!( in Byte control, in Byte channel, in Byte value )'
+  Added to bin[normal][MidiControlCallback.invoke]
+registerFunction: thisType='MidiController' func='function MidiController?( in UInt32 input, in UInt32 output )'
+  Added to bin[normal][MidiController]
+registerFunction: thisType='MidiController' func='function MidiController?( in UInt32 port )'
+  Added to bin[normal][MidiController]
+registerFunction: thisType='MidiController' func='function MidiController?()'
+  Added to bin[normal][MidiController]
+registerFunction: thisType='MidiController' func='function Byte MidiController.getControl?( in Byte index, in Byte channel )'
+  Added to bin[normal][Byte MidiController.getControl]
+registerFunction: thisType='MidiController' func='function Byte[16] MidiController.getLayer?( in Byte index )'
+  Added to bin[normal][Byte[16] MidiController.getLayer]
+registerFunction: thisType='MidiController' func='function Byte MidiController.getNote?( in Byte index )'
+  Added to bin[normal][Byte MidiController.getNote]
+registerFunction: thisType='MidiController' func='function Boolean MidiController.isNoteTriggered!( in Byte index )'
+  Added to bin[normal][Boolean MidiController.isNoteTriggered]
+registerFunction: thisType='MidiController' func='function MidiController.poll!()'
+  Added to bin[normal][MidiController.poll]
+registerFunction: thisType='MidiController' func='function MidiController.reset!()'
+  Added to bin[normal][MidiController.reset]
+registerFunction: thisType='MidiController' func='function MidiController.setButtonCallback!( in MidiButtonCallback callback )'
+  Added to bin[normal][MidiController.setButtonCallback]
+registerFunction: thisType='MidiController' func='function MidiController.setControl!( in Byte index, in Byte channel, in Byte value )'
+  Added to bin[normal][MidiController.setControl]
+registerFunction: thisType='MidiController' func='function MidiController.setControlCallback!( in MidiControlCallback callback )'
+  Added to bin[normal][MidiController.setControlCallback]
+registerFunction: thisType='MidiController' func='function MidiController.setMessageReporting!( in Boolean state )'
+  Added to bin[normal][MidiController.setMessageReporting]
+registerFunction: thisType='MidiController' func='function MidiController.setNote!( in Byte index, in Byte value )'
+  Added to bin[normal][MidiController.setNote]
+registerFunction: thisType='MidiController' func='function MidiController.setNoteCallback!( in MidiNoteCallback callback )'
+  Added to bin[normal][MidiController.setNoteCallback]
+registerFunction: thisType='MidiController' func='function MidiController.startPlayback!()'
+  Added to bin[normal][MidiController.startPlayback]
+registerFunction: thisType='MidiController' func='function MidiController.stopPlayback!()'
+  Added to bin[normal][MidiController.stopPlayback]
+registerFunction: thisType='AkaiMidiMix' func='function AkaiMidiMix?()'
+  Added to bin[normal][AkaiMidiMix]
+registerFunction: thisType='AkaiMidiMix' func='function Scalar[] AkaiMidiMix.getAllControls?()'
+  Added to bin[normal][Scalar[] AkaiMidiMix.getAllControls]
+registerFunction: thisType='AkaiMidiMix' func='function AkaiMidiMix.getControlAsColor?( in Index index, out Color rotary, out Scalar slider, out Boolean muted, out Boolean recording )'
+  Added to bin[normal][AkaiMidiMix.getControlAsColor]
+registerFunction: thisType='AkaiMidiMix' func='function AkaiMidiMix.getControlAsScalars?( in Index index, out Scalar rotary1, out Scalar rotary2, out Scalar rotary3, out Scalar slider, out Boolean muted, out Boolean recording )'
+  Added to bin[normal][AkaiMidiMix.getControlAsScalars]
+registerFunction: thisType='AkaiMidiMix' func='function AkaiMidiMix.getControlAsVec3?( in Index index, out Vec3 rotary, out Scalar slider, out Boolean muted, out Boolean recording )'
+  Added to bin[normal][AkaiMidiMix.getControlAsVec3]
+registerFunction: thisType='AkaiMidiMix' func='function SInt32 AkaiMidiMix.getCurrentBank?()'
+  Added to bin[normal][SInt32 AkaiMidiMix.getCurrentBank]
+registerFunction: thisType='AkaiMidiMix' func='function Scalar AkaiMidiMix.getMaster?()'
+  Added to bin[normal][Scalar AkaiMidiMix.getMaster]
+registerFunction: thisType='AkaiMidiMix' func='function Scalar AkaiMidiMix.getRotaryControl?( in Size col, in Size row )'
+  Added to bin[normal][Scalar AkaiMidiMix.getRotaryControl]
+registerFunction: thisType='AkaiMidiMix' func='function Scalar AkaiMidiMix.getSlider?( in Size col )'
+  Added to bin[normal][Scalar AkaiMidiMix.getSlider]
+registerFunction: thisType='AkaiMidiMix' func='function AkaiMidiMix.invoke!( in Byte control, in Byte channel, in Byte value )'
+  Skipped: hasQualifier(dfgPresetOmit)
+registerFunction: thisType='AkaiMidiMix' func='function AkaiMidiMix.invoke!( in Byte note, in Byte velocity )'
+  Skipped: hasQualifier(dfgPresetOmit)
+registerFunction: thisType='AkaiMidiMix' func='function Boolean AkaiMidiMix.isMuted?( in Index index )'
+  Added to bin[normal][Boolean AkaiMidiMix.isMuted]
+registerFunction: thisType='AkaiMidiMix' func='function Boolean AkaiMidiMix.isRecording?( in Index index )'
+  Added to bin[normal][Boolean AkaiMidiMix.isRecording]
+registerFunction: thisType='AkaiMidiMix' func='function Boolean AkaiMidiMix.isSolo?()'
+  Added to bin[normal][Boolean AkaiMidiMix.isSolo]
+registerFunction: thisType='AkaiMidiMix' func='function AkaiMidiMix.poll!()'
+  Added to bin[normal][AkaiMidiMix.poll]
+registerFunction: thisType='AkaiMidiMix' func='function Boolean AkaiMidiMix.valid?()'
+  Added to bin[normal][Boolean AkaiMidiMix.valid]
+registerFunction: thisType='AkaiMidiMix' func='function ~AkaiMidiMix()'
+  Added to bin[normal][AkaiMidiMix.~AkaiMidiMix]
+registerFunction: thisType='MidiInput' func='function MidiInput?( in UInt32 portNumber )'
+registerFunction: thisType='MidiInput' func='function MidiInput?()'
+  Skipped: isInternal()
+registerFunction: thisType='MidiInput' func='function MidiInput.openPort!( in UInt32 portNumber, in String portName )'
+registerFunction: thisType='MidiInput' func='function MidiInput.openPort!( in UInt32 portNumber )'
+registerFunction: thisType='MidiInput' func='function MidiInput.openPort!()'
+registerFunction: thisType='MidiInput' func='function MidiInput.openVirtualPort!( in String portName )'
+registerFunction: thisType='MidiInput' func='function MidiInput.openVirtualPort!()'
+registerFunction: thisType='MidiInput' func='function MidiInput.closePort!()'
+registerFunction: thisType='MidiInput' func='function Boolean MidiInput.isPortOpen?()'
+registerFunction: thisType='MidiInput' func='function UInt32 MidiInput.getPortCount?()'
+registerFunction: thisType='MidiInput' func='function String MidiInput.getPortName?( in UInt32 portNumber )'
+registerFunction: thisType='MidiInput' func='function String MidiInput.getPortName?()'
+registerFunction: thisType='MidiInput' func='function MidiInput.ignoreTypes!( in Boolean midiSysex, in Boolean midiTime, in Boolean midiSense )'
+registerFunction: thisType='MidiInput' func='function MidiInput.ignoreTypes!()'
+registerFunction: thisType='MidiInput' func='function Float64 MidiInput.getMessage!( io Byte message[] )'
+registerFunction: thisType='MidiOutput' func='function MidiOutput?( in UInt32 portNumber )'
+registerFunction: thisType='MidiOutput' func='function MidiOutput?()'
+  Skipped: isInternal()
+registerFunction: thisType='MidiOutput' func='function MidiOutput.openPort!( in UInt32 portNumber, in String portName )'
+registerFunction: thisType='MidiOutput' func='function MidiOutput.openPort!( in UInt32 portNumber )'
+registerFunction: thisType='MidiOutput' func='function MidiOutput.openPort!()'
+registerFunction: thisType='MidiOutput' func='function MidiOutput.openVirtualPort!( in String portName )'
+registerFunction: thisType='MidiOutput' func='function MidiOutput.openVirtualPort!()'
+registerFunction: thisType='MidiOutput' func='function MidiOutput.closePort!()'
+registerFunction: thisType='MidiOutput' func='function Boolean MidiOutput.isPortOpen?()'
+registerFunction: thisType='MidiOutput' func='function UInt32 MidiOutput.getPortCount?()'
+registerFunction: thisType='MidiOutput' func='function String MidiOutput.getPortName?( in UInt32 portNumber )'
+registerFunction: thisType='MidiOutput' func='function String MidiOutput.getPortName?()'
+registerFunction: thisType='MidiOutput' func='function MidiOutput.sendMessage!( in Byte message[] )'
+registerFunction: thisType='MidiController' func='function MidiController?()'
+registerFunction: thisType='MidiController' func='function MidiController?( in UInt32 port )'
+registerFunction: thisType='MidiController' func='function MidiController?( in UInt32 input, in UInt32 output )'
+registerFunction: thisType='MidiController' func='function MidiController.init!( in UInt32 inputPort, in UInt32 outputPort )'
+  Skipped: isInternal()
+registerFunction: thisType='MidiController' func='function MidiController.setMessageReporting!( in Boolean state )'
+registerFunction: thisType='MidiController' func='function MidiController.reset!()'
+registerFunction: thisType='MidiController' func='function MidiController.setNoteCallback!( in MidiNoteCallback callback )'
+registerFunction: thisType='MidiController' func='function MidiController.setButtonCallback!( in MidiButtonCallback callback )'
+registerFunction: thisType='MidiController' func='function MidiController.setControlCallback!( in MidiControlCallback callback )'
+registerFunction: thisType='MidiController' func='function MidiController.poll!()'
+registerFunction: thisType='MidiController' func='function Byte MidiController.getNote?( in Byte index )'
+registerFunction: thisType='MidiController' func='function MidiController.setNote!( in Byte index, in Byte value )'
+registerFunction: thisType='MidiController' func='function Boolean MidiController.isNoteTriggered!( in Byte index )'
+registerFunction: thisType='MidiController' func='function Byte MidiController.getControl?( in Byte index, in Byte channel )'
+registerFunction: thisType='MidiController' func='function MidiController.setControl!( in Byte index, in Byte channel, in Byte value )'
+registerFunction: thisType='MidiController' func='function Byte[16] MidiController.getLayer?( in Byte index )'
+registerFunction: thisType='MidiController' func='function MidiController.startPlayback!()'
+registerFunction: thisType='MidiController' func='function MidiController.stopPlayback!()'
+registerFunction: thisType='AkaiMidiMix' func='function AkaiMidiMix?()'
+registerFunction: thisType='AkaiMidiMix' func='function AkaiMidiMix.init!()'
+  Skipped: isInternal()
+registerFunction: thisType='AkaiMidiMix' func='function Boolean AkaiMidiMix.valid?()'
+registerFunction: thisType='AkaiMidiMix' func='function AkaiMidiMix.poll!()'
+registerFunction: thisType='AkaiMidiMix' func='function AkaiMidiMix.invoke!( in Byte note, in Byte velocity )'
+  Skipped: hasQualifier(dfgPresetOmit)
+registerFunction: thisType='AkaiMidiMix' func='function AkaiMidiMix.invoke!( in Byte control, in Byte channel, in Byte value )'
+  Skipped: hasQualifier(dfgPresetOmit)
+registerFunction: thisType='AkaiMidiMix' func='function Scalar AkaiMidiMix.getSlider?( in Size col )'
+registerFunction: thisType='AkaiMidiMix' func='function Scalar AkaiMidiMix.getMaster?()'
+registerFunction: thisType='AkaiMidiMix' func='function Scalar AkaiMidiMix.getRotaryControl?( in Size col, in Size row )'
+registerFunction: thisType='AkaiMidiMix' func='function Scalar[] AkaiMidiMix.getAllControls?()'
+registerFunction: thisType='AkaiMidiMix' func='function AkaiMidiMix.getControlAsScalars?( in Index index, out Scalar rotary1, out Scalar rotary2, out Scalar rotary3, out Scalar slider, out Boolean muted, out Boolean recording )'
+registerFunction: thisType='AkaiMidiMix' func='function AkaiMidiMix.getControlAsVec3?( in Index index, out Vec3 rotary, out Scalar slider, out Boolean muted, out Boolean recording )'
+registerFunction: thisType='AkaiMidiMix' func='function AkaiMidiMix.getControlAsColor?( in Index index, out Color rotary, out Scalar slider, out Boolean muted, out Boolean recording )'
+registerFunction: thisType='AkaiMidiMix' func='function SInt32 AkaiMidiMix.getCurrentBank?()'
+registerFunction: thisType='AkaiMidiMix' func='function Boolean AkaiMidiMix.isSolo?()'
+registerFunction: thisType='AkaiMidiMix' func='function Boolean AkaiMidiMix.isMuted?( in Index index )'
+registerFunction: thisType='AkaiMidiMix' func='function Boolean AkaiMidiMix.isRecording?( in Index index )'
+processFunctions
+  bin[normal][MidiInput][1] (asArray=false)
+    thisType='MidiInput' code='function MidiInput?( in UInt32 portNumber )'
+  bin[normal][MidiInput][1] (asArray=true)
+    thisType='MidiInput' code='function MidiInput?( in UInt32 portNumber )'
+  bin[normal][MidiInput.closePort][0] (asArray=false)
+    thisType='MidiInput' code='function MidiInput.closePort!()'
+  bin[normal][MidiInput.closePort][0] (asArray=true)
+    thisType='MidiInput' code='function MidiInput.closePort!()'
+  bin[normal][Float64 MidiInput.getMessage][1] (asArray=false)
+    thisType='MidiInput' code='function Float64 MidiInput.getMessage!( io Byte message[] )'
+  bin[normal][Float64 MidiInput.getMessage][1] (asArray=true)
+    thisType='MidiInput' code='function Float64 MidiInput.getMessage!( io Byte message[] )'
+  bin[normal][UInt32 MidiInput.getPortCount][0] (asArray=false)
+    thisType='MidiInput' code='function UInt32 MidiInput.getPortCount?()'
+  bin[normal][UInt32 MidiInput.getPortCount][0] (asArray=true)
+    thisType='MidiInput' code='function UInt32 MidiInput.getPortCount?()'
+  bin[normal][String MidiInput.getPortName][1] (asArray=false)
+    thisType='MidiInput' code='function String MidiInput.getPortName?( in UInt32 portNumber )'
+  bin[normal][String MidiInput.getPortName][1] (asArray=true)
+    thisType='MidiInput' code='function String MidiInput.getPortName?( in UInt32 portNumber )'
+  bin[normal][MidiInput.ignoreTypes][3] (asArray=false)
+    thisType='MidiInput' code='function MidiInput.ignoreTypes!( in Boolean midiSysex, in Boolean midiTime, in Boolean midiSense )'
+  bin[normal][MidiInput.ignoreTypes][3] (asArray=true)
+    thisType='MidiInput' code='function MidiInput.ignoreTypes!( in Boolean midiSysex, in Boolean midiTime, in Boolean midiSense )'
+  bin[normal][Boolean MidiInput.isPortOpen][0] (asArray=false)
+    thisType='MidiInput' code='function Boolean MidiInput.isPortOpen?()'
+  bin[normal][Boolean MidiInput.isPortOpen][0] (asArray=true)
+    thisType='MidiInput' code='function Boolean MidiInput.isPortOpen?()'
+  bin[normal][MidiInput.openPort][2] (asArray=false)
+    thisType='MidiInput' code='function MidiInput.openPort!( in UInt32 portNumber, in String portName )'
+  bin[normal][MidiInput.openPort][2] (asArray=true)
+    thisType='MidiInput' code='function MidiInput.openPort!( in UInt32 portNumber, in String portName )'
+  bin[normal][MidiInput.openVirtualPort][1] (asArray=false)
+    thisType='MidiInput' code='function MidiInput.openVirtualPort!( in String portName )'
+  bin[normal][MidiInput.openVirtualPort][1] (asArray=true)
+    thisType='MidiInput' code='function MidiInput.openVirtualPort!( in String portName )'
+  bin[normal][MidiOutput][1] (asArray=false)
+    thisType='MidiOutput' code='function MidiOutput?( in UInt32 portNumber )'
+  bin[normal][MidiOutput][1] (asArray=true)
+    thisType='MidiOutput' code='function MidiOutput?( in UInt32 portNumber )'
+  bin[normal][MidiOutput.closePort][0] (asArray=false)
+    thisType='MidiOutput' code='function MidiOutput.closePort!()'
+  bin[normal][MidiOutput.closePort][0] (asArray=true)
+    thisType='MidiOutput' code='function MidiOutput.closePort!()'
+  bin[normal][UInt32 MidiOutput.getPortCount][0] (asArray=false)
+    thisType='MidiOutput' code='function UInt32 MidiOutput.getPortCount?()'
+  bin[normal][UInt32 MidiOutput.getPortCount][0] (asArray=true)
+    thisType='MidiOutput' code='function UInt32 MidiOutput.getPortCount?()'
+  bin[normal][String MidiOutput.getPortName][1] (asArray=false)
+    thisType='MidiOutput' code='function String MidiOutput.getPortName?( in UInt32 portNumber )'
+  bin[normal][String MidiOutput.getPortName][1] (asArray=true)
+    thisType='MidiOutput' code='function String MidiOutput.getPortName?( in UInt32 portNumber )'
+  bin[normal][Boolean MidiOutput.isPortOpen][0] (asArray=false)
+    thisType='MidiOutput' code='function Boolean MidiOutput.isPortOpen?()'
+  bin[normal][Boolean MidiOutput.isPortOpen][0] (asArray=true)
+    thisType='MidiOutput' code='function Boolean MidiOutput.isPortOpen?()'
+  bin[normal][MidiOutput.openPort][2] (asArray=false)
+    thisType='MidiOutput' code='function MidiOutput.openPort!( in UInt32 portNumber, in String portName )'
+  bin[normal][MidiOutput.openPort][2] (asArray=true)
+    thisType='MidiOutput' code='function MidiOutput.openPort!( in UInt32 portNumber, in String portName )'
+  bin[normal][MidiOutput.openVirtualPort][1] (asArray=false)
+    thisType='MidiOutput' code='function MidiOutput.openVirtualPort!( in String portName )'
+  bin[normal][MidiOutput.openVirtualPort][1] (asArray=true)
+    thisType='MidiOutput' code='function MidiOutput.openVirtualPort!( in String portName )'
+  bin[normal][MidiOutput.sendMessage][1] (asArray=false)
+    thisType='MidiOutput' code='function MidiOutput.sendMessage!( in Byte message[] )'
+  bin[normal][MidiOutput.sendMessage][1] (asArray=true)
+    thisType='MidiOutput' code='function MidiOutput.sendMessage!( in Byte message[] )'
+    Skipping array preset for 'function MidiOutput.sendMessage!( in Byte message[] )', contains array parameter.
+  bin[normal][MidiNoteCallback.invoke][2] (asArray=false)
+    thisType='MidiNoteCallback' code='function MidiNoteCallback.invoke!( in Byte note, in Byte velocity )'
+  bin[normal][MidiNoteCallback.invoke][2] (asArray=true)
+    thisType='MidiNoteCallback' code='function MidiNoteCallback.invoke!( in Byte note, in Byte velocity )'
+  bin[normal][MidiButtonCallback.invoke][1] (asArray=false)
+    thisType='MidiButtonCallback' code='function MidiButtonCallback.invoke!( in Byte button )'
+  bin[normal][MidiButtonCallback.invoke][1] (asArray=true)
+    thisType='MidiButtonCallback' code='function MidiButtonCallback.invoke!( in Byte button )'
+  bin[normal][MidiControlCallback.invoke][3] (asArray=false)
+    thisType='MidiControlCallback' code='function MidiControlCallback.invoke!( in Byte control, in Byte channel, in Byte value )'
+  bin[normal][MidiControlCallback.invoke][3] (asArray=true)
+    thisType='MidiControlCallback' code='function MidiControlCallback.invoke!( in Byte control, in Byte channel, in Byte value )'
+  bin[normal][MidiController][2] (asArray=false)
+    thisType='MidiController' code='function MidiController?( in UInt32 input, in UInt32 output )'
+  bin[normal][MidiController][2] (asArray=true)
+    thisType='MidiController' code='function MidiController?( in UInt32 input, in UInt32 output )'
+  bin[normal][Byte MidiController.getControl][2] (asArray=false)
+    thisType='MidiController' code='function Byte MidiController.getControl?( in Byte index, in Byte channel )'
+  bin[normal][Byte MidiController.getControl][2] (asArray=true)
+    thisType='MidiController' code='function Byte MidiController.getControl?( in Byte index, in Byte channel )'
+  bin[normal][Byte[16] MidiController.getLayer][1] (asArray=false)
+    thisType='MidiController' code='function Byte[16] MidiController.getLayer?( in Byte index )'
+  bin[normal][Byte[16] MidiController.getLayer][1] (asArray=true)
+    thisType='MidiController' code='function Byte[16] MidiController.getLayer?( in Byte index )'
+    Skipping array preset for 'function Byte[16] MidiController.getLayer?( in Byte index )', has array return value.
+  bin[normal][Byte[16] MidiController.getLayer][0] (asArray=true)
+    Skipping bin: empty
+  bin[normal][Byte MidiController.getNote][1] (asArray=false)
+    thisType='MidiController' code='function Byte MidiController.getNote?( in Byte index )'
+  bin[normal][Byte MidiController.getNote][1] (asArray=true)
+    thisType='MidiController' code='function Byte MidiController.getNote?( in Byte index )'
+  bin[normal][Boolean MidiController.isNoteTriggered][1] (asArray=false)
+    thisType='MidiController' code='function Boolean MidiController.isNoteTriggered!( in Byte index )'
+  bin[normal][Boolean MidiController.isNoteTriggered][1] (asArray=true)
+    thisType='MidiController' code='function Boolean MidiController.isNoteTriggered!( in Byte index )'
+  bin[normal][MidiController.poll][0] (asArray=false)
+    thisType='MidiController' code='function MidiController.poll!()'
+  bin[normal][MidiController.poll][0] (asArray=true)
+    thisType='MidiController' code='function MidiController.poll!()'
+  bin[normal][MidiController.reset][0] (asArray=false)
+    thisType='MidiController' code='function MidiController.reset!()'
+  bin[normal][MidiController.reset][0] (asArray=true)
+    thisType='MidiController' code='function MidiController.reset!()'
+  bin[normal][MidiController.setButtonCallback][1] (asArray=false)
+    thisType='MidiController' code='function MidiController.setButtonCallback!( in MidiButtonCallback callback )'
+  bin[normal][MidiController.setButtonCallback][1] (asArray=true)
+    thisType='MidiController' code='function MidiController.setButtonCallback!( in MidiButtonCallback callback )'
+  bin[normal][MidiController.setControl][3] (asArray=false)
+    thisType='MidiController' code='function MidiController.setControl!( in Byte index, in Byte channel, in Byte value )'
+  bin[normal][MidiController.setControl][3] (asArray=true)
+    thisType='MidiController' code='function MidiController.setControl!( in Byte index, in Byte channel, in Byte value )'
+  bin[normal][MidiController.setControlCallback][1] (asArray=false)
+    thisType='MidiController' code='function MidiController.setControlCallback!( in MidiControlCallback callback )'
+  bin[normal][MidiController.setControlCallback][1] (asArray=true)
+    thisType='MidiController' code='function MidiController.setControlCallback!( in MidiControlCallback callback )'
+  bin[normal][MidiController.setMessageReporting][1] (asArray=false)
+    thisType='MidiController' code='function MidiController.setMessageReporting!( in Boolean state )'
+  bin[normal][MidiController.setMessageReporting][1] (asArray=true)
+    thisType='MidiController' code='function MidiController.setMessageReporting!( in Boolean state )'
+  bin[normal][MidiController.setNote][2] (asArray=false)
+    thisType='MidiController' code='function MidiController.setNote!( in Byte index, in Byte value )'
+  bin[normal][MidiController.setNote][2] (asArray=true)
+    thisType='MidiController' code='function MidiController.setNote!( in Byte index, in Byte value )'
+  bin[normal][MidiController.setNoteCallback][1] (asArray=false)
+    thisType='MidiController' code='function MidiController.setNoteCallback!( in MidiNoteCallback callback )'
+  bin[normal][MidiController.setNoteCallback][1] (asArray=true)
+    thisType='MidiController' code='function MidiController.setNoteCallback!( in MidiNoteCallback callback )'
+  bin[normal][MidiController.startPlayback][0] (asArray=false)
+    thisType='MidiController' code='function MidiController.startPlayback!()'
+  bin[normal][MidiController.startPlayback][0] (asArray=true)
+    thisType='MidiController' code='function MidiController.startPlayback!()'
+  bin[normal][MidiController.stopPlayback][0] (asArray=false)
+    thisType='MidiController' code='function MidiController.stopPlayback!()'
+  bin[normal][MidiController.stopPlayback][0] (asArray=true)
+    thisType='MidiController' code='function MidiController.stopPlayback!()'
+  bin[normal][AkaiMidiMix][0] (asArray=false)
+    thisType='AkaiMidiMix' code='function AkaiMidiMix?()'
+  bin[normal][AkaiMidiMix][0] (asArray=true)
+    thisType='AkaiMidiMix' code='function AkaiMidiMix?()'
+  bin[normal][Scalar[] AkaiMidiMix.getAllControls][0] (asArray=false)
+    thisType='AkaiMidiMix' code='function Scalar[] AkaiMidiMix.getAllControls?()'
+  bin[normal][Scalar[] AkaiMidiMix.getAllControls][0] (asArray=true)
+    thisType='AkaiMidiMix' code='function Scalar[] AkaiMidiMix.getAllControls?()'
+    Skipping array preset for 'function Scalar[] AkaiMidiMix.getAllControls?()', has array return value.
+  bin[normal][AkaiMidiMix.getControlAsColor][5] (asArray=false)
+    thisType='AkaiMidiMix' code='function AkaiMidiMix.getControlAsColor?( in Index index, out Color rotary, out Scalar slider, out Boolean muted, out Boolean recording )'
+  bin[normal][AkaiMidiMix.getControlAsColor][5] (asArray=true)
+    thisType='AkaiMidiMix' code='function AkaiMidiMix.getControlAsColor?( in Index index, out Color rotary, out Scalar slider, out Boolean muted, out Boolean recording )'
+  bin[normal][AkaiMidiMix.getControlAsScalars][7] (asArray=false)
+    thisType='AkaiMidiMix' code='function AkaiMidiMix.getControlAsScalars?( in Index index, out Scalar rotary1, out Scalar rotary2, out Scalar rotary3, out Scalar slider, out Boolean muted, out Boolean recording )'
+  bin[normal][AkaiMidiMix.getControlAsScalars][7] (asArray=true)
+    thisType='AkaiMidiMix' code='function AkaiMidiMix.getControlAsScalars?( in Index index, out Scalar rotary1, out Scalar rotary2, out Scalar rotary3, out Scalar slider, out Boolean muted, out Boolean recording )'
+  bin[normal][AkaiMidiMix.getControlAsVec3][5] (asArray=false)
+    thisType='AkaiMidiMix' code='function AkaiMidiMix.getControlAsVec3?( in Index index, out Vec3 rotary, out Scalar slider, out Boolean muted, out Boolean recording )'
+  bin[normal][AkaiMidiMix.getControlAsVec3][5] (asArray=true)
+    thisType='AkaiMidiMix' code='function AkaiMidiMix.getControlAsVec3?( in Index index, out Vec3 rotary, out Scalar slider, out Boolean muted, out Boolean recording )'
+  bin[normal][SInt32 AkaiMidiMix.getCurrentBank][0] (asArray=false)
+    thisType='AkaiMidiMix' code='function SInt32 AkaiMidiMix.getCurrentBank?()'
+  bin[normal][SInt32 AkaiMidiMix.getCurrentBank][0] (asArray=true)
+    thisType='AkaiMidiMix' code='function SInt32 AkaiMidiMix.getCurrentBank?()'
+  bin[normal][Scalar AkaiMidiMix.getMaster][0] (asArray=false)
+    thisType='AkaiMidiMix' code='function Scalar AkaiMidiMix.getMaster?()'
+  bin[normal][Scalar AkaiMidiMix.getMaster][0] (asArray=true)
+    thisType='AkaiMidiMix' code='function Scalar AkaiMidiMix.getMaster?()'
+  bin[normal][Scalar AkaiMidiMix.getRotaryControl][2] (asArray=false)
+    thisType='AkaiMidiMix' code='function Scalar AkaiMidiMix.getRotaryControl?( in Size col, in Size row )'
+  bin[normal][Scalar AkaiMidiMix.getRotaryControl][2] (asArray=true)
+    thisType='AkaiMidiMix' code='function Scalar AkaiMidiMix.getRotaryControl?( in Size col, in Size row )'
+  bin[normal][Scalar AkaiMidiMix.getSlider][1] (asArray=false)
+    thisType='AkaiMidiMix' code='function Scalar AkaiMidiMix.getSlider?( in Size col )'
+  bin[normal][Scalar AkaiMidiMix.getSlider][1] (asArray=true)
+    thisType='AkaiMidiMix' code='function Scalar AkaiMidiMix.getSlider?( in Size col )'
+  bin[normal][Boolean AkaiMidiMix.isMuted][1] (asArray=false)
+    thisType='AkaiMidiMix' code='function Boolean AkaiMidiMix.isMuted?( in Index index )'
+  bin[normal][Boolean AkaiMidiMix.isMuted][1] (asArray=true)
+    thisType='AkaiMidiMix' code='function Boolean AkaiMidiMix.isMuted?( in Index index )'
+  bin[normal][Boolean AkaiMidiMix.isRecording][1] (asArray=false)
+    thisType='AkaiMidiMix' code='function Boolean AkaiMidiMix.isRecording?( in Index index )'
+  bin[normal][Boolean AkaiMidiMix.isRecording][1] (asArray=true)
+    thisType='AkaiMidiMix' code='function Boolean AkaiMidiMix.isRecording?( in Index index )'
+  bin[normal][Boolean AkaiMidiMix.isSolo][0] (asArray=false)
+    thisType='AkaiMidiMix' code='function Boolean AkaiMidiMix.isSolo?()'
+  bin[normal][Boolean AkaiMidiMix.isSolo][0] (asArray=true)
+    thisType='AkaiMidiMix' code='function Boolean AkaiMidiMix.isSolo?()'
+  bin[normal][AkaiMidiMix.poll][0] (asArray=false)
+    thisType='AkaiMidiMix' code='function AkaiMidiMix.poll!()'
+  bin[normal][AkaiMidiMix.poll][0] (asArray=true)
+    thisType='AkaiMidiMix' code='function AkaiMidiMix.poll!()'
+  bin[normal][Boolean AkaiMidiMix.valid][0] (asArray=false)
+    thisType='AkaiMidiMix' code='function Boolean AkaiMidiMix.valid?()'
+  bin[normal][Boolean AkaiMidiMix.valid][0] (asArray=true)
+    thisType='AkaiMidiMix' code='function Boolean AkaiMidiMix.valid?()'
+  bin[normal][AkaiMidiMix.~AkaiMidiMix][0] (asArray=false)
+    Skipping bin: destructor
+  bin[normal][AkaiMidiMix.~AkaiMidiMix][0] (asArray=true)
+    Skipping bin: destructor

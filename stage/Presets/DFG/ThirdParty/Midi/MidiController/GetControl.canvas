@@ -2,7 +2,7 @@
 {
   "objectType" : "Func",
   "metadata" : {
-    "uiTooltip" : "returns the value of a given control\n\n Supported by MidiController"
+    "uiTooltip" : "returns the value of a given control\n\nSupported types:\n  this: MidiController\n  index: Byte\n  channel: Byte\n  result: Byte\n"
     },
   "title" : "GetControl",
   "ports" : [

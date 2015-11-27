@@ -2,9 +2,9 @@
 {
   "objectType" : "Func",
   "metadata" : {
-    "uiTooltip" : "Supported types:\n  this: MidiOutput\n  portName: String\n"
+    "uiTooltip" : "Supported types:\n  this: MidiOutput\n  message: Byte[]\n"
     },
-  "title" : "OpenVirtualPort[]",
+  "title" : "SendMessage[]",
   "ports" : [
     {
       "objectType" : "Port",
@@ -17,39 +17,39 @@
       "objectType" : "Port",
       "nodePortType" : "Out",
       "defaultValues" : {
-        "String[]" : [
-          ""
+        "Byte[][]" : [
+          []
           ]
         },
-      "name" : "portName",
+      "name" : "message",
       "execPortType" : "In",
-      "typeSpec" : "String[]"
+      "typeSpec" : "Byte[][]"
       }
     ],
   "extDeps" : {
     "Midi" : "*"
     },
-  "presetGUID" : "9E3E480F9D6F101C95469FDD879B39A9",
+  "presetGUID" : "22A90BFC8B02D3CEF3F3DD351EF18857",
   "code" : "require Midi;
 
-operator Midi_MidiOutput_openVirtualPort_task<<<index>>>(
+operator Midi_MidiOutput_sendMessage_task<<<index>>>(
   io MidiOutput[] this
-, in String[] portName
+, in Byte[][] message
 ) {
-  this[index < this.size() ? index : this.size() - 1].openVirtualPort(portName[index < portName.size() ? index : portName.size() - 1]);
+  this[index < this.size() ? index : this.size() - 1].sendMessage(message[index < message.size() ? index : message.size() - 1]);
 }
 
 dfgEntry {
   if( this.size() == 0) return;
-  if( portName.size() == 0) return;
+  if( message.size() == 0) return;
   Size task_size = this.size();
-  if(task_size < portName.size()) task_size = portName.size();
+  if(task_size < message.size()) task_size = message.size();
   if(task_size < 10000 /* pex margin */) {
     for(Size index = 0; index < task_size; index++) {
-      Midi_MidiOutput_openVirtualPort_task(index, this, portName);
+      Midi_MidiOutput_sendMessage_task(index, this, message);
     }
   } else {
-    Midi_MidiOutput_openVirtualPort_task<<<task_size>>>(this, portName);
+    Midi_MidiOutput_sendMessage_task<<<task_size>>>(this, message);
   }
 }
 "

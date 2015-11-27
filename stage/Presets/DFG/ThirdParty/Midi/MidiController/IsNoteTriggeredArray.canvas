@@ -2,7 +2,7 @@
 {
   "objectType" : "Func",
   "metadata" : {
-    "uiTooltip" : "returns true if the note has been triggered, and consumes the flag\n\n Supported by MidiController"
+    "uiTooltip" : "returns true if the note has been triggered, and consumes the flag\n\nSupported types:\n  this: MidiController\n  index: Byte\n  result: Boolean\n"
     },
   "title" : "IsNoteTriggered[]",
   "ports" : [

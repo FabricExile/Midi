@@ -2,7 +2,7 @@
 {
   "objectType" : "Func",
   "metadata" : {
-    "uiTooltip" : "constructs a controller with a given port\n\n Supported by MidiController"
+    "uiTooltip" : "constructs a controller with a given port\n\nSupported types:\n  input: UInt32\n  output: UInt32\n  result: MidiController\n"
     },
   "title" : "MidiController[]",
   "ports" : [

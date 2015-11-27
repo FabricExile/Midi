@@ -2,7 +2,7 @@
 {
   "objectType" : "Func",
   "metadata" : {
-    "uiTooltip" : "default constructor\n\n Supported by MidiInput"
+    "uiTooltip" : "default constructor\n\nSupported types:\n  portNumber: UInt32\n  result: MidiInput\n"
     },
   "title" : "MidiInput[]",
   "ports" : [

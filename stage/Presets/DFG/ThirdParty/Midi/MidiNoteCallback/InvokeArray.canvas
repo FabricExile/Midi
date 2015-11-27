@@ -2,16 +2,16 @@
 {
   "objectType" : "Func",
   "metadata" : {
-    "uiTooltip" : "sets the value of a given channel\n\nSupported types:\n  this: MidiController\n  index: Byte\n  value: Byte\n"
+    "uiTooltip" : "Supported types:\n  this: MidiNoteCallback\n  note: Byte\n  velocity: Byte\n"
     },
-  "title" : "SetNote[]",
+  "title" : "Invoke[]",
   "ports" : [
     {
       "objectType" : "Port",
       "nodePortType" : "IO",
       "name" : "this",
       "execPortType" : "IO",
-      "typeSpec" : "MidiController[]"
+      "typeSpec" : "MidiNoteCallback[]"
       },
     {
       "objectType" : "Port",
@@ -21,7 +21,7 @@
           0
           ]
         },
-      "name" : "index",
+      "name" : "note",
       "execPortType" : "In",
       "typeSpec" : "Byte[]"
       },
@@ -33,7 +33,7 @@
           0
           ]
         },
-      "name" : "value",
+      "name" : "velocity",
       "execPortType" : "In",
       "typeSpec" : "Byte[]"
       }
@@ -41,30 +41,30 @@
   "extDeps" : {
     "Midi" : "*"
     },
-  "presetGUID" : "5F979BB46E8F5774362133CECF8C92B8",
+  "presetGUID" : "67E3A9FE27F45A74EE7E59AFC019B2D2",
   "code" : "require Midi;
 
-operator Midi_MidiController_setNote_task<<<index>>>(
-  io MidiController[] this
-, in Byte[] index
-, in Byte[] value
+operator Midi_MidiNoteCallback_invoke_task<<<index>>>(
+  io MidiNoteCallback[] this
+, in Byte[] note
+, in Byte[] velocity
 ) {
-  this[index < this.size() ? index : this.size() - 1].setNote(index[index < index.size() ? index : index.size() - 1], value[index < value.size() ? index : value.size() - 1]);
+  this[index < this.size() ? index : this.size() - 1].invoke(note[index < note.size() ? index : note.size() - 1], velocity[index < velocity.size() ? index : velocity.size() - 1]);
 }
 
 dfgEntry {
   if( this.size() == 0) return;
-  if( index.size() == 0) return;
-  if( value.size() == 0) return;
+  if( note.size() == 0) return;
+  if( velocity.size() == 0) return;
   Size task_size = this.size();
-  if(task_size < index.size()) task_size = index.size();
-  if(task_size < value.size()) task_size = value.size();
+  if(task_size < note.size()) task_size = note.size();
+  if(task_size < velocity.size()) task_size = velocity.size();
   if(task_size < 10000 /* pex margin */) {
     for(Size index = 0; index < task_size; index++) {
-      Midi_MidiController_setNote_task(index, this, index, value);
+      Midi_MidiNoteCallback_invoke_task(index, this, note, velocity);
     }
   } else {
-    Midi_MidiController_setNote_task<<<task_size>>>(this, index, value);
+    Midi_MidiNoteCallback_invoke_task<<<task_size>>>(this, note, velocity);
   }
 }
 "
